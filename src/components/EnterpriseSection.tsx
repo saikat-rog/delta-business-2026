@@ -5,21 +5,17 @@ export const EnterpriseSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="enterprise" className="site-container" style={{ marginTop: '20px', marginBottom: '50px' }}>
+    <section id="enterprise" className="site-container my-8 md:my-14">
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
           backgroundColor: '#151c28',
           borderRadius: '16px',
-          padding: '40px 48px',
-          flexWrap: 'wrap',
-          gap: '24px',
           boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
         }}
+        className="flex-col md:flex-row items-center justify-between text-center md:text-left p-6 md:p-10 gap-6"
       >
-        <div style={{ maxWidth: '720px' }}>
+        <div className="max-w-[720px]">
           <div
             style={{
               letterSpacing: '1px',
@@ -38,7 +34,7 @@ export const EnterpriseSection: React.FC = () => {
           </div>
           <h2
             style={{
-              fontSize: 'clamp(2rem, 3vw, 2.6rem)',
+              fontSize: 'clamp(1.9rem, 3.5vw, 2.6rem)',
               color: '#ffffff',
               fontWeight: 700,
               margin: 0,
@@ -49,24 +45,24 @@ export const EnterpriseSection: React.FC = () => {
           </h2>
         </div>
 
-        <div>
+        <div className="w-full md:w-auto">
           <button
             type="button"
             onClick={() => setShowModal(true)}
             style={{
               backgroundColor: '#0445DA',
               color: '#ffffff',
-              padding: '14px 36px',
+              padding: '12px 32px',
               borderRadius: '8px',
               fontSize: '1.5rem',
               fontWeight: 700,
               border: 'none',
               cursor: 'pointer',
-              display: 'inline-block',
               transition: 'all 0.2s ease',
               boxShadow: '0 4px 14px rgba(4, 69, 218, 0.4)',
               whiteSpace: 'nowrap',
             }}
+            className="w-full md:w-auto"
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0336aa')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0445DA')}
           >
@@ -98,7 +94,7 @@ export const EnterpriseSection: React.FC = () => {
             style={{
               backgroundColor: '#ffffff',
               borderRadius: '16px',
-              padding: '32px',
+              padding: '28px 24px',
               maxWidth: '500px',
               width: '100%',
               boxShadow: '0 20px 40px rgba(0,0,0,0.2)',

@@ -9,44 +9,43 @@ export const Header: React.FC = () => {
     <div className="Header_sticky-wrapper__3GFoo" style={{ position: 'sticky', top: 0, zIndex: 100, width: '100%', backgroundColor: '#ffffff' }}>
       {showTopBar && (
         <div
-          className="DownloadApp_wrapper__hsWY5"
           style={{
-            backgroundColor: '#031b5c',
-            color: '#ffffff',
+            backgroundColor: '#f0f3ff',
+            borderBottom: '1px solid #e0e7ff',
             padding: '8px 16px',
-            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            width: '100%',
           }}
         >
           <div
-            className="site-container"
             style={{
+              maxWidth: '1440px',
+              margin: '0 auto',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              paddingTop: 0,
-              paddingBottom: 0,
+              gap: '12px',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
               <img
                 alt="app-icon"
                 loading="lazy"
-                width="34"
-                height="34"
-                style={{ borderRadius: '8px' }}
+                width="36"
+                height="36"
+                style={{ borderRadius: '8px', flexShrink: 0 }}
                 src="https://dom-content-vault-prod-cdn-assets.porter.in/app_icon_compressed_a1d65eb06f.png"
               />
-              <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 700, color: '#ffffff' }}>
+              <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1a1a1a', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                   Install Tez Parcel
                 </div>
-                <div style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.8)' }}>
+                <div style={{ fontSize: '1.1rem', color: '#666666', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                   for efficient goods transportation
                 </div>
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
               <a
                 href="#download-app"
                 onClick={(e) => {
@@ -54,15 +53,16 @@ export const Header: React.FC = () => {
                   document.getElementById('download-app')?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 style={{
-                  backgroundColor: '#0445DA',
+                  backgroundColor: '#2962ff',
                   color: '#ffffff',
-                  padding: '6px 16px',
-                  borderRadius: '6px',
-                  fontSize: '1.2rem',
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  fontSize: '1.15rem',
                   fontWeight: 700,
                   textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+                  letterSpacing: '0.4px',
+                  whiteSpace: 'nowrap',
+                  textDecoration: 'none',
                 }}
               >
                 OPEN APP
@@ -71,7 +71,7 @@ export const Header: React.FC = () => {
                 type="button"
                 onClick={() => setShowTopBar(false)}
                 aria-label="Hide top bar"
-                style={{ padding: '4px', cursor: 'pointer', opacity: 0.8 }}
+                style={{ padding: '4px', cursor: 'pointer', background: 'none', border: 'none', display: 'flex', alignItems: 'center' }}
               >
                 <img
                   alt="hide"
@@ -88,12 +88,11 @@ export const Header: React.FC = () => {
 
       {/* Main Navbar */}
       <header
-        className="Header_header-wrapper__D6ekp"
         style={{
           backgroundColor: '#ffffff',
           boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
           borderBottom: '1px solid #f0f0f0',
-          padding: 0,
+          width: '100%',
         }}
       >
         <div
@@ -102,22 +101,17 @@ export const Header: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            height: '72px',
+            height: '64px',
           }}
         >
           {/* Logo on Left */}
           <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-            <TezLogo height={26} color="#0445DA" />
+            <TezLogo height={24} color="#0445DA" />
           </a>
 
-          {/* Navigation Links Grouped on Right */}
+          {/* Navigation Links Grouped on Right - Strictly Hidden on Mobile */}
           <nav
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '36px',
-            }}
-            className="hidden md:flex"
+            className="hidden md:flex items-center gap-8"
           >
             <a
               href="#enterprise"
@@ -172,18 +166,17 @@ export const Header: React.FC = () => {
             </a>
           </nav>
 
-          {/* Mobile Hamburger Icon */}
+          {/* Mobile Hamburger Icon - Shown Only on Mobile */}
           <button
             type="button"
-            className="md:hidden"
+            className="flex md:hidden items-center justify-center"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open mobile menu"
             style={{
-              padding: '8px',
+              padding: '6px',
               cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              border: 'none',
+              background: 'none',
             }}
           >
             <img
@@ -217,7 +210,7 @@ export const Header: React.FC = () => {
               className="animate-slide-up"
               style={{
                 width: '85%',
-                maxWidth: '340px',
+                maxWidth: '320px',
                 height: '100%',
                 backgroundColor: '#ffffff',
                 boxShadow: '-4px 0 20px rgba(0,0,0,0.2)',
@@ -234,7 +227,7 @@ export const Header: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    style={{ padding: '8px', cursor: 'pointer' }}
+                    style={{ padding: '8px', cursor: 'pointer', background: 'none', border: 'none' }}
                   >
                     <img
                       alt="close"
@@ -252,7 +245,7 @@ export const Header: React.FC = () => {
                       setIsMobileMenuOpen(false);
                       document.getElementById('enterprise')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0' }}
+                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0', textDecoration: 'none' }}
                   >
                     For Enterprise
                   </a>
@@ -262,7 +255,7 @@ export const Header: React.FC = () => {
                       setIsMobileMenuOpen(false);
                       alert('Driver Partner inquiries: Call 080 4410 4410');
                     }}
-                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0' }}
+                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0', textDecoration: 'none' }}
                   >
                     Driver Partner
                   </a>
@@ -272,7 +265,7 @@ export const Header: React.FC = () => {
                       setIsMobileMenuOpen(false);
                       alert('Support inquiries: Call 080 4410 4410');
                     }}
-                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0' }}
+                    style={{ fontSize: '1.6rem', fontWeight: 600, color: '#1a1a1a', padding: '8px 0', textDecoration: 'none' }}
                   >
                     Support
                   </a>
@@ -302,6 +295,8 @@ export const Header: React.FC = () => {
                     borderRadius: '8px',
                     fontSize: '1.4rem',
                     fontWeight: 700,
+                    border: 'none',
+                    cursor: 'pointer',
                   }}
                 >
                   Download Now

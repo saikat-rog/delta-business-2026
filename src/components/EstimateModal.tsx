@@ -89,32 +89,31 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 3000,
-        padding: '16px',
+        padding: '12px',
       }}
       onClick={onClose}
     >
       <div
-        className="animate-slide-up"
+        className="animate-slide-up p-5 md:p-7"
         style={{
           backgroundColor: '#ffffff',
-          borderRadius: '20px',
-          maxWidth: '680px',
+          borderRadius: '18px',
+          maxWidth: '640px',
           width: '100%',
-          maxHeight: '92vh',
+          maxHeight: '94vh',
           overflowY: 'auto',
           boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
           position: 'relative',
-          padding: '28px',
         }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
           <div>
-            <h3 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
+            <h3 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
               Get an Estimate
             </h3>
-            <p style={{ fontSize: '1.4rem', color: '#666', marginTop: '4px' }}>
+            <p style={{ fontSize: '1.3rem', color: '#666', marginTop: '2px', margin: 0 }}>
               Hassle-free goods transportation in <span style={{ textTransform: 'capitalize', fontWeight: 600, color: '#0445DA' }}>{currentCity}</span>
             </p>
           </div>
@@ -125,39 +124,41 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               backgroundColor: '#f5f5f5',
               border: 'none',
               borderRadius: '50%',
-              width: '36px',
-              height: '36px',
+              width: '34px',
+              height: '34px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
+              flexShrink: 0,
             }}
           >
             <img
               src="https://dom-content-vault-prod-cdn-assets.porter.in/cross_20_grey_142dd64290_e37e09230d.svg"
               alt="Close"
-              width="18"
-              height="18"
+              width="16"
+              height="16"
             />
           </button>
         </div>
 
         {/* Service Tabs */}
-        <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #eee', paddingBottom: '14px', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', gap: '6px', borderBottom: '1px solid #eee', paddingBottom: '12px', marginBottom: '16px' }}>
           <button
             type="button"
             onClick={() => { setSelectedService('trucks'); setShowResult(false); }}
             style={{
               flex: 1,
-              padding: '10px 14px',
-              borderRadius: '10px',
+              padding: '8px 4px',
+              borderRadius: '8px',
               border: 'none',
               fontWeight: 700,
-              fontSize: '1.4rem',
+              fontSize: '1.25rem',
               cursor: 'pointer',
               backgroundColor: selectedService === 'trucks' ? '#0445DA' : '#f5f7fa',
               color: selectedService === 'trucks' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
+              textAlign: 'center',
             }}
           >
             🚚 Trucks
@@ -167,33 +168,35 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
             onClick={() => { setSelectedService('bike'); setShowResult(false); }}
             style={{
               flex: 1,
-              padding: '10px 14px',
-              borderRadius: '10px',
+              padding: '8px 4px',
+              borderRadius: '8px',
               border: 'none',
               fontWeight: 700,
-              fontSize: '1.4rem',
+              fontSize: '1.25rem',
               cursor: 'pointer',
               backgroundColor: selectedService === 'bike' ? '#0445DA' : '#f5f7fa',
               color: selectedService === 'bike' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
+              textAlign: 'center',
             }}
           >
-            🛵 Two Wheeler
+            🛵 2-Wheeler
           </button>
           <button
             type="button"
             onClick={() => { setSelectedService('packers-movers'); setShowResult(false); }}
             style={{
               flex: 1,
-              padding: '10px 14px',
-              borderRadius: '10px',
+              padding: '8px 4px',
+              borderRadius: '8px',
               border: 'none',
               fontWeight: 700,
-              fontSize: '1.4rem',
+              fontSize: '1.25rem',
               cursor: 'pointer',
               backgroundColor: selectedService === 'packers-movers' ? '#0445DA' : '#f5f7fa',
               color: selectedService === 'packers-movers' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
+              textAlign: 'center',
             }}
           >
             📦 Packers &amp; Movers
@@ -201,20 +204,20 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
         </div>
 
         {/* User Type Toggle */}
-        <div style={{ display: 'inline-flex', backgroundColor: '#f0f2f7', padding: '4px', borderRadius: '10px', marginBottom: '20px' }}>
+        <div style={{ display: 'inline-flex', backgroundColor: '#f0f2f7', padding: '3px', borderRadius: '8px', marginBottom: '16px' }}>
           <button
             type="button"
             onClick={() => setUserType('personal')}
             style={{
-              padding: '6px 16px',
-              borderRadius: '8px',
-              fontSize: '1.3rem',
+              padding: '5px 14px',
+              borderRadius: '6px',
+              fontSize: '1.2rem',
               fontWeight: 600,
               border: 'none',
               cursor: 'pointer',
               backgroundColor: userType === 'personal' ? '#ffffff' : 'transparent',
               color: userType === 'personal' ? '#0445DA' : '#666',
-              boxShadow: userType === 'personal' ? '0 2px 6px rgba(0,0,0,0.08)' : 'none',
+              boxShadow: userType === 'personal' ? '0 2px 5px rgba(0,0,0,0.08)' : 'none',
             }}
           >
             Personal User
@@ -223,15 +226,15 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
             type="button"
             onClick={() => setUserType('business')}
             style={{
-              padding: '6px 16px',
-              borderRadius: '8px',
-              fontSize: '1.3rem',
+              padding: '5px 14px',
+              borderRadius: '6px',
+              fontSize: '1.2rem',
               fontWeight: 600,
               border: 'none',
               cursor: 'pointer',
               backgroundColor: userType === 'business' ? '#ffffff' : 'transparent',
               color: userType === 'business' ? '#0445DA' : '#666',
-              boxShadow: userType === 'business' ? '0 2px 6px rgba(0,0,0,0.08)' : 'none',
+              boxShadow: userType === 'business' ? '0 2px 5px rgba(0,0,0,0.08)' : 'none',
             }}
           >
             Business User
@@ -239,37 +242,37 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
         </div>
 
         {/* Form Inputs */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {/* Pickup & Drop Inputs */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Pickup Location
               </label>
-              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '10px', padding: '10px 14px', backgroundColor: '#fafafa' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#00875a', marginRight: '10px', flexShrink: 0 }} />
+              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '9px 12px', backgroundColor: '#fafafa' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#00875a', marginRight: '8px', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={pickup}
                   onChange={(e) => setPickup(e.target.value)}
                   placeholder={`Sending From (e.g. Indiranagar, ${cityNameCapitalized})`}
-                  style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '1.4rem', color: '#1a1a1a' }}
+                  style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '1.35rem', color: '#1a1a1a' }}
                 />
               </div>
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Drop Location
               </label>
-              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '10px', padding: '10px 14px', backgroundColor: '#fafafa' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#de350b', marginRight: '10px', flexShrink: 0 }} />
+              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #ddd', borderRadius: '8px', padding: '9px 12px', backgroundColor: '#fafafa' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#de350b', marginRight: '8px', flexShrink: 0 }} />
                 <input
                   type="text"
                   value={drop}
                   onChange={(e) => setDrop(e.target.value)}
                   placeholder={`Sending To (e.g. Koramangala, ${cityNameCapitalized})`}
-                  style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '1.4rem', color: '#1a1a1a' }}
+                  style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '1.35rem', color: '#1a1a1a' }}
                 />
               </div>
             </div>
@@ -277,7 +280,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
 
           {/* Service-Specific Options */}
           <div>
-            <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+            <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
               What describes your cargo?
             </label>
             <select
@@ -285,10 +288,10 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               onChange={(e) => setRequirement(e.target.value)}
               style={{
                 width: '100%',
-                padding: '10px 14px',
-                borderRadius: '10px',
+                padding: '9px 12px',
+                borderRadius: '8px',
                 border: '1px solid #ddd',
-                fontSize: '1.4rem',
+                fontSize: '1.35rem',
                 outline: 'none',
                 backgroundColor: '#fafafa',
               }}
@@ -302,7 +305,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
 
           {selectedService === 'trucks' && (
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Select Truck Type
               </label>
               <select
@@ -310,10 +313,10 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                 onChange={(e) => setTruckType(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
                   border: '1px solid #ddd',
-                  fontSize: '1.4rem',
+                  fontSize: '1.35rem',
                   outline: 'none',
                   backgroundColor: '#fafafa',
                 }}
@@ -328,7 +331,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
 
           {selectedService === 'packers-movers' && (
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Select House Size
               </label>
               <select
@@ -336,10 +339,10 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                 onChange={(e) => setHouseSize(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
                   border: '1px solid #ddd',
-                  fontSize: '1.4rem',
+                  fontSize: '1.35rem',
                   outline: 'none',
                   backgroundColor: '#fafafa',
                 }}
@@ -353,9 +356,9 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
           )}
 
           {/* Name & Phone */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Your Name
               </label>
               <input
@@ -365,10 +368,10 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                 placeholder="Enter your name"
                 style={{
                   width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
                   border: '1px solid #ddd',
-                  fontSize: '1.4rem',
+                  fontSize: '1.35rem',
                   outline: 'none',
                   backgroundColor: '#fafafa',
                 }}
@@ -376,20 +379,20 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, color: '#333', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
                 Mobile Number
               </label>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="Enter 10 digit mobile number"
+                placeholder="Enter 10-digit number"
                 style={{
                   width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
+                  padding: '9px 12px',
+                  borderRadius: '8px',
                   border: '1px solid #ddd',
-                  fontSize: '1.4rem',
+                  fontSize: '1.35rem',
                   outline: 'none',
                   backgroundColor: '#fafafa',
                 }}
@@ -398,7 +401,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
           </div>
 
           {/* Consent Checkbox */}
-          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '1.2rem', color: '#666', cursor: 'pointer', marginTop: '4px' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '1.15rem', color: '#666', cursor: 'pointer', marginTop: '2px' }}>
             <input
               type="checkbox"
               checked={consent}
@@ -411,7 +414,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
           </label>
 
           {/* Action Buttons */}
-          <div style={{ marginTop: '12px' }}>
+          <div style={{ marginTop: '10px' }}>
             {!showResult ? (
               <button
                 type="button"
@@ -426,16 +429,16 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                   width: '100%',
                   backgroundColor: '#0445DA',
                   color: '#ffffff',
-                  padding: '14px',
-                  borderRadius: '12px',
-                  fontSize: '1.6rem',
+                  padding: '12px',
+                  borderRadius: '10px',
+                  fontSize: '1.5rem',
                   fontWeight: 700,
                   border: 'none',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '6px',
                   boxShadow: '0 4px 14px rgba(4, 69, 218, 0.35)',
                 }}
               >
@@ -449,18 +452,18 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                 style={{
                   backgroundColor: '#f8faff',
                   border: '2px solid #0445DA',
-                  borderRadius: '16px',
-                  padding: '20px',
-                  marginTop: '8px',
+                  borderRadius: '14px',
+                  padding: '16px',
+                  marginTop: '6px',
                 }}
               >
                 {bookingSuccess ? (
-                  <div style={{ textAlign: 'center', padding: '16px 0' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '8px' }}>🎉</div>
-                    <h4 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#00875a', marginBottom: '6px' }}>
+                  <div style={{ textAlign: 'center', padding: '14px 0' }}>
+                    <div style={{ fontSize: '2.8rem', marginBottom: '6px' }}>🎉</div>
+                    <h4 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#00875a', marginBottom: '4px' }}>
                       Booking Confirmed!
                     </h4>
-                    <p style={{ fontSize: '1.4rem', color: '#555' }}>
+                    <p style={{ fontSize: '1.35rem', color: '#555', margin: 0 }}>
                       Your Tez Parcel driver partner will be assigned shortly. Live tracking link sent to your mobile.
                     </p>
                     <button
@@ -471,10 +474,10 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                         setShowResult(false);
                       }}
                       style={{
-                        marginTop: '16px',
+                        marginTop: '14px',
                         backgroundColor: '#0445DA',
                         color: '#ffffff',
-                        padding: '10px 24px',
+                        padding: '8px 22px',
                         borderRadius: '8px',
                         fontWeight: 700,
                         border: 'none',
@@ -489,25 +492,25 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                     const est = calculateEstimate();
                     return (
                       <div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                           <div>
-                            <span style={{ fontSize: '1.2rem', color: '#666', textTransform: 'uppercase', fontWeight: 700 }}>
+                            <span style={{ fontSize: '1.15rem', color: '#666', textTransform: 'uppercase', fontWeight: 700 }}>
                               Estimated Fare
                             </span>
-                            <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0445DA' }}>
+                            <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#0445DA' }}>
                               {est.price}
                             </div>
                           </div>
                           <img
                             src={est.vehicleImage}
                             alt={est.vehicleName}
-                            width="70"
-                            height="70"
+                            width="60"
+                            height="60"
                             style={{ objectFit: 'contain' }}
                           />
                         </div>
 
-                        <div style={{ borderTop: '1px solid #e0e7ff', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '1.3rem', color: '#444' }}>
+                        <div style={{ borderTop: '1px solid #e0e7ff', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '1.25rem', color: '#444' }}>
                           <div><strong>Vehicle:</strong> {est.vehicleName}</div>
                           <div><strong>Capacity:</strong> {est.capacity}</div>
                           <div><strong>Estimated Time:</strong> {est.timeEstimate}</div>
@@ -519,12 +522,12 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                           onClick={() => setBookingSuccess(true)}
                           style={{
                             width: '100%',
-                            marginTop: '16px',
+                            marginTop: '14px',
                             backgroundColor: '#00875a',
                             color: '#ffffff',
-                            padding: '12px',
-                            borderRadius: '10px',
-                            fontSize: '1.5rem',
+                            padding: '11px',
+                            borderRadius: '8px',
+                            fontSize: '1.45rem',
                             fontWeight: 700,
                             border: 'none',
                             cursor: 'pointer',
