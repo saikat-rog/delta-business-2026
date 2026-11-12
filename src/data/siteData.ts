@@ -2299,7 +2299,7 @@ export const HEADER_DATA = {
       "title": "Install Smart Driver",
       "desc": "for efficient goods transportation",
       "icon": {
-        "path": "https://dom-content-vault-prod-cdn-assets.porter.in/app_icon_compressed_a1d65eb06f.png",
+        "path": "/logo.png",
         "alt_text": "app-icon-compressed.png"
       }
     }

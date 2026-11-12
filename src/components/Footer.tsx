@@ -1,5 +1,4 @@
 import React from 'react';
-import { TezLogo } from './TezLogo';
 import { CITIES } from '../data/siteData';
 
 interface FooterProps {
@@ -8,7 +7,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
   return (
-    <footer style={{ backgroundColor: '#000000', color: '#ffffff' }} className="pt-12 md:pt-16 pb-10">
+    <footer style={{ backgroundColor: '#000000', color: '#ffffff' }} className="pt-12 md:pt-16 pb-24 md:pb-10">
       <div className="site-container">
         {/* Row 1: Brand & Socials on Left, App Download on Right */}
         <div
@@ -25,7 +24,11 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
           {/* Brand Info */}
           <div style={{ maxWidth: '400px' }}>
             <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-              <TezLogo color="#ffffff" height={26} />
+              <img
+                src="/logo.png"
+                alt="Smart Driver"
+                style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }}
+              />
             </a>
             <p style={{ color: '#9ca3af', fontSize: '1.45rem', marginTop: '14px', lineHeight: '1.5' }}>
               Send anything, anywhere, anytime. India's favorite on-demand goods transport and packers &amp; movers service.
@@ -133,56 +136,6 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
                   </svg>
                 </a>
               </div>
-            </div>
-          </div>
-
-          {/* Download App & QR Code */}
-          <div style={{ display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div
-              style={{
-                backgroundColor: '#ffffff',
-                padding: '8px',
-                borderRadius: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-              className="hidden sm:flex"
-            >
-              <img
-                alt="qr-download"
-                loading="lazy"
-                width="90"
-                height="90"
-                src="https://dom-content-vault-prod-cdn-assets.porter.in/qr_code_6ac327e0fa/qr_code_6ac327e0fa.png"
-              />
-              <span style={{ fontSize: '1.05rem', color: '#1a1a1a', fontWeight: 600, marginTop: '4px' }}>
-                Scan to install
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <div style={{ fontSize: '1.35rem', fontWeight: 700, color: '#ffffff' }}>
-                Experience the Smart Driver App
-              </div>
-              <a href="https://play.google.com" target="_blank" rel="noreferrer">
-                <img
-                  alt="Google Play"
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/googleplay_419e81f188.png"
-                  width="130"
-                  height="38"
-                  style={{ objectFit: 'contain' }}
-                />
-              </a>
-              <a href="https://apple.com/app-store" target="_blank" rel="noreferrer">
-                <img
-                  alt="App Store"
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/appstore_719627aa38.png"
-                  width="130"
-                  height="38"
-                  style={{ objectFit: 'contain' }}
-                />
-              </a>
             </div>
           </div>
         </div>

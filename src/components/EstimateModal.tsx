@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export type ServiceType = 'trucks' | 'bike' | 'packers-movers';
 
@@ -40,6 +40,19 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
   const [consent, setConsent] = useState(true);
   const [showResult, setShowResult] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
+
+  useEffect(() => {
+    setPickup(`City Center, ${cityNameCapitalized}`);
+    setDrop(`Main Market, ${cityNameCapitalized}`);
+  }, [cityNameCapitalized]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedService(initialService);
+      setShowResult(false);
+      setBookingSuccess(false);
+    }
+  }, [isOpen, initialService]);
 
   if (!isOpen) return null;
 

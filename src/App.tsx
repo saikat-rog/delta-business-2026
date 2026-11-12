@@ -3,25 +3,37 @@ import { Header } from './components/Header';
 import { HeroBanner } from './components/HeroBanner';
 import { ServiceTabsAndEstimate } from './components/ServiceTabsAndEstimate';
 import { EnterpriseSection } from './components/EnterpriseSection';
-import { DownloadAppSection } from './components/DownloadAppSection';
 import { FootprintsAndNews } from './components/FootprintsAndNews';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
+import { detectUserCity } from './utils/cityDetection';
 
 export const App: React.FC = () => {
-  const [currentCity, setCurrentCity] = useState<string>('bangalore');
+  const [currentCity, setCurrentCity] = useState<string>(() => {
+    return localStorage.getItem('smart_driver_city') || 'bangalore';
+  });
 
   useEffect(() => {
-    // Try to get saved city from localStorage if available
-    const savedCity = localStorage.getItem('smart_driver_city');
-    if (savedCity) {
-      setCurrentCity(savedCity);
-    }
+    const isManual = localStorage.getItem('smart_driver_city_manual') === 'true';
+    if (isManual) return;
+
+    let cancelled = false;
+    detectUserCity().then((detectedCity) => {
+      if (!cancelled && detectedCity) {
+        setCurrentCity(detectedCity);
+        localStorage.setItem('smart_driver_city', detectedCity);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const handleCityChange = (city: string) => {
     setCurrentCity(city);
     localStorage.setItem('smart_driver_city', city);
+    localStorage.setItem('smart_driver_city_manual', 'true');
   };
 
   return (
@@ -44,9 +56,6 @@ export const App: React.FC = () => {
 
         {/* Enterprise Growth Card */}
         <EnterpriseSection />
-
-        {/* Download App Section */}
-        <DownloadAppSection />
 
         {/* Smart Driver Footprints & In The News Carousel */}
         <FootprintsAndNews />

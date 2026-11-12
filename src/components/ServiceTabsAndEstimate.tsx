@@ -86,39 +86,24 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
       />
 
       {/* Floating Category Card Section (Half overlapping hero banner) */}
-      <div className="site-medium-container -mt-[44px] md:-mt-[105px] relative z-20">
+      <div className="site-medium-container -mt-[44px] md:-mt-[96px] relative z-20">
         <div
           style={{
             backgroundColor: '#ffffff',
             borderRadius: '16px',
-            boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
-            padding: '16px 16px 20px',
-            border: '1px solid rgba(0,0,0,0.04)',
+            boxShadow: '0 10px 32px rgba(0,0,0,0.1)',
+            border: '1px solid rgba(0,0,0,0.05)',
           }}
-          className="md:!p-6"
+          className="p-[14px] md:p-[20px]"
         >
           {/* City Selector Bar */}
           <div
-            style={{
-              borderBottom: '1px solid #f0f0f0',
-              paddingBottom: '12px',
-              marginBottom: '16px',
-              display: 'flex',
-              alignItems: 'center',
-            }}
+            className="flex items-center justify-between border-b border-[#f0f2f7] pb-[10px] mb-[14px]"
           >
             <button
               type="button"
               onClick={() => setIsCityModalOpen(true)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                cursor: 'pointer',
-                background: 'none',
-                border: 'none',
-                padding: '2px 0',
-              }}
+              className="inline-flex items-center gap-2 cursor-pointer bg-transparent border-0 py-0.5 hover:opacity-80 transition-opacity"
             >
               <img
                 alt="location pin"
@@ -127,8 +112,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 height="18"
                 src="https://dom-content-vault-prod-cdn-assets.porter.in/location_icon_343963347b_2c5c2d74fa.svg"
               />
-              <span style={{ color: '#757575', fontSize: '1.35rem' }}>City:</span>
-              <span style={{ fontWeight: 700, fontSize: '1.45rem', color: '#1a1a1a', textTransform: 'capitalize' }}>
+              <span className="text-[#64748b] text-[1.35rem]">City:</span>
+              <span className="font-bold text-[1.45rem] text-[#1a1a1a] capitalize">
                 {currentCity}
               </span>
               <img
@@ -139,207 +124,82 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 src="https://dom-content-vault-prod-cdn-assets.porter.in/drop_down_25e36a8740.svg"
               />
             </button>
+
+            <div className="hidden sm:flex items-center gap-5 text-[1.25rem] text-[#64748b] font-medium">
+              <span className="flex items-center gap-1.5">
+                <span className="w-[6px] h-[6px] rounded-full bg-[#10b981]" />
+                Instant Pickup
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-[6px] h-[6px] rounded-full bg-[#0445DA]" />
+                Live Tracking
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-[6px] h-[6px] rounded-full bg-[#f59e0b]" />
+                Lowest Fares
+              </span>
+            </div>
           </div>
 
           {/* Top 3 Service Categories: Responsive 3 columns on mobile, 4 columns on desktop */}
           <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 items-stretch">
-            {/* Card 1: Truck */}
-            <div
-              onClick={() => handleOpenEstimate('trucks')}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '12px 8px',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                border: '1px solid #f0f0f0',
-                transition: 'all 0.2s ease',
-                backgroundColor: '#ffffff',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.08)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
+            {[
+              {
+                id: 'trucks' as ServiceType,
+                title: 'Truck',
+                subtitle: 'Mini trucks up to 2500 kg',
+                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/trucks_india_a42dcdfc61/trucks_india_a42dcdfc61.webp',
+              },
+              {
+                id: 'bike' as ServiceType,
+                title: 'Two Wheeler',
+                subtitle: 'Parcels up to 20 kg',
+                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/two_wheelers_ea30db4d2d/two_wheelers_ea30db4d2d.webp',
+              },
+              {
+                id: 'packers-movers' as ServiceType,
+                title: 'Packers & Movers',
+                subtitle: 'Safe home shifting',
+                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp',
+              },
+            ].map((item) => (
               <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '12px',
-                  backgroundColor: '#eef2ff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '8px',
-                }}
-                className="md:!w-20 md:!h-20"
+                key={item.id}
+                onClick={() => handleOpenEstimate(item.id)}
+                className="group flex flex-col items-center justify-center py-[12px] px-[8px] md:py-[16px] md:px-[12px] rounded-xl cursor-pointer bg-[#f6f8ff] hover:bg-[#edf2ff] border border-[#e6edff] hover:border-[#0445DA]/40 hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(4,69,218,0.1)] transition-all duration-200"
               >
                 <img
-                  alt="Truck"
-                  width="48"
-                  height="48"
-                  style={{ objectFit: 'contain' }}
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/trucks_india_a42dcdfc61/trucks_india_a42dcdfc61.webp"
-                  className="md:!w-16 md:!h-16"
+                  alt={item.title}
+                  src={item.image}
+                  className="w-[68px] h-[56px] md:w-[110px] md:h-[82px] object-contain mb-[8px] md:mb-[10px] group-hover:scale-105 transition-transform duration-200"
                 />
+                <div className="text-[1.25rem] md:text-[1.55rem] font-bold text-[#1a1a1a] text-center leading-tight">
+                  {item.title}
+                </div>
+                <div className="hidden md:block text-[1.2rem] text-[#64748b] text-center mt-[3px]">
+                  {item.subtitle}
+                </div>
               </div>
-              <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1a1a1a', textAlign: 'center' }} className="md:!text-[1.5rem]">
-                Truck
-              </div>
-            </div>
-
-            {/* Card 2: Two Wheeler */}
-            <div
-              onClick={() => handleOpenEstimate('bike')}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '12px 8px',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                border: '1px solid #f0f0f0',
-                transition: 'all 0.2s ease',
-                backgroundColor: '#ffffff',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.08)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '12px',
-                  backgroundColor: '#eef2ff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '8px',
-                }}
-                className="md:!w-20 md:!h-20"
-              >
-                <img
-                  alt="Two Wheeler"
-                  width="48"
-                  height="48"
-                  style={{ objectFit: 'contain' }}
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/two_wheelers_ea30db4d2d/two_wheelers_ea30db4d2d.webp"
-                  className="md:!w-16 md:!h-16"
-                />
-              </div>
-              <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1a1a1a', textAlign: 'center' }} className="md:!text-[1.5rem]">
-                Two Wheeler
-              </div>
-            </div>
-
-            {/* Card 3: Packers & Movers */}
-            <div
-              onClick={() => handleOpenEstimate('packers-movers')}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '12px 8px',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                border: '1px solid #f0f0f0',
-                transition: 'all 0.2s ease',
-                backgroundColor: '#ffffff',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.08)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '12px',
-                  backgroundColor: '#eef2ff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '8px',
-                }}
-                className="md:!w-20 md:!h-20"
-              >
-                <img
-                  alt="Packers & Movers"
-                  width="48"
-                  height="48"
-                  style={{ objectFit: 'contain' }}
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp"
-                  className="md:!w-16 md:!h-16"
-                />
-              </div>
-              <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1a1a1a', textAlign: 'center', lineHeight: '1.2' }} className="md:!text-[1.5rem]">
-                Packers &amp; Movers
-              </div>
-            </div>
+            ))}
 
             {/* Card 4: Estimate Card (Desktop layout inside the grid) */}
             <div
               onClick={() => handleOpenEstimate('trucks')}
               style={{
-                backgroundColor: '#0041f5',
-                borderRadius: '12px',
-                padding: '20px 18px',
-                cursor: 'pointer',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                boxShadow: '0 4px 14px rgba(0, 65, 245, 0.35)',
-                transition: 'all 0.2s ease',
-                minHeight: '135px',
+                background: 'linear-gradient(135deg, #0041f5 0%, #0b57ff 100%)',
+                boxShadow: '0 6px 18px rgba(0, 65, 245, 0.35)',
               }}
-              className="hidden md:flex"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 65, 245, 0.45)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 65, 245, 0.35)';
-              }}
+              className="hidden md:flex flex-col justify-between rounded-xl p-[18px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200"
             >
               <div>
-                <div style={{ color: '#ffffff', fontSize: '1.9rem', fontWeight: 800, lineHeight: '1.2' }}>
+                <div className="text-white text-[1.9rem] font-extrabold leading-tight">
                   Estimate Fare
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.2rem', marginTop: '6px' }}>
+                <div className="text-white/80 text-[1.25rem] mt-[6px] leading-snug">
                   Know estimated fare before booking
                 </div>
               </div>
-              <div
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.2)',
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  alignSelf: 'flex-end',
-                }}
-              >
+              <div className="bg-white/20 w-[34px] h-[34px] rounded-full flex items-center justify-center self-end">
                 <img
                   alt="arrow"
                   width="16"
@@ -498,6 +358,32 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
           </div>
         </div>
       </section>
+
+      {/* Floating Sticky Get Estimate Fare Button */}
+      {!isEstimateModalOpen && (
+        <div
+          className="fixed bottom-4 left-4 right-4 md:left-auto md:bottom-6 md:right-6 z-40"
+        >
+          <button
+            type="button"
+            onClick={() => handleOpenEstimate('trucks')}
+            style={{
+              backgroundColor: '#0041f5',
+              color: '#ffffff',
+              boxShadow: '0 8px 24px rgba(0, 65, 245, 0.45)',
+            }}
+            className="w-full md:w-auto min-h-[54px] flex items-center justify-center gap-3 px-6 py-[14px] md:px-8 md:py-[15px] rounded-lg md:rounded-full text-[1.8rem] md:text-[1.85rem] font-bold tracking-wide whitespace-nowrap hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer"
+          >
+            <span>Get Estimate Fare</span>
+            <img
+              alt="Arrow"
+              width="18"
+              height="18"
+              src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

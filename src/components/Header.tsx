@@ -198,37 +198,6 @@ export const Header: React.FC = () => {
                   </a>
                 </nav>
               </div>
-
-              {/* App download promo card inside drawer */}
-              <div
-                style={{
-                  backgroundColor: '#f4f6fa',
-                  borderRadius: '12px',
-                  padding: '16px',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '8px', color: '#1a1a1a' }}>
-                  We are better on the app!
-                </div>
-                <button
-                  type="button"
-                  onClick={() => alert('Download Smart Driver App')}
-                  style={{
-                    backgroundColor: '#0445DA',
-                    color: '#ffffff',
-                    width: '100%',
-                    padding: '10px',
-                    borderRadius: '8px',
-                    fontSize: '1.4rem',
-                    fontWeight: 700,
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Download Now
-                </button>
-              </div>
             </div>
           </div>
         )}

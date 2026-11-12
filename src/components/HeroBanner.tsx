@@ -28,7 +28,7 @@ export const HeroBanner: React.FC = () => {
 
       {/* Responsive Content Container */}
       <div
-        className="site-container relative z-10 flex flex-col justify-center h-[240px] md:h-[500px] pb-12 md:pb-28"
+        className="site-container relative z-10 flex flex-col justify-start pt-[38px] md:justify-center md:pt-0 h-[250px] md:h-[500px] md:pb-[110px]"
       >
         <div className="max-w-[550px]">
           <h1
