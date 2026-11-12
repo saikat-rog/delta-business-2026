@@ -30,7 +30,7 @@ export const EnterpriseSection: React.FC = () => {
               marginBottom: '12px',
             }}
           >
-            TEZ PARCEL ENTERPRISE
+            SMART DRIVER ENTERPRISE
           </div>
           <h2
             style={{
@@ -41,7 +41,7 @@ export const EnterpriseSection: React.FC = () => {
               lineHeight: 1.3,
             }}
           >
-            Manage logistics needs of your business with Tez Parcel Enterprise
+            Manage logistics needs of your business with Smart Driver Enterprise
           </h2>
         </div>
 
@@ -103,7 +103,7 @@ export const EnterpriseSection: React.FC = () => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h3 style={{ fontSize: '2.2rem', fontWeight: 700, margin: 0, color: '#1a1a1a' }}>
-                Tez Parcel for Enterprise
+                Smart Driver for Enterprise
               </h3>
               <button
                 type="button"

@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={{ fontSize: '1.35rem', fontWeight: 700, color: '#ffffff' }}>
-                Experience the Tez Parcel App
+                Experience the Smart Driver App
               </div>
               <a href="https://play.google.com" target="_blank" rel="noreferrer">
                 <img
@@ -216,7 +216,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
               <li><a href="#trucks" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Trucks</a></li>
               <li><a href="#two-wheelers" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Two Wheelers</a></li>
               <li><a href="#packers-movers" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Packers &amp; Movers</a></li>
-              <li><a href="#enterprise" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Tez Parcel Enterprise</a></li>
+              <li><a href="#enterprise" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Smart Driver Enterprise</a></li>
               <li><a href="#api" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>API Integrations</a></li>
             </ul>
           </div>
@@ -291,13 +291,13 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCity }) => {
         {/* Row 4: Corporate Registration Office & Legal Disclosures */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-[1.25rem] text-[#9ca3af]">
           <div>
-            <div>© 2026 Tez Parcel Logistics Solutions Pvt. Ltd. All rights reserved.</div>
+            <div>© 2026 Smart Driver Logistics Solutions Pvt. Ltd. All rights reserved.</div>
             <div style={{ marginTop: '4px', fontSize: '1.15rem', color: '#6b7280' }}>
               CIN: U74999MH2014PTC306120 • Universal Business Park, Andheri (East), Mumbai - 400072
             </div>
           </div>
           <div className="flex gap-5">
-            <span>Email: <strong>help@tezparcel.in</strong></span>
+            <span>Email: <strong>help@smartdriver.in</strong></span>
             <span>Phone: <strong>080 4410 4410</strong></span>
           </div>
         </div>

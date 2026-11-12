@@ -1,91 +1,10 @@
 import React, { useState } from 'react';
-import { TezLogo } from './TezLogo';
 
 export const Header: React.FC = () => {
-  const [showTopBar, setShowTopBar] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="Header_sticky-wrapper__3GFoo" style={{ position: 'sticky', top: 0, zIndex: 100, width: '100%', backgroundColor: '#ffffff' }}>
-      {showTopBar && (
-        <div
-          style={{
-            backgroundColor: '#f0f3ff',
-            borderBottom: '1px solid #e0e7ff',
-            padding: '8px 16px',
-            width: '100%',
-          }}
-        >
-          <div
-            style={{
-              maxWidth: '1440px',
-              margin: '0 auto',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '12px',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-              <img
-                alt="app-icon"
-                loading="lazy"
-                width="36"
-                height="36"
-                style={{ borderRadius: '8px', flexShrink: 0 }}
-                src="https://dom-content-vault-prod-cdn-assets.porter.in/app_icon_compressed_a1d65eb06f.png"
-              />
-              <div style={{ minWidth: 0, overflow: 'hidden' }}>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#1a1a1a', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                  Install Tez Parcel
-                </div>
-                <div style={{ fontSize: '1.1rem', color: '#666666', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                  for efficient goods transportation
-                </div>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-              <a
-                href="#download-app"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('download-app')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                style={{
-                  backgroundColor: '#2962ff',
-                  color: '#ffffff',
-                  padding: '6px 14px',
-                  borderRadius: '20px',
-                  fontSize: '1.15rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.4px',
-                  whiteSpace: 'nowrap',
-                  textDecoration: 'none',
-                }}
-              >
-                OPEN APP
-              </a>
-              <button
-                type="button"
-                onClick={() => setShowTopBar(false)}
-                aria-label="Hide top bar"
-                style={{ padding: '4px', cursor: 'pointer', background: 'none', border: 'none', display: 'flex', alignItems: 'center' }}
-              >
-                <img
-                  alt="hide"
-                  loading="lazy"
-                  width="12"
-                  height="12"
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/close_b3c513a007.png"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Main Navbar */}
       <header
         style={{
@@ -106,7 +25,11 @@ export const Header: React.FC = () => {
         >
           {/* Logo on Left */}
           <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-            <TezLogo height={24} color="#0445DA" />
+            <img
+              src="/logo.png"
+              alt="Smart Driver"
+              style={{ height: '36px', width: 'auto', objectFit: 'contain', display: 'block' }}
+            />
           </a>
 
           {/* Navigation Links Grouped on Right - Strictly Hidden on Mobile */}
@@ -134,7 +57,7 @@ export const Header: React.FC = () => {
               href="#driver-partner"
               onClick={(e) => {
                 e.preventDefault();
-                alert('Join Tez Parcel as a Driver Partner! Earn up to ₹35,000/month. App download link sent to your phone.');
+                alert('Join Smart Driver as a Driver Partner! Earn up to ₹35,000/month. App download link sent to your phone.');
               }}
               style={{
                 fontSize: '1.5rem',
@@ -151,7 +74,7 @@ export const Header: React.FC = () => {
               href="#support"
               onClick={(e) => {
                 e.preventDefault();
-                alert('Tez Parcel Support: Call 080 4410 4410 or email help@tezparcel.in');
+                alert('Smart Driver Support: Call 080 4410 4410 or email help@smartdriver.in');
               }}
               style={{
                 fontSize: '1.5rem',
@@ -223,7 +146,11 @@ export const Header: React.FC = () => {
             >
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-                  <TezLogo height={22} color="#0445DA" />
+                  <img
+                    src="/logo.png"
+                    alt="Smart Driver"
+                    style={{ height: '30px', width: 'auto', objectFit: 'contain', display: 'block' }}
+                  />
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -286,7 +213,7 @@ export const Header: React.FC = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={() => alert('Download Tez Parcel App')}
+                  onClick={() => alert('Download Smart Driver App')}
                   style={{
                     backgroundColor: '#0445DA',
                     color: '#ffffff',

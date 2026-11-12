@@ -1,4 +1,4 @@
-// Site data for Tez Parcel cloned from Porter.in
+// Site data for Smart Driver cloned from Porter.in
 export const CITIES = [
   {
     "city_name": "ahmedabad",
@@ -43,7 +43,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -117,7 +117,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -181,7 +181,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -275,7 +275,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -359,7 +359,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -453,7 +453,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -547,7 +547,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -641,7 +641,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -735,7 +735,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -829,7 +829,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -913,7 +913,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1007,7 +1007,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1101,7 +1101,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1185,7 +1185,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1279,7 +1279,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1373,7 +1373,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1457,7 +1457,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations to drive business growth ",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1541,7 +1541,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1635,7 +1635,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1709,7 +1709,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1773,7 +1773,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1857,7 +1857,7 @@ export const CITIES = [
     "city_services_promo": [
       {
         "text": "Streamlining operations  to drive business growth",
-        "sub_text": "Tez Parcel Enterprise",
+        "sub_text": "Smart Driver Enterprise",
         "link": "https://porter.in/enterprise",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1912,48 +1912,48 @@ export const CITIES = [
 
 export const FAQS = [
   {
-    "question": "What is Tez Parcel App?",
-    "answer": "Tez Parcel is a leading logistics service provider offering a wide range of transportation solutions. With Tez Parcel, you can transport goods reliably. With its vast operations in 22 Indian cities, including cities like Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Jaipur and Kolkata, Tez Parcel makes transport easy.\n\nLooking for on-demand transport services for business or personal needs? Transport your goods and consignments via a mini-truck, tempo or two-wheeler.\nReliable moving of your goods is now just a click away. Download Tez Parcel now!\n\nIn its 10 years of operation, Tez Parcel has transformed logistics, handling everything from goods (e.g., a pin) to large moves (e.g., relocating a penthouse). Key offerings include:\n- On-demand goods transport services via Trucks and Two-Wheelers: From commercial goods to personal goods, our on-demand vehicles offer efficient, cost-effective, and reliable transport solutions. Choose from mini trucks, tempos, EVs, and two-wheelers to transport goods effortlessly across the city\u2014anytime, anywhere.\n- Tez Parcel Enterprise: A complete logistics partner for businesses, offering smart solutions for bulk transportation, distribution, and supply chain management.\n- Tez Parcel Packers & Movers: Professional packing and moving services designed for hassle-free relocation of homes"
+    "question": "What is Smart Driver App?",
+    "answer": "Smart Driver is a leading logistics service provider offering a wide range of transportation solutions. With Smart Driver, you can transport goods reliably. With its vast operations in 22 Indian cities, including cities like Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Jaipur and Kolkata, Smart Driver makes transport easy.\n\nLooking for on-demand transport services for business or personal needs? Transport your goods and consignments via a mini-truck, tempo or two-wheeler.\nReliable moving of your goods is now just a click away. Download Smart Driver now!\n\nIn its 10 years of operation, Smart Driver has transformed logistics, handling everything from goods (e.g., a pin) to large moves (e.g., relocating a penthouse). Key offerings include:\n- On-demand goods transport services via Trucks and Two-Wheelers: From commercial goods to personal goods, our on-demand vehicles offer efficient, cost-effective, and reliable transport solutions. Choose from mini trucks, tempos, EVs, and two-wheelers to transport goods effortlessly across the city\u2014anytime, anywhere.\n- Smart Driver Enterprise: A complete logistics partner for businesses, offering smart solutions for bulk transportation, distribution, and supply chain management.\n- Smart Driver Packers & Movers: Professional packing and moving services designed for hassle-free relocation of homes"
   },
   {
-    "question": "How do I use Tez Parcel App?",
-    "answer": "Follow these simple steps to start leveraging Hassle-free goods transportation services from Tez Parcel:\n\n1. Download the Tez Parcel app\n2. Choose the service you want to use \n3. Select your pick-up and drop location\n4. Add any extra stops, if applicable \n5. Choose the most appropriate vehicle type as per your requirements (2wheeler, three-wheelers or trucks) \n6. Select the type of goods you\u2019re sending \n7. Choose your payment method \n8. Click on \u201cBook Now\u201d and your vehicle is on its way!"
+    "question": "How do I use Smart Driver App?",
+    "answer": "Follow these simple steps to start leveraging Hassle-free goods transportation services from Smart Driver:\n\n1. Download the Smart Driver app\n2. Choose the service you want to use \n3. Select your pick-up and drop location\n4. Add any extra stops, if applicable \n5. Choose the most appropriate vehicle type as per your requirements (2wheeler, three-wheelers or trucks) \n6. Select the type of goods you\u2019re sending \n7. Choose your payment method \n8. Click on \u201cBook Now\u201d and your vehicle is on its way!"
   },
   {
-    "question": "What are the items that are prohibited by Tez Parcel?",
+    "question": "What are the items that are prohibited by Smart Driver?",
     "answer": "Pornographic material, Dry ice used for packaging or temperature control, Human corpses, organs, or body parts, Flammable items (firecrackers, oil cans, adhesives, paint cans), explosives (arms, ammunition, fireworks, flares, gunpowder, airbag inflators), Fire extinguishers, Alcohol, tobacco, medicines, drugs, contraband, narcotics, psychotropic substances, poisonous goods, toxic and infectious items, Passports, antiques, works of art, High-capacity batteries such as car batteries, generator batteries, machinery parts containing oil, grease, fuel, or batteries, Corrosive items such as acids, chemicals, etc., Radioactive material, Fragile items, LEDs, LCDs, plasma, OLED, and any kind of television screens, Liquid product, Expensive electronics, mobile phones, iPads, laptops, smart watches, etc., Livestock, Pets and animals, Platinum, gold, silver, jewelry, gems, precious and semi-precious metals or stones in any form,  articles such as stamps and articles like coins, banknotes, currency notes, Sodexo or securities of any kind payable to bearer, traveler\u2019s cheques, credit/debit/ATM cards, Gambling devices, lottery tickets, Any diagnostic specimens, hazardous or bio-medical waste, Sensitive documents."
   },
   {
     "question": "What are the charges for goods transportation services by truck and two-wheelers ?",
-    "answer": "The charges for goods transportation services by truck and two-wheelers are based on the number of kilometres travelled and the type of vehicle chosen and this differs from point to point. You can also check the estimate tab on the Tez Parcel website to get an exact idea of your final fare amount. Alternatively, the final fare amount can be determined when making the booking on the app."
+    "answer": "The charges for goods transportation services by truck and two-wheelers are based on the number of kilometres travelled and the type of vehicle chosen and this differs from point to point. You can also check the estimate tab on the Smart Driver website to get an exact idea of your final fare amount. Alternatively, the final fare amount can be determined when making the booking on the app."
   },
   {
-    "question": "Does Tez Parcel provide Packers and Movers services?",
-    "answer": "Yes, Tez Parcel caters to all kinds of house shifting needs through Tez Parcel Packers & Movers. If you have an immediate moving requirement, we also have the option to hire a mini truck with labour. \nIntracity shifting services through Tez Parcel Packers and Movers is available in Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad, Surat, Coimbatore, Indore, Jaipur, Lucknow and Nagpur. Intercity Packers and Movers services can be availed between any of the following cities - Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad. \nIf you don\u2019t see your city in the above list, don\u2019t worry; the service will be launching soon in other cities. To enquire about Tez Parcel Packers and Movers or avail the service, call 4410 4410 (add your city code).\n"
+    "question": "Does Smart Driver provide Packers and Movers services?",
+    "answer": "Yes, Smart Driver caters to all kinds of house shifting needs through Smart Driver Packers & Movers. If you have an immediate moving requirement, we also have the option to hire a mini truck with labour. \nIntracity shifting services through Smart Driver Packers and Movers is available in Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad, Surat, Coimbatore, Indore, Jaipur, Lucknow and Nagpur. Intercity Packers and Movers services can be availed between any of the following cities - Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad. \nIf you don\u2019t see your city in the above list, don\u2019t worry; the service will be launching soon in other cities. To enquire about Smart Driver Packers and Movers or avail the service, call 4410 4410 (add your city code).\n"
   },
   {
-    "question": "What types of goods does Tez Parcel transport?",
-    "answer": "From a pin to an entire house, we will help transport anything, anywhere, anytime. However, Tez Parcel does not help in the transportation of prohibited goods."
+    "question": "What types of goods does Smart Driver transport?",
+    "answer": "From a pin to an entire house, we will help transport anything, anywhere, anytime. However, Smart Driver does not help in the transportation of prohibited goods."
   },
   {
-    "question": "How long does it take to transport goods via Tez Parcel? \n",
+    "question": "How long does it take to transport goods via Smart Driver? \n",
     "answer": "When choosing on-demand goods transport services via trucks and two-wheelers, transportation takes place via road. The distance and traffic play a major role in determining the transport time."
   },
   {
-    "question": "Does Tez Parcel provide mini trucks like tata ace on monthly contract?\n",
-    "answer": "Tez Parcel does not provide vehicles on contract basis. We provide on-demand availability of mini trucks like Tata Ace. For bulk orders and frequent uses, we provide Tez Parcel Enterprise service with one app-multi-city-mutli user access."
+    "question": "Does Smart Driver provide mini trucks like tata ace on monthly contract?\n",
+    "answer": "Smart Driver does not provide vehicles on contract basis. We provide on-demand availability of mini trucks like Tata Ace. For bulk orders and frequent uses, we provide Smart Driver Enterprise service with one app-multi-city-mutli user access."
   },
   {
-    "question": "How does an API Integration with Tez Parcel work?",
-    "answer": "Tez Parcel's APIs are simple to integrate and use. The simple layouts will be easily adaptable and will start creating orders directly from your order management system."
+    "question": "How does an API Integration with Smart Driver work?",
+    "answer": "Smart Driver's APIs are simple to integrate and use. The simple layouts will be easily adaptable and will start creating orders directly from your order management system."
   },
   {
     "question": "How does an API integration solve business problems?",
-    "answer": "An API Integration with Tez Parcel helps companies with webhook updates, live tracking, and transport authentication across 16 cities. Utilise a standardised 2-wheeler service with zero hassles. "
+    "answer": "An API Integration with Smart Driver helps companies with webhook updates, live tracking, and transport authentication across 16 cities. Utilise a standardised 2-wheeler service with zero hassles. "
   },
   {
     "question": "What vehicle categories are available via the APIs?\n",
-    "answer": "Tez Parcel's APIs are currently available on Two-Wheelers. API integration on other vehicles will be launched soon."
+    "answer": "Smart Driver's APIs are currently available on Two-Wheelers. API integration on other vehicles will be launched soon."
   }
 ];
 
@@ -1989,11 +1989,11 @@ export const FOOTPRINTS = {
 
 export const IN_THE_NEWS = [
   {
-    "content": "\u201cOn-demand intra-city logistics provider Tez Parcel has raised \u20b9750 crore in a Series E funding round led by Tiger Global Management and Vitruvian Partners. The latest funding round valued the startup at \u20b93,750 crore.\"",
+    "content": "\u201cOn-demand intra-city logistics provider Smart Driver has raised \u20b9750 crore in a Series E funding round led by Tiger Global Management and Vitruvian Partners. The latest funding round valued the startup at \u20b93,750 crore.\"",
     "publisher": "BW Disrup",
     "source": {
       "label": "IN THE NEWS",
-      "href": "https://bwdisrupt.com/article/Tez Parcel-offers-liquidation-of-esop-worth-inr-50-cr-to-employees-463157"
+      "href": "https://bwdisrupt.com/article/smart-driver-offers-liquidation-of-esop-worth-inr-50-cr-to-employees-463157"
     },
     "publisher_logo": {
       "path": "https://dom-content-vault-prod-cdn-assets.porter.in/full_Disrupt_logo_36e369b179_978bb2e4f0.png",
@@ -2004,7 +2004,7 @@ export const IN_THE_NEWS = [
 
 export const ENTERPRISE_SECTION = {
   "section_title": "PORTER ENTERPRISE",
-  "content": "Manage logistics needs of your business with Tez Parcel Enterprise",
+  "content": "Manage logistics needs of your business with Smart Driver Enterprise",
   "cta": {
     "text": "Get in Touch",
     "href": "/enterprise"
@@ -2013,7 +2013,7 @@ export const ENTERPRISE_SECTION = {
 
 export const FOOTER_DATA = {
   "title": "Send anything, anywhere, anytime",
-  "company_info": "# Registered Office:\n\u00a9 2026 SmartShift Logistics Solutions Pvt. Ltd.\nNo. A-501, A-502, B-504, B-505 and B-506, Fifth Floor at Universal Business Park, Chandivali Farm Road, off. Saki Vihar Road, Andheri (East), Mumbai, Maharashtra - 400072\n\nCIN: U74999MH2014PTC306120\nEmail: help@theTez Parcel.in\nPhone: 080 4410 4410",
+  "company_info": "# Registered Office:\n\u00a9 2026 SmartShift Logistics Solutions Pvt. Ltd.\nNo. A-501, A-502, B-504, B-505 and B-506, Fifth Floor at Universal Business Park, Chandivali Farm Road, off. Saki Vihar Road, Andheri (East), Mumbai, Maharashtra - 400072\n\nCIN: U74999MH2014PTC306120\nEmail: help@smartdriver.in\nPhone: 080 4410 4410",
   "service_links_list": [
     {
       "title": "Company",
@@ -2053,7 +2053,7 @@ export const FOOTER_DATA = {
         },
         {
           "link": "/enterprise",
-          "label": "Tez Parcel Enterprise "
+          "label": "Smart Driver Enterprise "
         }
       ]
     },
@@ -2090,15 +2090,15 @@ export const FOOTER_DATA = {
       "title": "Countries",
       "link_label_pairs": [
         {
-          "link": "https://Tez Parcel.ae/",
+          "link": "https://smartdriver.ae/",
           "label": "United Arab Emirates"
         },
         {
-          "link": "https://theTez Parcel.com.tr/",
+          "link": "https://smartdriver.com.tr/",
           "label": "Turkey"
         },
         {
-          "link": "https://Tez Parcel.my/",
+          "link": "https://smartdriver.my/",
           "label": "Malaysia"
         }
       ]
@@ -2204,19 +2204,19 @@ export const FOOTER_DATA = {
   "social_links": {
     "social_media_links": [
       {
-        "link": "https://www.facebook.com/Tez Parcelindia/",
+        "link": "https://www.facebook.com/smartdriverindia/",
         "label": "fb"
       },
       {
-        "link": "https://twitter.com/Tez Parcelit_",
+        "link": "https://twitter.com/smartdriver_",
         "label": "twitter"
       },
       {
-        "link": "https://www.instagram.com/Tez Parcel_it/",
+        "link": "https://www.instagram.com/smartdriver_in/",
         "label": "insta"
       },
       {
-        "link": "https://www.linkedin.com/company/theTez Parcel-in",
+        "link": "https://www.linkedin.com/company/smartdriver-in",
         "label": "linkedIn"
       },
       {
@@ -2296,7 +2296,7 @@ export const HEADER_DATA = {
       "label": "OPEN APP"
     },
     "card": {
-      "title": "Install Tez Parcel",
+      "title": "Install Smart Driver",
       "desc": "for efficient goods transportation",
       "icon": {
         "path": "https://dom-content-vault-prod-cdn-assets.porter.in/app_icon_compressed_a1d65eb06f.png",
@@ -2383,7 +2383,7 @@ export const FARE_CONTENT = {
       "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
       "alt_text": "Common Arrows East.svg"
     },
-    "consent_label": "By checking this, you give consent to Tez Parcel to reach out to you via phone/WhatsApp to help with booking, etc",
+    "consent_label": "By checking this, you give consent to Smart Driver to reach out to you via phone/WhatsApp to help with booking, etc",
     "vehcile_modal_title": "Get an Estimate",
     "city_title_desc": {
       "text": "Choose your city",
@@ -2469,13 +2469,13 @@ export const FARE_CONTENT = {
         "alt_text": "personal.svg"
       }
     },
-    "requirement_title": "What will you use Tez Parcel for?",
+    "requirement_title": "What will you use Smart Driver for?",
     "get_estimate_label": "Get Estimate",
     "get_estimate_icon": {
       "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
       "alt_text": "Common Arrows East.svg"
     },
-    "consent_label": "By checking this, you give consent to Tez Parcel to reach out to you via phone/WhatsApp to help with booking, etc",
+    "consent_label": "By checking this, you give consent to Smart Driver to reach out to you via phone/WhatsApp to help with booking, etc",
     "city_title_desc": {
       "text": "Choose your city",
       "sub_text": "N/A"

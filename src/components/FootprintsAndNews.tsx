@@ -19,7 +19,7 @@ export const FootprintsAndNews: React.FC = () => {
       city: 'Bangalore',
       service: 'Two Wheeler',
       rating: 5,
-      review: 'Sent urgent office documents from Indiranagar to Whitefield. Delivered in 35 mins flat! Super impressed with Tez Parcel speed.',
+      review: 'Sent urgent office documents from Indiranagar to Whitefield. Delivered in 35 mins flat! Super impressed with Smart Driver speed.',
     },
     {
       name: 'Priya Iyer',
@@ -33,7 +33,7 @@ export const FootprintsAndNews: React.FC = () => {
       city: 'Ahmedabad',
       service: 'Tata Ace (Trucks)',
       rating: 5,
-      review: 'I use Tez Parcel mini trucks weekly for my wholesale hardware business. Real-time driver tracking and pocket-friendly rates make it seamless.',
+      review: 'I use Smart Driver mini trucks weekly for my wholesale hardware business. Real-time driver tracking and pocket-friendly rates make it seamless.',
     },
   ];
 
@@ -48,7 +48,7 @@ export const FootprintsAndNews: React.FC = () => {
       className="py-12 md:py-20"
     >
       <div className="site-container">
-        {/* Tez Parcel Footprints Title */}
+        {/* Smart Driver Footprints Title */}
         <h2
           style={{
             textAlign: 'center',

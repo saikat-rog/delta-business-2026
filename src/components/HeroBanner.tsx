@@ -11,7 +11,7 @@ export const HeroBanner: React.FC = () => {
       {/* Background Hero Banner Image */}
       <div className="absolute inset-0 w-full h-full">
         <img
-          alt="Tez Parcel Logistics Banner"
+          alt="Smart Driver Logistics Banner"
           fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover object-[85%_center] md:object-[right_center]"
           src="https://dom-content-vault-prod-cdn-assets.porter.in/IND_desktop_banner_d08506ac6f/IND_desktop_banner_d08506ac6f.webp"

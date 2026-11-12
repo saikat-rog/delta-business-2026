@@ -13,7 +13,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     // Try to get saved city from localStorage if available
-    const savedCity = localStorage.getItem('tez_parcel_city');
+    const savedCity = localStorage.getItem('smart_driver_city');
     if (savedCity) {
       setCurrentCity(savedCity);
     }
@@ -21,7 +21,7 @@ export const App: React.FC = () => {
 
   const handleCityChange = (city: string) => {
     setCurrentCity(city);
-    localStorage.setItem('tez_parcel_city', city);
+    localStorage.setItem('smart_driver_city', city);
   };
 
   return (
@@ -48,7 +48,7 @@ export const App: React.FC = () => {
         {/* Download App Section */}
         <DownloadAppSection />
 
-        {/* Tez Parcel Footprints & In The News Carousel */}
+        {/* Smart Driver Footprints & In The News Carousel */}
         <FootprintsAndNews />
 
         {/* FAQs Accordion */}

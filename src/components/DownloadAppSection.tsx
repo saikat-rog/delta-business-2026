@@ -15,15 +15,15 @@ export const DownloadAppSection: React.FC = () => {
         {/* Left Side: App Icon & Heading */}
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <img
-            alt="Tez Parcel App Icon"
-            src="https://dom-content-vault-prod-cdn-assets.porter.in/app_icon_compressed_a1d65eb06f.png"
+            alt="Smart Driver App Icon"
+            src="/logo.png"
             width="72"
             height="72"
             style={{ borderRadius: '16px', boxShadow: '0 8px 20px rgba(0,0,0,0.1)' }}
           />
           <div>
             <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', fontWeight: 800, color: '#1a1a1a', margin: 0 }}>
-              Download the Tez Parcel App
+              Download the Smart Driver App
             </h2>
             <p style={{ fontSize: '1.45rem', color: '#555555', marginTop: '6px', margin: 0 }}>
               We are loved by 1 Crore+ customers for fast, reliable goods transport!

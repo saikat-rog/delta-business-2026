@@ -34,7 +34,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
     : [
         {
           gradient: 'gradient-red-to-purple',
-          title: 'Tez Parcel Enterprise',
+          title: 'Smart Driver Enterprise',
           text: 'Streamlining operations to drive business growth',
           serviceType: 'trucks' as ServiceType,
         },
@@ -85,8 +85,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
         currentCity={currentCity}
       />
 
-      {/* Floating Category Card Section */}
-      <div className="site-medium-container -mt-10 md:-mt-20 relative z-20">
+      {/* Floating Category Card Section (Half overlapping hero banner) */}
+      <div className="site-medium-container -mt-[44px] md:-mt-[105px] relative z-20">
         <div
           style={{
             backgroundColor: '#ffffff',
@@ -358,7 +358,6 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               borderRadius: '12px',
               padding: '14px 18px',
               cursor: 'pointer',
-              display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               boxShadow: '0 4px 12px rgba(0, 65, 245, 0.3)',

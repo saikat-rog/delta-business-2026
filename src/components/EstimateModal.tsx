@@ -65,7 +65,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
         };
       case 'packers-movers':
         return {
-          vehicleName: `Tez Packers & Movers (${houseSize})`,
+          vehicleName: `Smart Driver Packers & Movers (${houseSize})`,
           vehicleImage: 'https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp',
           capacity: 'Dedicated Truck + 2 Helpers + Complete Packing',
           price: houseSize === '1 RK' ? '₹3,499' : houseSize === '1 BHK' ? '₹4,999' : houseSize === '2 BHK' ? '₹7,499' : '₹10,999',
@@ -409,7 +409,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               style={{ marginTop: '2px' }}
             />
             <span>
-              By checking this, you give consent to Tez Parcel to reach out to you via phone/WhatsApp to help with booking, etc.
+              By checking this, you give consent to Smart Driver to reach out to you via phone/WhatsApp to help with booking, etc.
             </span>
           </label>
 
@@ -464,7 +464,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                       Booking Confirmed!
                     </h4>
                     <p style={{ fontSize: '1.35rem', color: '#555', margin: 0 }}>
-                      Your Tez Parcel driver partner will be assigned shortly. Live tracking link sent to your mobile.
+                      Your Smart Driver partner will be assigned shortly. Live tracking link sent to your mobile.
                     </p>
                     <button
                       type="button"
@@ -534,7 +534,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
                             boxShadow: '0 4px 12px rgba(0, 135, 90, 0.3)',
                           }}
                         >
-                          Book Now with Tez Parcel
+                          Book Now with Smart Driver
                         </button>
                       </div>
                     );

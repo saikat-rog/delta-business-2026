@@ -6,14 +6,14 @@ interface TezLogoProps {
   className?: string;
 }
 
-export const TezLogo: React.FC<TezLogoProps> = ({
+export const SmartDriverLogo: React.FC<TezLogoProps> = ({
   color = '#0445DA',
   height = 24,
   className = '',
 }) => {
   return (
     <div
-      className={`tez-logo-wrapper ${className}`}
+      className={`smart-driver-logo-wrapper ${className}`}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -24,7 +24,7 @@ export const TezLogo: React.FC<TezLogoProps> = ({
     >
       <svg
         height={height}
-        viewBox="0 0 240 50"
+        viewBox="0 0 296 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{ height: height, width: 'auto', display: 'block' }}
@@ -57,7 +57,7 @@ export const TezLogo: React.FC<TezLogoProps> = ({
           />
         </g>
 
-        {/* TEZ */}
+        {/* SMART */}
         <text
           x="54"
           y="35"
@@ -67,25 +67,25 @@ export const TezLogo: React.FC<TezLogoProps> = ({
           letterSpacing="1px"
           fill={color}
         >
-          TEZ
+          SMART
         </text>
 
-        {/* PARCEL */}
+        {/* DRIVER */}
         <text
-          x="118"
+          x="156"
           y="35"
           fontFamily="'Titillium Web', sans-serif"
           fontWeight="700"
           fontSize="30"
-          letterSpacing="2px"
+          letterSpacing="1.5px"
           fill={color}
           opacity="0.88"
         >
-          PARCEL
+          DRIVER
         </text>
 
         {/* Location Pin Accent mark over last letter */}
-        <g transform="translate(222, 6) scale(0.65)">
+        <g transform="translate(274, 6) scale(0.65)">
           <path
             d="M12 2C7.58 2 4 5.58 4 10C4 16 12 22 12 22C12 22 20 16 20 10C20 5.58 16.42 2 12 2ZM12 12.5C10.62 12.5 9.5 11.38 9.5 10C9.5 8.62 10.62 7.5 12 7.5C13.38 7.5 14.5 8.62 14.5 10C14.5 11.38 13.38 12.5 12 12.5Z"
             fill={color}
@@ -95,3 +95,5 @@ export const TezLogo: React.FC<TezLogoProps> = ({
     </div>
   );
 };
+
+export const TezLogo = SmartDriverLogo;
