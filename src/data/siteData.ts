@@ -1,4 +1,30 @@
 // Site data for Smart Driver cloned from Porter.in
+
+export const OPERATING_CITIES = [
+  'Bangalore',
+  'Mumbai',
+  'Delhi NCR',
+  'Hyderabad',
+  'Chennai',
+  'Pune',
+  'Kolkata',
+  'Ahmedabad',
+  'Jaipur',
+  'Lucknow',
+  'Chandigarh',
+  'Indore',
+  'Coimbatore',
+  'Surat',
+  'Kochi',
+  'Nagpur',
+  'Vadodara',
+  'Nashik',
+  'Ludhiana',
+  'Visakhapatnam',
+  'Kanpur',
+  'Trivandrum',
+] as const;
+
 export const CITIES = [
   {
     "city_name": "ahmedabad",

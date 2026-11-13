@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
+import { XIcon, CheckCircleIcon } from './Icons';
+import { OPERATING_CITIES } from '../data/siteData';
 
-export const EnterpriseSection: React.FC = () => {
+interface EnterpriseSectionProps {
+  onOpenRegister?: () => void;
+}
+
+export const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onOpenRegister: _onOpenRegister }) => {
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [fleetName, setFleetName] = useState('');
+  const [fleetPhone, setFleetPhone] = useState('');
+  const [fleetSize, setFleetSize] = useState('2-5 Vehicles');
+  const [fleetCity, setFleetCity] = useState('');
+
+  const handleFleetSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setSubmitted(false);
+      setFleetName('');
+      setFleetPhone('');
+    }, 2500);
+  };
 
   return (
-    <section id="enterprise" className="site-container my-8 md:my-14">
+    <section id="fleet" className="site-container my-8 md:my-14">
       <div
         style={{
           display: 'flex',
@@ -30,7 +51,7 @@ export const EnterpriseSection: React.FC = () => {
               marginBottom: '12px',
             }}
           >
-            SMART DRIVER ENTERPRISE
+            SMART DRIVER FLEET PROGRAM
           </div>
           <h2
             style={{
@@ -41,19 +62,22 @@ export const EnterpriseSection: React.FC = () => {
               lineHeight: 1.3,
             }}
           >
-            Manage logistics needs of your business with Smart Driver Enterprise
+            Own multiple vehicles or a transport fleet? Attach your fleet with Smart Driver
           </h2>
+          <p className="text-gray-300 text-[1.4rem] mt-2 mb-0">
+            Dedicated fleet manager, bulk trip allocation, fuel credit, and weekly guaranteed company disbursements.
+          </p>
         </div>
 
-        <div className="w-full md:w-auto">
+        <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
           <button
             type="button"
             onClick={() => setShowModal(true)}
             style={{
               backgroundColor: '#0445DA',
               color: '#ffffff',
-              padding: '12px 32px',
-              borderRadius: '8px',
+              padding: '12px 30px',
+              borderRadius: '10px',
               fontSize: '1.5rem',
               fontWeight: 700,
               border: 'none',
@@ -66,7 +90,7 @@ export const EnterpriseSection: React.FC = () => {
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#0336aa')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0445DA')}
           >
-            Get in Touch
+            Attach Fleet Vehicles
           </button>
         </div>
       </div>
@@ -75,11 +99,8 @@ export const EnterpriseSection: React.FC = () => {
         <div
           style={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.65)',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.72)',
             backdropFilter: 'blur(4px)',
             display: 'flex',
             alignItems: 'center',
@@ -94,158 +115,170 @@ export const EnterpriseSection: React.FC = () => {
             style={{
               backgroundColor: '#ffffff',
               borderRadius: '16px',
-              padding: '28px 24px',
-              maxWidth: '500px',
+              maxWidth: '520px',
               width: '100%',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+              padding: '28px',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+              position: 'relative',
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h3 style={{ fontSize: '2.2rem', fontWeight: 700, margin: 0, color: '#1a1a1a' }}>
-                Smart Driver for Enterprise
-              </h3>
-              <button
-                type="button"
-                onClick={() => setShowModal(false)}
-                style={{
-                  padding: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: '#f0f0f0',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <img
-                  src="https://dom-content-vault-prod-cdn-assets.porter.in/cross_20_grey_142dd64290_e37e09230d.svg"
-                  alt="Close"
-                  width="16"
-                  height="16"
-                />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => setShowModal(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: '#f5f5f5',
+                border: 'none',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              <XIcon size={16} />
+            </button>
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '24px 0' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '12px' }}>🎉</div>
-                <h4 style={{ fontSize: '1.8rem', fontWeight: 700, color: '#00875a', marginBottom: '8px' }}>
-                  Thank you!
-                </h4>
-                <p style={{ fontSize: '1.4rem', color: '#666' }}>
-                  Our enterprise logistics specialist will reach out to you within 2 hours.
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+                  <CheckCircleIcon size={56} className="text-green-600" />
+                </div>
+                <h3 style={{ fontSize: '2rem', color: '#1a1a1a', fontWeight: 800 }}>Fleet Request Submitted!</h3>
+                <p style={{ color: '#666', fontSize: '1.4rem', marginTop: '8px' }}>
+                  Our Fleet Relations team will contact you within 2 working hours.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setShowModal(false);
-                  }}
-                  style={{
-                    marginTop: '20px',
-                    backgroundColor: '#0445DA',
-                    color: '#fff',
-                    padding: '10px 24px',
-                    borderRadius: '8px',
-                    fontSize: '1.4rem',
-                    fontWeight: 600,
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Done
-                </button>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSubmitted(true);
-                }}
-                style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
-              >
-                <div>
-                  <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, marginBottom: '6px', color: '#333' }}>
-                    Company / Organization Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Acme Logistics Pvt Ltd"
-                    style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1.4rem' }}
-                  />
-                </div>
+              <div>
+                <h3 style={{ fontSize: '2.1rem', fontWeight: 800, color: '#1a1a1a', margin: '0 0 6px 0' }}>
+                  Attach Your Fleet with Smart Driver
+                </h3>
+                <p style={{ color: '#666', fontSize: '1.35rem', margin: '0 0 20px 0' }}>
+                  Boost fleet utilization with reliable, round-the-clock enterprise orders.
+                </p>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, marginBottom: '6px', color: '#333' }}>
-                    Contact Person Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Full Name"
-                    style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1.4rem' }}
-                  />
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <form onSubmit={handleFleetSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, marginBottom: '6px', color: '#333' }}>
-                      Official Email
+                    <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
+                      Fleet Owner / Contact Name
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       required
-                      placeholder="name@company.com"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1.4rem' }}
+                      placeholder="e.g. Rajesh Transport"
+                      value={fleetName}
+                      onChange={(e) => setFleetName(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '10px 14px',
+                        borderRadius: '8px',
+                        border: '1px solid #ddd',
+                        fontSize: '1.4rem',
+                        boxSizing: 'border-box',
+                      }}
                     />
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, marginBottom: '6px', color: '#333' }}>
-                      Phone Number
+                    <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
+                      Mobile Number
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="10-digit number"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1.4rem' }}
+                      placeholder="10-digit mobile number"
+                      maxLength={10}
+                      value={fleetPhone}
+                      onChange={(e) => setFleetPhone(e.target.value.replace(/\D/g, ''))}
+                      style={{
+                        width: '100%',
+                        padding: '10px 14px',
+                        borderRadius: '8px',
+                        border: '1px solid #ddd',
+                        fontSize: '1.4rem',
+                        boxSizing: 'border-box',
+                      }}
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '1.3rem', fontWeight: 600, marginBottom: '6px', color: '#333' }}>
-                    Estimated Monthly Shipments
-                  </label>
-                  <select
-                    style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '1.4rem', backgroundColor: '#fff' }}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
+                        Number of Vehicles
+                      </label>
+                      <select
+                        value={fleetSize}
+                        onChange={(e) => setFleetSize(e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '10px 12px',
+                          borderRadius: '8px',
+                          border: '1px solid #ddd',
+                          fontSize: '1.35rem',
+                          boxSizing: 'border-box',
+                        }}
+                      >
+                        <option value="2-5 Vehicles">2 - 5 Vehicles</option>
+                        <option value="6-15 Vehicles">6 - 15 Vehicles</option>
+                        <option value="16-50 Vehicles">16 - 50 Vehicles</option>
+                        <option value="50+ Vehicles">50+ Vehicles</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
+                        Operating City
+                      </label>
+                      <select
+                        required
+                        value={fleetCity}
+                        onChange={(e) => setFleetCity(e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '10px 12px',
+                          borderRadius: '8px',
+                          border: '1px solid #ddd',
+                          fontSize: '1.35rem',
+                          boxSizing: 'border-box',
+                          backgroundColor: '#fafafa',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <option value="" disabled>Select Operating City</option>
+                        {OPERATING_CITIES.map((c) => (
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    style={{
+                      marginTop: '8px',
+                      backgroundColor: '#0445DA',
+                      color: '#ffffff',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      border: 'none',
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 12px rgba(4, 69, 218, 0.4)',
+                    }}
                   >
-                    <option>50 - 200 trips / month</option>
-                    <option>200 - 1,000 trips / month</option>
-                    <option>1,000+ trips / month (Dedicated fleet)</option>
-                  </select>
-                </div>
-
-                <button
-                  type="submit"
-                  style={{
-                    backgroundColor: '#0445DA',
-                    color: '#ffffff',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    border: 'none',
-                    cursor: 'pointer',
-                    marginTop: '8px',
-                  }}
-                >
-                  Request Consultation
-                </button>
-              </form>
+                    Submit Fleet Application
+                  </button>
+                </form>
+              </div>
             )}
           </div>
         </div>

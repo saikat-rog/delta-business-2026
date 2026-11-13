@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TruckIcon, BikeIcon, PackageIcon, CheckCircleIcon } from './Icons';
 
 export type ServiceType = 'trucks' | 'bike' | 'packers-movers';
 
@@ -172,9 +173,13 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               color: selectedService === 'trucks' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
               textAlign: 'center',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
             }}
           >
-            🚚 Trucks
+            <TruckIcon size={16} /> Trucks
           </button>
           <button
             type="button"
@@ -191,9 +196,13 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               color: selectedService === 'bike' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
               textAlign: 'center',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
             }}
           >
-            🛵 2-Wheeler
+            <BikeIcon size={16} /> 2-Wheeler
           </button>
           <button
             type="button"
@@ -210,9 +219,13 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               color: selectedService === 'packers-movers' ? '#ffffff' : '#555',
               transition: 'all 0.2s ease',
               textAlign: 'center',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
             }}
           >
-            📦 Packers &amp; Movers
+            <PackageIcon size={16} /> Packers &amp; Movers
           </button>
         </div>
 
@@ -472,7 +485,9 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
               >
                 {bookingSuccess ? (
                   <div style={{ textAlign: 'center', padding: '14px 0' }}>
-                    <div style={{ fontSize: '2.8rem', marginBottom: '6px' }}>🎉</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+                      <CheckCircleIcon size={42} className="text-[#00875a]" />
+                    </div>
                     <h4 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#00875a', marginBottom: '4px' }}>
                       Booking Confirmed!
                     </h4>

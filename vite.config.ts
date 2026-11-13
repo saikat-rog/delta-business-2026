@@ -10,4 +10,17 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  server: {
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5050',
+        changeOrigin: true,
+      },
+      '/uploads': {
+        target: 'http://localhost:5050',
+        changeOrigin: true,
+      },
+    },
+  },
 })

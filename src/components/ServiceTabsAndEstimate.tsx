@@ -1,68 +1,54 @@
 import React, { useState } from 'react';
 import { CityModal } from './CityModal';
-import { EstimateModal, type ServiceType } from './EstimateModal';
-import { CITIES } from '../data/siteData';
 
 interface ServiceTabsAndEstimateProps {
   currentCity: string;
   onCityChange: (city: string) => void;
+  onOpenRegister: (vehicleCategory?: string) => void;
+  onOpenStatus: () => void;
 }
 
 export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
   currentCity,
   onCityChange,
+  onOpenRegister,
 }) => {
   const [isCityModalOpen, setIsCityModalOpen] = useState(false);
-  const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
-  const [estimateService, setEstimateService] = useState<ServiceType>('trucks');
 
   const cityNameCapitalized = currentCity.charAt(0).toUpperCase() + currentCity.slice(1);
-  const currentCityData = CITIES.find((c: any) => c.city_name.toLowerCase() === currentCity.toLowerCase()) || CITIES[0];
 
-  const handleOpenEstimate = (service: ServiceType) => {
-    setEstimateService(service);
-    setIsEstimateModalOpen(true);
-  };
-
-  const promoCards = (currentCityData && currentCityData.city_services_promo && currentCityData.city_services_promo.length > 0)
-    ? currentCityData.city_services_promo.map((promo: any, idx: number) => ({
-        gradient: ['gradient-red-to-purple', 'gradient-green-to-blue', 'gradient-blue-to-red', 'gradient-cyan-to-blue', 'gradient-red-to-purple'][idx % 5],
-        title: promo.sub_text,
-        text: promo.text,
-        serviceType: (promo.service_type === 'packers-movers' ? 'packers-movers' : promo.service_type === 'bike' ? 'bike' : 'trucks') as ServiceType,
-      }))
-    : [
-        {
-          gradient: 'gradient-red-to-purple',
-          title: 'Smart Driver Enterprise',
-          text: 'Streamlining operations to drive business growth',
-          serviceType: 'trucks' as ServiceType,
-        },
-        {
-          gradient: 'gradient-green-to-blue',
-          title: 'API Integration',
-          text: 'Automate the transportation of your goods by integrating our APIs',
-          serviceType: 'bike' as ServiceType,
-        },
-        {
-          gradient: 'gradient-blue-to-red',
-          title: 'Two-Wheelers',
-          text: 'Reliable goods transportation services for up to 20 kg',
-          serviceType: 'bike' as ServiceType,
-        },
-        {
-          gradient: 'gradient-cyan-to-blue',
-          title: 'Trucks',
-          text: 'Hassle-free goods transportation up to 2500 kg',
-          serviceType: 'trucks' as ServiceType,
-        },
-        {
-          gradient: 'gradient-red-to-purple',
-          title: 'Packers & Movers',
-          text: 'House shifting hai? Ho Jayega',
-          serviceType: 'packers-movers' as ServiceType,
-        },
-      ];
+  const partnerBenefits = [
+    {
+      gradient: 'gradient-red-to-purple',
+      title: 'Guaranteed Weekly Payouts',
+      text: 'Earnings and performance incentives directly credited to your bank account every week.',
+      category: 'tata-ace',
+    },
+    {
+      gradient: 'gradient-green-to-blue',
+      title: `High Trip Demand in ${cityNameCapitalized}`,
+      text: 'Non-stop order flow from local merchants, e-commerce, and households with zero idle time.',
+      category: '2-wheeler',
+    },
+    {
+      gradient: 'gradient-blue-to-red',
+      title: '₹5 Lakh Accident Insurance',
+      text: 'Comprehensive medical and accidental insurance coverage provided to every registered driver.',
+      category: 'tata-ace',
+    },
+    {
+      gradient: 'gradient-cyan-to-blue',
+      title: 'Fuel & Maintenance Savings',
+      text: 'Exclusive partner tie-ups for discounted petrol, diesel, CNG and vehicle servicing.',
+      category: 'pickup',
+    },
+    {
+      gradient: 'gradient-red-to-purple',
+      title: '24x7 Driver Partner Support',
+      text: 'Dedicated helpline, local partner hubs, and on-ground SOS assistance whenever you need it.',
+      category: 'packers-movers',
+    },
+  ];
 
   return (
     <div className="w-full">
@@ -77,16 +63,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
         }}
       />
 
-      {/* Estimate Modal */}
-      <EstimateModal
-        isOpen={isEstimateModalOpen}
-        onClose={() => setIsEstimateModalOpen(false)}
-        initialService={estimateService}
-        currentCity={currentCity}
-      />
-
-      {/* Floating Category Card Section (Half overlapping hero banner) */}
-      <div className="site-medium-container -mt-[44px] md:-mt-[96px] relative z-20">
+      {/* Floating Category Card Section (Positioned cleanly below hero text) */}
+      <div id="vehicles" className="site-medium-container -mt-4 sm:-mt-6 md:-mt-8 relative z-20">
         <div
           style={{
             backgroundColor: '#ffffff',
@@ -96,7 +74,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
           }}
           className="p-[14px] md:p-[20px]"
         >
-          {/* City Selector Bar */}
+          {/* Operating City Selector Bar */}
           <div
             className="flex items-center justify-between border-b border-[#f0f2f7] pb-[10px] mb-[14px]"
           >
@@ -112,7 +90,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 height="18"
                 src="https://dom-content-vault-prod-cdn-assets.porter.in/location_icon_343963347b_2c5c2d74fa.svg"
               />
-              <span className="text-[#64748b] text-[1.35rem]">City:</span>
+              <span className="text-[#64748b] text-[1.35rem]">Operating City:</span>
               <span className="font-bold text-[1.45rem] text-[#1a1a1a] capitalize">
                 {currentCity}
               </span>
@@ -128,44 +106,44 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
             <div className="hidden sm:flex items-center gap-5 text-[1.25rem] text-[#64748b] font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="w-[6px] h-[6px] rounded-full bg-[#10b981]" />
-                Instant Pickup
+                Daily Trips
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-[6px] h-[6px] rounded-full bg-[#0445DA]" />
-                Live Tracking
+                Weekly Direct Deposit
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-[6px] h-[6px] rounded-full bg-[#f59e0b]" />
-                Lowest Fares
+                Free Insurance
               </span>
             </div>
           </div>
 
-          {/* Top 3 Service Categories: Responsive 3 columns on mobile, 4 columns on desktop */}
+          {/* Vehicle Attachment Categories: Responsive 3 columns on mobile, 4 columns on desktop */}
           <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 items-stretch">
             {[
               {
-                id: 'trucks' as ServiceType,
-                title: 'Truck',
-                subtitle: 'Mini trucks up to 2500 kg',
+                id: 'tata-ace',
+                title: 'Truck / Ace',
+                subtitle: 'Earn up to ₹45k/mo',
                 image: 'https://dom-content-vault-prod-cdn-assets.porter.in/trucks_india_a42dcdfc61/trucks_india_a42dcdfc61.webp',
               },
               {
-                id: 'bike' as ServiceType,
+                id: '2-wheeler',
                 title: 'Two Wheeler',
-                subtitle: 'Parcels up to 20 kg',
+                subtitle: 'Earn up to ₹25k/mo',
                 image: 'https://dom-content-vault-prod-cdn-assets.porter.in/two_wheelers_ea30db4d2d/two_wheelers_ea30db4d2d.webp',
               },
               {
-                id: 'packers-movers' as ServiceType,
+                id: 'packers-movers',
                 title: 'Packers & Movers',
-                subtitle: 'Safe home shifting',
+                subtitle: 'Earn up to ₹60k/mo',
                 image: 'https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp',
               },
             ].map((item) => (
               <div
                 key={item.id}
-                onClick={() => handleOpenEstimate(item.id)}
+                onClick={() => onOpenRegister(item.id)}
                 className="group flex flex-col items-center justify-center py-[12px] px-[8px] md:py-[16px] md:px-[12px] rounded-xl cursor-pointer bg-[#f6f8ff] hover:bg-[#edf2ff] border border-[#e6edff] hover:border-[#0445DA]/40 hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(4,69,218,0.1)] transition-all duration-200"
               >
                 <img
@@ -176,15 +154,15 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 <div className="text-[1.25rem] md:text-[1.55rem] font-bold text-[#1a1a1a] text-center leading-tight">
                   {item.title}
                 </div>
-                <div className="hidden md:block text-[1.2rem] text-[#64748b] text-center mt-[3px]">
+                <div className="text-[1.15rem] md:text-[1.25rem] font-semibold text-[#0445DA] text-center mt-[3px]">
                   {item.subtitle}
                 </div>
               </div>
             ))}
 
-            {/* Card 4: Estimate Card (Desktop layout inside the grid) */}
+            {/* Card 4: Register Now Card (Desktop layout inside the grid) */}
             <div
-              onClick={() => handleOpenEstimate('trucks')}
+              onClick={() => onOpenRegister('tata-ace')}
               style={{
                 background: 'linear-gradient(135deg, #0041f5 0%, #0b57ff 100%)',
                 boxShadow: '0 6px 18px rgba(0, 65, 245, 0.35)',
@@ -192,29 +170,32 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               className="hidden md:flex flex-col justify-between rounded-xl p-[18px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200"
             >
               <div>
-                <div className="text-white text-[1.9rem] font-extrabold leading-tight">
-                  Estimate Fare
+                <span className="inline-block bg-white/20 text-white text-[1.1rem] font-bold uppercase px-2 py-0.5 rounded-full mb-1">
+                  JOIN PLATFORM
+                </span>
+                <div className="text-white text-[1.9rem] font-extrabold leading-tight mt-1">
+                  Register Now
                 </div>
-                <div className="text-white/80 text-[1.25rem] mt-[6px] leading-snug">
-                  Know estimated fare before booking
+                <div className="text-white/85 text-[1.25rem] mt-[6px] leading-snug">
+                  Attach vehicle &amp; start earning within 24 hours
                 </div>
               </div>
-              <div className="bg-white/20 w-[34px] h-[34px] rounded-full flex items-center justify-center self-end">
+              <div className="bg-white/20 w-[36px] h-[36px] rounded-full flex items-center justify-center self-end">
                 <img
                   alt="arrow"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
                 />
               </div>
             </div>
           </div>
 
-          {/* Full-width Estimate Card for Mobile (Shown only on Mobile) */}
+          {/* Full-width Register Now Card for Mobile */}
           <div
-            onClick={() => handleOpenEstimate('trucks')}
+            onClick={() => onOpenRegister('tata-ace')}
             style={{
-              backgroundColor: '#0041f5',
+              background: 'linear-gradient(135deg, #0041f5 0%, #0b57ff 100%)',
               borderRadius: '12px',
               padding: '14px 18px',
               cursor: 'pointer',
@@ -226,18 +207,18 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
             className="flex md:hidden"
           >
             <div>
-              <div style={{ color: '#ffffff', fontSize: '1.6rem', fontWeight: 800 }}>
-                Estimate Fare
+              <div style={{ color: '#ffffff', fontSize: '1.65rem', fontWeight: 800 }}>
+                Register Now as Driver
               </div>
-              <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.2rem' }}>
-                Know estimated fare before booking
+              <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.25rem' }}>
+                Attach vehicle &amp; earn up to ₹45,000/month
               </div>
             </div>
             <div
               style={{
                 backgroundColor: 'rgba(255,255,255,0.2)',
-                width: '32px',
-                height: '32px',
+                width: '34px',
+                height: '34px',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -256,102 +237,62 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
         </div>
       </div>
 
-      {/* Services in City - Horizontal Gradient Promo Cards */}
-      <section className="site-container my-10 md:my-16">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '24px' }}>
-          <img
-            alt="wave"
-            width="28"
-            height="28"
-            className="md:!w-9 md:!h-9"
-            src="https://dom-content-vault-prod-cdn-assets.porter.in/Wave_Light_56c89daa20.svg"
-          />
-          <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.6rem)', fontWeight: 700, color: '#1a1a1a', margin: 0 }}>
-            Services in {cityNameCapitalized}
-          </h2>
-          <img
-            alt="wave"
-            width="28"
-            height="28"
-            className="md:!w-9 md:!h-9"
-            src="https://dom-content-vault-prod-cdn-assets.porter.in/Wave_Light_56c89daa20.svg"
-          />
-        </div>
+      {/* Driver Partner Benefits Carousel Section */}
+      <section id="benefits" className="site-container my-12 md:my-16">
+        <div>
+          <div className="text-center mb-8">
+            <span className="text-[1.2rem] font-bold text-[#0445DA] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
+              WHY JOIN SMART DRIVER
+            </span>
+            <h2 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-gray-900 mt-2 mb-1">
+              Top Benefits for Driver Partners in {cityNameCapitalized}
+            </h2>
+            <p className="text-[1.4rem] md:text-[1.55rem] text-gray-600 max-w-[680px] mx-auto">
+              Join thousands of vehicle owners earning steady income with India's fastest growing logistics network.
+            </p>
+          </div>
 
-        <div className="no-scrollbar" style={{ overflowX: 'auto', paddingBottom: '16px' }}>
+          {/* Horizontal scroll cards */}
           <div
+            className="no-scrollbar flex gap-4 md:gap-6 overflow-x-auto pb-4 pt-2"
             style={{
-              display: 'flex',
-              gap: '16px',
-              justifyContent: 'flex-start',
-              padding: '4px',
-              minWidth: 'max-content',
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
             }}
-            className="md:gap-6"
           >
-            {promoCards.map((card, idx) => (
+            {partnerBenefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className={`${card.gradient} md:!w-[250px] md:!h-[250px] md:!p-6 md:!rounded-3xl`}
-                onClick={() => handleOpenEstimate(card.serviceType)}
+                onClick={() => onOpenRegister(benefit.category)}
+                className={`${benefit.gradient} rounded-2xl p-6 md:p-8 flex-shrink-0 flex flex-col justify-between cursor-pointer text-white hover:scale-[1.02] hover:shadow-xl transition-all duration-300`}
                 style={{
-                  width: '220px',
-                  height: '220px',
-                  borderRadius: '20px',
-                  padding: '20px 18px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  cursor: 'pointer',
-                  color: '#ffffff',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-                  transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)';
+                  width: 'min(310px, 80vw)',
+                  minHeight: '230px',
+                  scrollSnapAlign: 'start',
                 }}
               >
-                <div
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.18)',
-                    borderRadius: '16px',
-                    padding: '4px 12px',
-                  }}
-                >
-                  <span style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                    {card.title}
-                  </span>
-                </div>
-
                 <div>
-                  <h3 style={{ fontSize: '1.65rem', fontWeight: 700, lineHeight: '1.35', color: '#ffffff' }} className="md:!text-[1.85rem]">
-                    {card.text}
+                  <div className="text-white/80 text-[1.2rem] font-bold uppercase tracking-wider mb-2">
+                    SMART DRIVER ADVANTAGE
+                  </div>
+                  <h3 className="text-[1.85rem] font-extrabold leading-tight text-white mb-2">
+                    {benefit.title}
                   </h3>
+                  <p className="text-white/90 text-[1.3rem] leading-snug">
+                    {benefit.text}
+                  </p>
                 </div>
 
-                <div
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.3)',
-                    borderRadius: '50%',
-                    width: '34px',
-                    height: '34px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <img
-                    alt="Arrow"
-                    width="14"
-                    height="14"
-                    src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
-                  />
+                <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/20">
+                  <span className="text-[1.25rem] font-bold text-white">Join Now</span>
+                  <div className="bg-white/20 w-8 h-8 rounded-full flex items-center justify-center">
+                    <img
+                      alt="Arrow"
+                      width="14"
+                      height="14"
+                      src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -359,31 +300,29 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
         </div>
       </section>
 
-      {/* Floating Sticky Get Estimate Fare Button */}
-      {!isEstimateModalOpen && (
-        <div
-          className="fixed bottom-4 left-4 right-4 md:left-auto md:bottom-6 md:right-6 z-40"
+      {/* Floating Sticky Register Now Button */}
+      <div
+        className="fixed bottom-4 left-4 right-4 md:left-auto md:bottom-6 md:right-6 z-40"
+      >
+        <button
+          type="button"
+          onClick={() => onOpenRegister('tata-ace')}
+          style={{
+            backgroundColor: '#0041f5',
+            color: '#ffffff',
+            boxShadow: '0 8px 26px rgba(0, 65, 245, 0.45)',
+          }}
+          className="w-full md:w-auto min-h-[54px] flex items-center justify-center gap-3 px-6 py-[14px] md:px-8 md:py-[15px] rounded-lg md:rounded-full text-[1.8rem] md:text-[1.85rem] font-bold tracking-wide whitespace-nowrap hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer"
         >
-          <button
-            type="button"
-            onClick={() => handleOpenEstimate('trucks')}
-            style={{
-              backgroundColor: '#0041f5',
-              color: '#ffffff',
-              boxShadow: '0 8px 24px rgba(0, 65, 245, 0.45)',
-            }}
-            className="w-full md:w-auto min-h-[54px] flex items-center justify-center gap-3 px-6 py-[14px] md:px-8 md:py-[15px] rounded-lg md:rounded-full text-[1.8rem] md:text-[1.85rem] font-bold tracking-wide whitespace-nowrap hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer"
-          >
-            <span>Get Estimate Fare</span>
-            <img
-              alt="Arrow"
-              width="18"
-              height="18"
-              src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
-            />
-          </button>
-        </div>
-      )}
+          <span>Register Now</span>
+          <img
+            alt="Arrow"
+            width="18"
+            height="18"
+            src="https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg"
+          />
+        </button>
+      </div>
     </div>
   );
 };
