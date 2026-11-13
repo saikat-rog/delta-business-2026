@@ -1,19 +1,16 @@
 import React from 'react';
 import { CITIES } from '../data/siteData';
-import { ShieldIcon } from './Icons';
 
 interface FooterProps {
   onSelectCity: (city: string) => void;
   onOpenRegister?: () => void;
   onOpenStatus?: () => void;
-  onOpenAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onSelectCity,
   onOpenRegister,
   onOpenStatus,
-  onOpenAdmin,
 }) => {
   return (
     <footer style={{ backgroundColor: '#000000', color: '#ffffff' }} className="pt-12 md:pt-16 pb-24 md:pb-10">
@@ -182,15 +179,6 @@ export const Footer: React.FC<FooterProps> = ({
                   style={{ color: '#9ca3af', fontSize: '1.35rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
                 >
                   Check Application Status
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={onOpenAdmin}
-                  style={{ color: '#f2c94c', fontSize: '1.35rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                >
-                  <ShieldIcon size={15} /> Admin Console
                 </button>
               </li>
               <li><a href="#benefits" style={{ color: '#9ca3af', fontSize: '1.35rem', textDecoration: 'none' }}>Partner Benefits</a></li>

@@ -35,9 +35,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  // Login inputs
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('Admin@SmartDriver2026');
+  // Login inputs (empty by default; never pre-filled)
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   // Stats & Applications
   const [stats, setStats] = useState<any>(null);
@@ -258,7 +258,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
               </p>
             </div>
 
-            <form onSubmit={handleAdminLogin} className="space-y-4">
+            <form onSubmit={handleAdminLogin} className="space-y-4" autoComplete="off">
               <div>
                 <label className="block text-[1.35rem] font-semibold text-gray-700 mb-1">
                   Admin Username
@@ -266,6 +266,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                 <input
                   type="text"
                   required
+                  placeholder="Enter admin username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 text-[1.4rem] focus:outline-none focus:border-[#0445DA] bg-[#fafafa]"
@@ -279,6 +280,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                 <input
                   type="password"
                   required
+                  placeholder="Enter admin password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 text-[1.4rem] focus:outline-none focus:border-[#0445DA] bg-[#fafafa]"

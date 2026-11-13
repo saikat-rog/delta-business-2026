@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { ShieldIcon, XIcon } from './Icons';
+import { XIcon } from './Icons';
 
 interface HeaderProps {
   onOpenRegister: () => void;
   onOpenStatus: () => void;
-  onOpenAdmin: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenRegister,
   onOpenStatus,
-  onOpenAdmin,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -85,16 +83,6 @@ export const Header: React.FC<HeaderProps> = ({
               className="px-4 py-2 rounded-xl border border-[#0445DA] text-[#0445DA] text-[1.4rem] font-bold hover:bg-[#0445DA]/5 transition-all cursor-pointer"
             >
               Check Status / Login
-            </button>
-
-            {/* Admin Portal Link */}
-            <button
-              type="button"
-              onClick={onOpenAdmin}
-              className="text-[1.35rem] font-semibold text-gray-500 hover:text-gray-900 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <ShieldIcon size={16} />
-              <span>Admin</span>
             </button>
 
             {/* Register as Driver Primary CTA */}
@@ -203,17 +191,6 @@ export const Header: React.FC<HeaderProps> = ({
                     className="w-full py-2.5 rounded-xl border border-[#0445DA] text-[#0445DA] text-[1.4rem] font-bold text-center cursor-pointer"
                   >
                     Check Application Status / Login
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      onOpenAdmin();
-                    }}
-                    className="w-full py-2.5 rounded-xl bg-gray-100 text-gray-800 text-[1.35rem] font-bold text-center cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <ShieldIcon size={16} /> Admin Console
                   </button>
 
                   <hr className="my-2 border-gray-200" />

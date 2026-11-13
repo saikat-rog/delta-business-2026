@@ -24,7 +24,6 @@ export const HomePage: React.FC<HomePageProps> = ({
       <Header
         onOpenRegister={() => onNavigate('/register', 'tata-ace')}
         onOpenStatus={() => onNavigate('/status')}
-        onOpenAdmin={() => onNavigate('/admin')}
       />
 
       {/* Main Content Area */}
@@ -57,12 +56,11 @@ export const HomePage: React.FC<HomePageProps> = ({
         <FaqSection />
       </main>
 
-      {/* Footer with Driver Quick Links, Hubs, Helpline and Admin Console */}
+      {/* Footer with Driver Quick Links, Hubs, and Helpline */}
       <Footer
         onSelectCity={onCityChange}
         onOpenRegister={() => onNavigate('/register', 'tata-ace')}
         onOpenStatus={() => onNavigate('/status')}
-        onOpenAdmin={() => onNavigate('/admin')}
       />
     </div>
   );
