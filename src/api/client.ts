@@ -1,4 +1,15 @@
-const API_BASE = '/api';
+// Strictly read from .env with no fallback
+const envApiUrl = ((import.meta.env.VITE_API_URL as string) || '').trim().replace(/\/+$/, '');
+
+export const API_BASE = envApiUrl.endsWith('/api') ? envApiUrl : `${envApiUrl}/api`;
+export const BACKEND_URL = envApiUrl.replace(/\/api$/, '');
+
+export function getDocumentUrl(filePath: string): string {
+  if (!filePath) return '';
+  if (filePath.startsWith('http://') || filePath.startsWith('https://')) return filePath;
+  const cleanPath = filePath.startsWith('/') ? filePath : `/${filePath}`;
+  return `${BACKEND_URL}${cleanPath}`;
+}
 
 export interface DriverData {
   id: number;

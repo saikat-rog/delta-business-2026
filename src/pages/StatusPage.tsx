@@ -7,6 +7,7 @@ import {
   setDriverToken,
   removeDriverToken,
   getDriverToken,
+  getDocumentUrl,
   type DriverData,
   type DriverDocument,
 } from '../api/client';
@@ -886,7 +887,7 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
                                         <span className="truncate max-w-[200px]">{uploaded.original_name}</span>
                                         <span>•</span>
                                         <a
-                                          href={uploaded.file_path}
+                                          href={getDocumentUrl(uploaded.file_path)}
                                           target="_blank"
                                           rel="noreferrer"
                                           className="inline-flex items-center gap-1 text-[#0445DA] font-bold hover:underline"

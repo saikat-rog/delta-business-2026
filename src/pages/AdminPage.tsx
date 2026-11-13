@@ -9,6 +9,7 @@ import {
   getAdminToken,
   setAdminToken,
   removeAdminToken,
+  getDocumentUrl,
   type DriverData,
   type DriverDocument,
 } from '../api/client';
@@ -438,7 +439,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                           {new Date(doc.uploaded_at).toLocaleDateString()}
                         </span>
                         <a
-                          href={doc.file_path}
+                          href={getDocumentUrl(doc.file_path)}
                           target="_blank"
                           rel="noreferrer"
                           className="px-3.5 py-1.5 bg-[#0445DA] text-white rounded-lg text-[1.25rem] font-bold hover:bg-[#0336aa]"
