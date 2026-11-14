@@ -16,7 +16,7 @@ export const DownloadAppSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <img
             alt="Smart Driver App Icon"
-            src="/logo.png"
+            src="/logo2.png"
             width="72"
             height="72"
             style={{ borderRadius: '16px', boxShadow: '0 8px 20px rgba(0,0,0,0.1)' }}

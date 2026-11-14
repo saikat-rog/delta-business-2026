@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { HomePage } from './pages/HomePage';
 import { RegisterPage } from './pages/RegisterPage';
 import { StatusPage } from './pages/StatusPage';
+import { StatusDetailsPage } from './pages/StatusDetailsPage';
 import { AdminPage } from './pages/AdminPage';
 import { detectUserCity } from './utils/cityDetection';
-import { getDriverToken } from './api/client';
 
 function getPathFromLocation(): string {
-  const token = getDriverToken();
   const path = window.location.pathname.toLowerCase();
-  // If someone already started/has a registration, show them the status page instead of register
-  if (path.startsWith('/register')) return token ? '/status' : '/register';
+  if (path.startsWith('/register')) return '/register';
+  if (path.startsWith('/status-details') || path.startsWith('/status/details')) return '/status-details';
   if (path.startsWith('/status') || path.startsWith('/login')) return '/status';
   if (path.startsWith('/admin')) return '/admin';
 
   // Also support hash fallback (e.g. #/register)
   const hash = window.location.hash.toLowerCase().replace('#', '');
-  if (hash.startsWith('/register')) return token ? '/status' : '/register';
+  if (hash.startsWith('/register')) return '/register';
+  if (hash.startsWith('/status-details') || hash.startsWith('/status/details')) return '/status-details';
   if (hash.startsWith('/status') || hash.startsWith('/login')) return '/status';
   if (hash.startsWith('/admin')) return '/admin';
 
@@ -68,19 +68,13 @@ export const App: React.FC = () => {
     if (vehicle) {
       setSelectedVehicle(vehicle);
     }
-    // If user has already registered / started, don't show register form again, send to status
-    if (path === '/register' && getDriverToken()) {
-      path = '/status';
-    }
     window.history.pushState({}, '', path);
-    setCurrentPath(path);
+    const basePath = path.split('?')[0].toLowerCase();
+    setCurrentPath(basePath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (currentPath === '/register') {
-    if (getDriverToken()) {
-      return <StatusPage onNavigate={handleNavigate} />;
-    }
     return (
       <RegisterPage
         currentCity={currentCity}
@@ -90,7 +84,11 @@ export const App: React.FC = () => {
     );
   }
 
-  if (currentPath === '/status') {
+  if (currentPath === '/status-details' || currentPath.startsWith('/status-details') || currentPath.startsWith('/status/details')) {
+    return <StatusDetailsPage onNavigate={handleNavigate} />;
+  }
+
+  if (currentPath === '/status' || currentPath.startsWith('/status')) {
     return <StatusPage onNavigate={handleNavigate} />;
   }
 

@@ -126,19 +126,19 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 id: 'tata-ace',
                 title: 'Truck / Ace',
                 subtitle: 'Earn up to ₹45k/mo',
-                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/trucks_india_a42dcdfc61/trucks_india_a42dcdfc61.webp',
+                image: '/vehicles/tata-ace.png',
               },
               {
                 id: '2-wheeler',
                 title: 'Two Wheeler',
                 subtitle: 'Earn up to ₹25k/mo',
-                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/two_wheelers_ea30db4d2d/two_wheelers_ea30db4d2d.webp',
+                image: '/vehicles/bike.png',
               },
               {
                 id: 'packers-movers',
                 title: 'Packers & Movers',
                 subtitle: 'Earn up to ₹60k/mo',
-                image: 'https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp',
+                image: '/vehicles/truck.png',
               },
             ].map((item) => (
               <div

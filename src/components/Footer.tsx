@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({
           <div style={{ maxWidth: '420px' }}>
             <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
               <img
-                src="/logo.png"
+                src="/logo2.png"
                 alt="Smart Driver"
                 style={{ height: '38px', width: 'auto', objectFit: 'contain', display: 'block' }}
               />

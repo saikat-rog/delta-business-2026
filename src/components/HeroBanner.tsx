@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRightIcon } from './Icons';
+import { ArrowRightIcon, ShieldCheckIcon, ZapIcon, CreditCardIcon } from './Icons';
 
 interface HeroBannerProps {
   onOpenRegister: () => void;
@@ -14,7 +14,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  // Auto slide between slide1.png and slide2.png every 4.5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
@@ -30,7 +29,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         background: 'linear-gradient(180deg, #031b5c, #040a1a)',
       }}
     >
-      {/* Auto-sliding Background Images (slide1.png and slide2.png) */}
+      {/* Background Slides */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         {HERO_SLIDES.map((slideSrc, idx) => (
           <div
@@ -49,71 +48,76 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         ))}
       </div>
 
-      {/* Mobile Dark Contrast Overlay (Ensures text is 100% sharp and readable over bright truck graphics) */}
+      {/* Dark Contrast Overlays */}
       <div
         className="absolute inset-0 z-2 pointer-events-none md:hidden"
         style={{
-          background: 'linear-gradient(180deg, rgba(2, 18, 66, 0.95) 0%, rgba(3, 27, 92, 0.88) 50%, rgba(2, 13, 46, 0.96) 100%)',
+          background: 'linear-gradient(90deg, rgba(2, 18, 66, 0.95) 0%, rgba(3, 27, 92, 0.65) 50%, rgba(3, 27, 92, 0) 100%)',
         }}
       />
-
-      {/* Desktop Horizontal Gradient Overlay for Crisp Typography & Right-side Visual Preview */}
       <div
         className="absolute inset-0 z-2 pointer-events-none hidden md:block"
         style={{
-          background: 'linear-gradient(90deg, rgba(3,27,92,0.96) 0%, rgba(3,27,92,0.85) 55%, rgba(0,0,0,0.3) 100%)',
+          background: 'linear-gradient(90deg, rgba(3,27,92,0.96) 0%, rgba(3,27,92,0.85) 55%, rgba(0,0,0,0) 100%)',
         }}
       />
 
-      {/* Responsive Content Container:
-          Ample padding ensures all text, badge, description, and CTA buttons are 100% visible
-          and comfortably finish well above the vehicle category card on both mobile and desktop. */}
-      <div
-        className="site-container relative z-10 flex flex-col justify-center pt-8 sm:pt-10 md:pt-14 pb-8 sm:pb-12 md:pb-24"
-      >
-        <div className="max-w-[620px]">
-          <h1
-            className="text-[2.2rem] sm:text-[2.8rem] md:text-[4.2rem] text-white font-normal m-0 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
-          >
-            Apni Gaadi, Apna Kaam.
-          </h1>
-          <h1
-            className="text-[2.6rem] sm:text-[3.2rem] md:text-[4.8rem] text-white font-extrabold mt-1 md:mt-2 leading-none tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
-          >
-            Earn up to ₹45,000 / mo
+      {/* Hero Content */}
+      <div className="site-container relative z-10 flex flex-col justify-center pt-10 sm:pt-12 md:pt-18 pb-10 sm:pb-14 md:pb-24">
+        <div className="max-w-[640px]">
+          {/* Uber-Style Eyebrow Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[1.25rem] font-bold mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#F2C94C] animate-pulse" />
+            <span>Driver Partners Welcomed Across All Cities</span>
+          </div>
+
+          <h1 className="text-[2.6rem] sm:text-[3.6rem] md:text-[5rem] text-white font-black leading-[1.08] tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]">
+            Drive and earn on your schedule.
           </h1>
 
-          <p className="text-white/95 text-[1.35rem] sm:text-[1.45rem] md:text-[1.6rem] mt-3 md:mt-4 leading-relaxed font-medium max-w-[560px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
-            Attach your 2-Wheeler, 3-Wheeler, Tata Ace or Pickup truck with Smart Driver. Enjoy regular trips, guaranteed weekly payouts, and comprehensive accident insurance.
+          <p className="text-white text-[1.45rem] sm:text-[1.6rem] md:text-[1.75rem] mt-4 leading-relaxed font-medium max-w-[540px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.65)]">
+            Attach your vehicle with Smart Driver. Earn up to <strong className="text-white font-extrabold underline decoration-[#F2C94C] decoration-2">₹45,000 / month</strong> with 0% platform commission and daily direct payouts.
           </p>
 
-          {/* Quick CTA buttons in hero */}
-          <div className="mt-5 md:mt-6 flex flex-wrap items-center gap-3 md:gap-4">
+          {/* Quick CTA Buttons */}
+          <div className="mt-6 md:mt-8 flex flex-wrap items-center gap-3.5">
             <button
               type="button"
               onClick={onOpenRegister}
-              style={{
-                backgroundColor: '#0445DA',
-                boxShadow: '0 6px 20px rgba(4, 69, 218, 0.45)',
-              }}
-              className="px-6 py-2.5 md:px-7 md:py-3.5 rounded-xl text-white text-[1.35rem] md:text-[1.55rem] font-bold hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-2"
+              className="px-7 py-4 rounded-2xl bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.55rem] font-black transition-all shadow-[0_6px_20px_rgba(4,69,218,0.45)] cursor-pointer flex items-center gap-2.5 active:scale-[0.98]"
             >
-              <span>Register as Driver</span>
-              <ArrowRightIcon size={18} />
+              <span>Apply to Drive</span>
+              <ArrowRightIcon size={20} />
             </button>
 
             <button
               type="button"
               onClick={onOpenStatus}
-              className="px-5 py-2.5 md:px-6 md:py-3.5 rounded-xl border-2 border-white/80 text-white text-[1.3rem] md:text-[1.45rem] font-bold hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
+              className="px-6 py-4 rounded-2xl border-2 border-white/70 hover:border-white text-white text-[1.45rem] font-bold hover:bg-white/10 transition-all cursor-pointer backdrop-blur-sm"
             >
-              Track Application Status
+              Check Status
             </button>
+          </div>
+
+          {/* Trust Highlights */}
+          <div className="mt-8 pt-6 border-t border-white/15 grid grid-cols-3 gap-3 max-w-lg text-white">
+            <div className="flex items-center gap-2">
+              <ZapIcon size={18} className="text-[#F2C94C] shrink-0" />
+              <span className="text-[1.2rem] font-bold leading-tight">0% Commission Plan</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CreditCardIcon size={18} className="text-[#F2C94C] shrink-0" />
+              <span className="text-[1.2rem] font-bold leading-tight">Instant Daily Payouts</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheckIcon size={18} className="text-[#F2C94C] shrink-0" />
+              <span className="text-[1.2rem] font-bold leading-tight">₹5 Lakh Insurance</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Slide Navigation Dots (Placed top-right on mobile and bottom-right on desktop to avoid any overlap) */}
+      {/* Slide Navigation Dots */}
       <div className="absolute top-4 right-4 md:top-auto md:bottom-6 md:right-12 z-20 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
         {HERO_SLIDES.map((_, idx) => (
           <button
@@ -121,10 +125,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             type="button"
             onClick={() => setCurrentSlideIndex(idx)}
             aria-label={`Slide ${idx + 1}`}
-            className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
               idx === currentSlideIndex
-                ? 'w-7 bg-[#f2c94c]'
-                : 'w-2.5 bg-white/50 hover:bg-white/80'
+                ? 'w-6 bg-[#F2C94C]'
+                : 'w-2 bg-white/50 hover:bg-white/80'
             }`}
           />
         ))}

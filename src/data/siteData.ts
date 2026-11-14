@@ -2325,7 +2325,7 @@ export const HEADER_DATA = {
       "title": "Install Smart Driver",
       "desc": "for efficient goods transportation",
       "icon": {
-        "path": "/logo.png",
+        "path": "/logo2.png",
         "alt_text": "app-icon-compressed.png"
       }
     }
