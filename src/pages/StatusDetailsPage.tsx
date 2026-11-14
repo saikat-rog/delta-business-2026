@@ -14,6 +14,7 @@ import {
   ArrowLeftIcon,
   XIcon,
   SearchIcon,
+  WalletIcon,
 } from '../components/Icons';
 
 interface StatusDetailsPageProps {
@@ -240,6 +241,64 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
               </div>
             )}
 
+            {/* Driver Wallet Balance Card */}
+            {driver.subscription_paid === 1 ? (
+              <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-white border border-gray-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200/80 text-gray-700 flex items-center justify-center shrink-0">
+                    <WalletIcon size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[1.2rem] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">
+                      Driver Wallet Balance
+                    </span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[2.6rem] font-black text-gray-950 leading-none">
+                        ₹2,000
+                      </span>
+                      <span className="text-[1.25rem] text-gray-500 font-medium">
+                        Available Balance
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sm:text-right flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-1">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[1.2rem] font-bold border border-emerald-200/80">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                    Active
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-white border border-gray-200/90 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200/80 text-gray-500 flex items-center justify-center shrink-0">
+                    <WalletIcon size={24} />
+                  </div>
+                  <div>
+                    <span className="text-[1.2rem] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">
+                      Driver Wallet Balance
+                    </span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[2.6rem] font-black text-gray-950 leading-none">
+                        ₹0
+                      </span>
+                      <span className="text-[1.2rem] font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">
+                        ₹2,000 Recharge Pending
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sm:text-right">
+                  <span className="text-[1.2rem] text-gray-500">
+                    Recharge ₹2,000 to activate wallet &amp; 0% commission
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Dynamic Application Timeline */}
             <div className="space-y-4">
               <span className="text-[1.3rem] font-bold uppercase tracking-wider text-gray-400 block mb-3">
@@ -331,8 +390,8 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
                     </div>
                     <p className="text-[1.3rem] text-gray-500 mt-0.5">
                       {driver.subscription_paid === 1
-                        ? 'Driver subscription activated. Keep 100% of all customer trip fares.'
-                        : 'Activate driver membership for 0% commission on every trip.'}
+                        ? '₹2,000 recharge confirmed & credited to your driver wallet. Keep 100% of trip fares with 0% commission.'
+                        : 'Recharge ₹2,000 to activate driver wallet and 0% commission on every trip.'}
                     </p>
 
                     {/* Resume Button if not done and fee is paid */}

@@ -4,7 +4,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { StatusPage } from './pages/StatusPage';
 import { StatusDetailsPage } from './pages/StatusDetailsPage';
 import { AdminPage } from './pages/AdminPage';
-import { detectUserCity } from './utils/cityDetection';
+import { detectUserState } from './utils/stateDetection';
 
 function getPathFromLocation(): string {
   const path = window.location.pathname.toLowerCase();
@@ -24,8 +24,8 @@ function getPathFromLocation(): string {
 }
 
 export const App: React.FC = () => {
-  const [currentCity, setCurrentCity] = useState<string>(() => {
-    return localStorage.getItem('smart_driver_city') || 'bangalore';
+  const [currentState, setCurrentState] = useState<string>(() => {
+    return localStorage.getItem('smart_driver_state') || 'Punjab';
   });
 
   const [currentPath, setCurrentPath] = useState<string>(getPathFromLocation);
@@ -40,16 +40,16 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Auto-detect city once on initial load
+  // Auto-detect state once on initial load
   useEffect(() => {
-    const isManual = localStorage.getItem('smart_driver_city_manual') === 'true';
+    const isManual = localStorage.getItem('smart_driver_state_manual') === 'true';
     if (isManual) return;
 
     let cancelled = false;
-    detectUserCity().then((detectedCity) => {
-      if (!cancelled && detectedCity) {
-        setCurrentCity(detectedCity);
-        localStorage.setItem('smart_driver_city', detectedCity);
+    detectUserState().then((detectedState) => {
+      if (!cancelled && detectedState) {
+        setCurrentState(detectedState);
+        localStorage.setItem('smart_driver_state', detectedState);
       }
     });
 
@@ -58,10 +58,10 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  const handleCityChange = (city: string) => {
-    setCurrentCity(city);
-    localStorage.setItem('smart_driver_city', city);
-    localStorage.setItem('smart_driver_city_manual', 'true');
+  const handleStateChange = (stateName: string) => {
+    setCurrentState(stateName);
+    localStorage.setItem('smart_driver_state', stateName);
+    localStorage.setItem('smart_driver_state_manual', 'true');
   };
 
   const handleNavigate = (path: string, vehicle?: string) => {
@@ -77,7 +77,7 @@ export const App: React.FC = () => {
   if (currentPath === '/register') {
     return (
       <RegisterPage
-        currentCity={currentCity}
+        currentState={currentState}
         initialVehicle={selectedVehicle}
         onNavigate={handleNavigate}
       />
@@ -98,8 +98,8 @@ export const App: React.FC = () => {
 
   return (
     <HomePage
-      currentCity={currentCity}
-      onCityChange={handleCityChange}
+      currentState={currentState}
+      onStateChange={handleStateChange}
       onNavigate={handleNavigate}
     />
   );

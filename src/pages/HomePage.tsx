@@ -8,14 +8,14 @@ import { FaqSection } from '../components/FaqSection';
 import { Footer } from '../components/Footer';
 
 interface HomePageProps {
-  currentCity: string;
-  onCityChange: (city: string) => void;
+  currentState: string;
+  onStateChange: (stateName: string) => void;
   onNavigate: (path: string, param?: string) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
-  currentCity,
-  onCityChange,
+  currentState,
+  onStateChange,
   onNavigate,
 }) => {
   return (
@@ -34,11 +34,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           onOpenStatus={() => onNavigate('/status')}
         />
 
-        {/* Operating City Selector, Vehicle Categories & Sticky Register Now Button */}
+        {/* Operating State Selector, Vehicle Categories & Sticky Register Now Button */}
         <div id="book-now">
           <ServiceTabsAndEstimate
-            currentCity={currentCity}
-            onCityChange={onCityChange}
+            currentState={currentState}
+            onStateChange={onStateChange}
             onOpenRegister={(vehicle) => onNavigate('/register', vehicle || 'tata-ace')}
             onOpenStatus={() => onNavigate('/status')}
           />
@@ -58,7 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Footer with Driver Quick Links, Hubs, and Helpline */}
       <Footer
-        onSelectCity={onCityChange}
+        onSelectState={onStateChange}
         onOpenRegister={() => onNavigate('/register', 'tata-ace')}
         onOpenStatus={() => onNavigate('/status')}
       />

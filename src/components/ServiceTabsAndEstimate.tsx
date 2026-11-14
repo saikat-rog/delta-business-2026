@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import { CityModal } from './CityModal';
+import { StateModal } from './StateModal';
 import { LogisticsMarquee } from './LogisticsMarquee';
 
 interface ServiceTabsAndEstimateProps {
-  currentCity: string;
-  onCityChange: (city: string) => void;
+  currentState: string;
+  onStateChange: (stateName: string) => void;
   onOpenRegister: (vehicleCategory?: string) => void;
   onOpenStatus: () => void;
 }
 
 export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
-  currentCity,
-  onCityChange,
+  currentState,
+  onStateChange,
   onOpenRegister,
 }) => {
-  const [isCityModalOpen, setIsCityModalOpen] = useState(false);
-
-  const cityNameCapitalized = currentCity.charAt(0).toUpperCase() + currentCity.slice(1);
+  const [isStateModalOpen, setIsStateModalOpen] = useState(false);
 
   const partnerBenefits = [
     {
@@ -27,8 +25,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
     },
     {
       gradient: 'gradient-green-to-blue',
-      title: `High Trip Demand in ${cityNameCapitalized}`,
-      text: 'Non-stop order flow from local merchants, e-commerce, and households with zero idle time.',
+      title: `High Trip Demand in ${currentState}`,
+      text: `Non-stop order flow across ${currentState} from local merchants, e-commerce, and households with zero idle time.`,
       category: '2-wheeler',
     },
     {
@@ -53,14 +51,14 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
 
   return (
     <div className="w-full">
-      {/* City Modal */}
-      <CityModal
-        isOpen={isCityModalOpen}
-        onClose={() => setIsCityModalOpen(false)}
-        selectedCity={currentCity}
-        onSelectCity={(city) => {
-          onCityChange(city);
-          setIsCityModalOpen(false);
+      {/* State Modal */}
+      <StateModal
+        isOpen={isStateModalOpen}
+        onClose={() => setIsStateModalOpen(false)}
+        selectedState={currentState}
+        onSelectState={(stateName) => {
+          onStateChange(stateName);
+          setIsStateModalOpen(false);
         }}
       />
 
@@ -75,13 +73,13 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
           }}
           className="p-[14px] md:p-[20px]"
         >
-          {/* Operating City Selector Bar */}
+          {/* Operating State Selector Bar */}
           <div
             className="flex items-center justify-between border-b border-[#f0f2f7] pb-[10px] mb-[14px]"
           >
             <button
               type="button"
-              onClick={() => setIsCityModalOpen(true)}
+              onClick={() => setIsStateModalOpen(true)}
               className="inline-flex items-center gap-2 cursor-pointer bg-transparent border-0 py-0.5 hover:opacity-80 transition-opacity"
             >
               <img
@@ -91,9 +89,9 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 height="18"
                 src="https://dom-content-vault-prod-cdn-assets.porter.in/location_icon_343963347b_2c5c2d74fa.svg"
               />
-              <span className="text-[#64748b] text-[1.35rem]">Operating City:</span>
-              <span className="font-bold text-[1.45rem] text-[#1a1a1a] capitalize">
-                {currentCity}
+              <span className="text-[#64748b] text-[1.35rem]">Operating State:</span>
+              <span className="font-bold text-[1.45rem] text-[#0445DA]">
+                {currentState}
               </span>
               <img
                 alt="drop down"
@@ -249,10 +247,10 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               WHY JOIN SMART DRIVER
             </span>
             <h2 className="text-[2.2rem] md:text-[3.2rem] font-extrabold text-gray-900 mt-2 mb-1">
-              Top Benefits for Driver Partners in {cityNameCapitalized}
+              Top Benefits for Driver Partners in {currentState}
             </h2>
             <p className="text-[1.4rem] md:text-[1.55rem] text-gray-600 max-w-[680px] mx-auto">
-              Join thousands of vehicle owners earning steady income with India's fastest growing logistics network.
+              Join thousands of vehicle owners earning steady income across {currentState} with India&apos;s fastest growing logistics network.
             </p>
           </div>
 

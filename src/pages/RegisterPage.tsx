@@ -24,7 +24,8 @@ import {
 } from '../components/Icons';
 
 interface RegisterPageProps {
-  currentCity: string;
+  currentState?: string;
+  currentCity?: string;
   initialVehicle?: string;
   onNavigate: (path: string) => void;
 }

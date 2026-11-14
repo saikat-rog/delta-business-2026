@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { XIcon, CheckCircleIcon } from './Icons';
-import { OPERATING_CITIES } from '../data/siteData';
+import { INDIAN_STATES } from '../utils/stateDetection';
 
 interface EnterpriseSectionProps {
   onOpenRegister?: () => void;
@@ -233,7 +233,7 @@ export const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onOpenRegi
 
                     <div>
                       <label style={{ display: 'block', fontSize: '1.25rem', fontWeight: 600, color: '#333', marginBottom: '4px' }}>
-                        Operating City
+                        Operating State
                       </label>
                       <select
                         required
@@ -250,10 +250,10 @@ export const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onOpenRegi
                           cursor: 'pointer',
                         }}
                       >
-                        <option value="" disabled>Select Operating City</option>
-                        {OPERATING_CITIES.map((c) => (
-                          <option key={c} value={c}>
-                            {c}
+                        <option value="" disabled>Select Operating State</option>
+                        {INDIAN_STATES.map((s) => (
+                          <option key={s.code} value={s.name}>
+                            {s.name}
                           </option>
                         ))}
                       </select>
