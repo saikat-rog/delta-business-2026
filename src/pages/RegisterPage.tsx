@@ -109,16 +109,12 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
   const [phone, setPhone] = useState<string>('');
 
   // Payment states
-  const [feeTxId, setFeeTxId] = useState<string>('');
+  const [, setFeeTxId] = useState<string>('');
   const [, setFeePaid] = useState<boolean>(false);
-  const [feeCopied, setFeeCopied] = useState<boolean>(false);
-  const [showManualFee, setShowManualFee] = useState<boolean>(false);
 
   // Subscription states
-  const [subTxId, setSubTxId] = useState<string>('');
+  const [, setSubTxId] = useState<string>('');
   const [, setSubPaid] = useState<boolean>(false);
-  const [subCopied, setSubCopied] = useState<boolean>(false);
-  const [showManualSub, setShowManualSub] = useState<boolean>(false);
 
   // Documents illusion
   const [documents, setDocuments] = useState<MockDoc[]>([
@@ -389,35 +385,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
   };
 
-  // Step 4 Manual UTR Fallback
-  const handleStep4Payment = async () => {
-    setErrorMsg('');
-    setLoading(true);
-    const tx = feeTxId.trim() || `UPI-3000-${Date.now().toString().slice(-6)}`;
-
-    try {
-      const res = await saveOnboardingStep({
-        driverId: driverId || undefined,
-        phone: phone.trim().replace(/\D/g, '').slice(-10),
-        fee_paid: 1,
-        fee_amount: 3000,
-        fee_tx_id: tx,
-        step: 4,
-      });
-
-      if (res.success && res.driverId) {
-        setDriverId(res.driverId);
-      }
-      setFeePaid(true);
-      setCurrentStep(5);
-    } catch {
-      setFeePaid(true);
-      setCurrentStep(5);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Cashfree Automated Step 5: Subscription (₹2000)
   const handleCashfreeSubPayment = async () => {
     setErrorMsg('');
@@ -463,35 +430,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'Failed to initiate Cashfree subscription payment.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Step 5 Manual UTR Fallback
-  const handleStep5Subscription = async () => {
-    setErrorMsg('');
-    setLoading(true);
-    const tx = subTxId.trim() || `SUB-2000-${Date.now().toString().slice(-6)}`;
-
-    try {
-      const res = await saveOnboardingStep({
-        driverId: driverId || undefined,
-        phone: phone.trim().replace(/\D/g, '').slice(-10),
-        subscription_paid: 1,
-        subscription_amount: 2000,
-        subscription_tx_id: tx,
-        step: 5,
-      });
-
-      if (res.success && res.driverId) {
-        setDriverId(res.driverId);
-      }
-      setSubPaid(true);
-      setCurrentStep(6);
-    } catch {
-      setSubPaid(true);
-      setCurrentStep(6);
     } finally {
       setLoading(false);
     }
@@ -950,63 +888,15 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                     type="button"
                     onClick={handleCashfreeFeePayment}
                     disabled={loading}
-                    className="w-full py-4.5 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white text-[1.6rem] font-black rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50 mb-4"
+                    className="w-full py-4.5 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white text-[1.6rem] font-black rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
                   >
                     <CreditCardIcon size={22} />
                     <span>{loading ? 'Opening Cashfree...' : 'Pay ₹3,000 via Cashfree'}</span>
                     <ArrowRightIcon size={18} />
                   </button>
-
-                  {/* Expandable Manual UTR Fallback */}
-                  <div className="pt-1">
-                    <button
-                      type="button"
-                      onClick={() => setShowManualFee((prev) => !prev)}
-                      className="text-[1.2rem] font-semibold text-gray-500 hover:text-gray-800 underline cursor-pointer"
-                    >
-                      {showManualFee ? 'Hide manual UPI transfer' : 'Paid via QR/UPI directly? Enter UTR manually'}
-                    </button>
-
-                    {showManualFee && (
-                      <div className="mt-3 p-4 bg-white border border-gray-200 rounded-xl text-left">
-                        <div className="flex items-center justify-between p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-[1.25rem] font-mono text-gray-900 mb-3">
-                          <span>smartdriver@upi</span>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              navigator.clipboard.writeText('smartdriver@upi');
-                              setFeeCopied(true);
-                              setTimeout(() => setFeeCopied(false), 2000);
-                            }}
-                            className="px-2.5 py-1 rounded bg-gray-200 text-[1.1rem] font-bold text-[#0445DA] cursor-pointer"
-                          >
-                            {feeCopied ? 'Copied ✓' : 'Copy'}
-                          </button>
-                        </div>
-                        <label className="block text-[1.2rem] font-bold text-gray-700 mb-1">
-                          UPI Transaction / UTR ID
-                        </label>
-                        <input
-                          type="text"
-                          value={feeTxId}
-                          onChange={(e) => setFeeTxId(e.target.value)}
-                          placeholder="e.g. 432109876543"
-                          className="w-full px-3.5 py-2.5 text-[1.3rem] bg-gray-50 border border-gray-300 rounded-lg outline-none focus:border-[#0445DA] mb-2"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleStep4Payment}
-                          disabled={loading}
-                          className="w-full py-2.5 bg-gray-900 hover:bg-black text-white text-[1.3rem] font-bold rounded-lg cursor-pointer"
-                        >
-                          Submit UTR Manually
-                        </button>
-                      </div>
-                    )}
-                  </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-4">
+                <div className="flex items-center gap-3 mt-6">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(3)}
@@ -1121,63 +1011,15 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                     type="button"
                     onClick={handleCashfreeSubPayment}
                     disabled={loading}
-                    className="w-full py-4.5 bg-purple-700 hover:bg-purple-800 active:scale-[0.99] text-white text-[1.6rem] font-extrabold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50 mb-4"
+                    className="w-full py-4.5 bg-purple-700 hover:bg-purple-800 active:scale-[0.99] text-white text-[1.6rem] font-extrabold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
                   >
                     <ZapIcon size={22} />
                     <span>{loading ? 'Opening Cashfree...' : 'Activate Subscription'}</span>
                     <ArrowRightIcon size={18} />
                   </button>
-
-                  {/* Expandable Manual UTR Fallback */}
-                  <div className="pt-1">
-                    <button
-                      type="button"
-                      onClick={() => setShowManualSub((prev) => !prev)}
-                      className="text-[1.2rem] font-semibold text-gray-500 hover:text-gray-800 underline cursor-pointer"
-                    >
-                      {showManualSub ? 'Hide manual UPI transfer' : 'Paid via QR/UPI directly? Enter UTR manually'}
-                    </button>
-
-                    {showManualSub && (
-                      <div className="mt-3 p-4 bg-white border border-gray-200 rounded-xl text-left">
-                        <div className="flex items-center justify-between p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-[1.25rem] font-mono text-gray-900 mb-3">
-                          <span>smartdriver@upi</span>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              navigator.clipboard.writeText('smartdriver@upi');
-                              setSubCopied(true);
-                              setTimeout(() => setSubCopied(false), 2000);
-                            }}
-                            className="px-2.5 py-1 rounded bg-gray-200 text-[1.1rem] font-bold text-[#0445DA] cursor-pointer"
-                          >
-                            {subCopied ? 'Copied ✓' : 'Copy'}
-                          </button>
-                        </div>
-                        <label className="block text-[1.2rem] font-bold text-gray-700 mb-1">
-                          UPI Transaction / UTR ID
-                        </label>
-                        <input
-                          type="text"
-                          value={subTxId}
-                          onChange={(e) => setSubTxId(e.target.value)}
-                          placeholder="e.g. 987654321012"
-                          className="w-full px-3.5 py-2.5 text-[1.3rem] bg-gray-50 border border-gray-300 rounded-lg outline-none focus:border-[#0445DA] mb-2"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleStep5Subscription}
-                          disabled={loading}
-                          className="w-full py-2.5 bg-gray-900 hover:bg-black text-white text-[1.3rem] font-bold rounded-lg cursor-pointer"
-                        >
-                          Submit UTR Manually
-                        </button>
-                      </div>
-                    )}
-                  </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-4">
+                <div className="flex items-center gap-3 mt-6">
                   <button
                     type="button"
                     onClick={() => setCurrentStep(4)}
