@@ -147,25 +147,56 @@ function findLocalAppById(id: number): DriverData | null {
   return apps.find((a) => a.id === id) || null;
 }
 
+async function parseJsonResponse<T = any>(res: Response): Promise<T> {
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    const text = await res.text();
+    if (res.status === 404) {
+      throw new Error('Backend endpoint not found (404). Please ensure the backend server has the latest deployment.');
+    }
+    throw new Error(`Server returned non-JSON response (${res.status}): ${text.slice(0, 100)}`);
+  }
+  return res.json();
+}
+
 // Helper to attempt fetch across multiple possible endpoints (configured API_BASE then /api)
 async function resilientFetch(endpoint: string, options?: RequestInit): Promise<Response> {
   const urlsToTry: string[] = [];
-  if (API_BASE && API_BASE !== '/api') {
-    urlsToTry.push(`${API_BASE}${endpoint}`);
-  }
-  urlsToTry.push(`/api${endpoint}`);
 
+  // In local development, prioritize local proxy /api so local backend changes take effect immediately
+  if (import.meta.env.DEV) {
+    urlsToTry.push(`/api${endpoint}`);
+    if (API_BASE && API_BASE !== '/api') {
+      urlsToTry.push(`${API_BASE}${endpoint}`);
+    }
+  } else {
+    if (API_BASE && API_BASE !== '/api') {
+      urlsToTry.push(`${API_BASE}${endpoint}`);
+    }
+    urlsToTry.push(`/api${endpoint}`);
+  }
+
+  let lastRes: Response | null = null;
   let lastError: any = null;
+
   for (const url of urlsToTry) {
     try {
       const res = await fetch(url, options);
-      if (res.ok || res.status === 400 || res.status === 404) {
+      const isJson = (res.headers.get('content-type') || '').includes('application/json');
+
+      // If the response is OK or is a JSON error from Express API (like 400 Bad Request)
+      if (res.ok || (isJson && res.status < 500)) {
         return res;
       }
+
+      // If it returned 404 or HTML (e.g. un-deployed remote prod server or Vite fallback), try next URL
+      lastRes = res;
     } catch (err) {
       lastError = err;
     }
   }
+
+  if (lastRes) return lastRes;
   throw lastError || new Error(`Failed to reach ${endpoint}`);
 }
 
@@ -664,3 +695,57 @@ export async function updateAdminApplicationFee(
 
   return { success: true, message: 'Fee updated successfully', driver: local || undefined };
 }
+
+// ============================================
+// Cashfree Payment Gateway Integration Methods
+// ============================================
+export interface CashfreeOrderResponse {
+  success: boolean;
+  message?: string;
+  order_id?: string;
+  payment_session_id?: string;
+  order_amount?: number;
+  order_currency?: string;
+  driver_id?: number;
+}
+
+export interface CashfreeVerifyResponse {
+  success: boolean;
+  message?: string;
+  order_id?: string;
+  order_status?: string;
+  is_paid?: boolean;
+  payment_type?: string;
+  amount?: number;
+  driver?: DriverData;
+}
+
+export async function createCashfreePaymentOrder(payload: {
+  driverId?: number;
+  phone: string;
+  name?: string;
+  email?: string;
+  order_type: 'registration_fee' | 'subscription';
+  return_url?: string;
+}): Promise<CashfreeOrderResponse> {
+  const res = await resilientFetch('/driver/create-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  return parseJsonResponse<CashfreeOrderResponse>(res);
+}
+
+export async function verifyCashfreePaymentOrder(order_id: string): Promise<CashfreeVerifyResponse> {
+  const res = await resilientFetch('/driver/verify-payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ order_id }),
+  });
+  const data: CashfreeVerifyResponse = await parseJsonResponse<CashfreeVerifyResponse>(res);
+  if (data.success && data.driver) {
+    saveLocalApp(data.driver);
+  }
+  return data;
+}
+
