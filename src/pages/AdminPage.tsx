@@ -9,6 +9,8 @@ import {
   getAdminToken,
   setAdminToken,
   removeAdminToken,
+  getAdminFeeSettings,
+  updateAdminFeeSettings,
   type DriverData,
 } from '../api/client';
 import {
@@ -59,6 +61,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
   const [adminNotes, setAdminNotes] = useState<string>('');
   const [updatingStatus, setUpdatingStatus] = useState<boolean>(false);
 
+  // Dynamic fee configuration
+  const [regFeeInput, setRegFeeInput] = useState<number>(3000);
+  const [subFeeInput, setSubFeeInput] = useState<number>(2000);
+  const [savingFees, setSavingFees] = useState<boolean>(false);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const token = getAdminToken();
@@ -74,17 +81,57 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
     try {
       setLoading(true);
       setErrorMsg('');
-      const [statsRes, appsRes] = await Promise.all([
+      const [statsRes, appsRes, feesRes] = await Promise.all([
         getAdminStats(),
         getAdminApplications(filterStatus, filterSearch, filterFee, filterSub, filterDocs),
+        getAdminFeeSettings(),
       ]);
 
       if (statsRes.success) setStats(statsRes.stats);
       if (appsRes.success) setApplications(appsRes.applications || []);
+      if (feesRes && feesRes.success) {
+        setRegFeeInput(feesRes.registration_fee || 3000);
+        setSubFeeInput(feesRes.subscription_fee || 2000);
+      }
     } catch {
       setErrorMsg('Failed to load dashboard data');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveFeeSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+    setSuccessMsg('');
+
+    if (isNaN(regFeeInput) || regFeeInput < 1) {
+      setErrorMsg('Please enter a valid positive registration fee.');
+      return;
+    }
+
+    if (isNaN(subFeeInput) || subFeeInput < 1) {
+      setErrorMsg('Please enter a valid positive subscription fee.');
+      return;
+    }
+
+    setSavingFees(true);
+    try {
+      const res = await updateAdminFeeSettings({
+        registration_fee: Number(regFeeInput),
+        subscription_fee: Number(subFeeInput),
+      });
+
+      if (res.success) {
+        setSuccessMsg(`✓ Fees updated! Registration Fee: ₹${res.registration_fee}, Subscription: ₹${res.subscription_fee}`);
+        setTimeout(() => setSuccessMsg(''), 5000);
+      } else {
+        setErrorMsg(res.message || 'Failed to update fee settings');
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Error updating fee settings');
+    } finally {
+      setSavingFees(false);
     }
   };
 
@@ -650,6 +697,93 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
             )}
+
+            {/* Platform Dynamic Fee Configuration Card */}
+            <div className="p-6 bg-white border border-gray-200/90 rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-gray-100 mb-5">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span className="text-[1.15rem] font-bold uppercase tracking-wider text-gray-500">
+                      Pricing Controls
+                    </span>
+                  </div>
+                  <h3 className="text-[1.8rem] font-black text-gray-950 tracking-tight">
+                    Onboarding &amp; Subscription Fee Management
+                  </h3>
+                  <p className="text-[1.3rem] text-gray-500">
+                    Set the exact fees charged to drivers during onboarding. Changes update the driver registration portal and Cashfree payment checkout in real time.
+                  </p>
+                </div>
+              </div>
+
+              <form onSubmit={handleSaveFeeSettings} className="grid grid-cols-1 md:grid-cols-12 gap-5 items-end">
+                {/* Registration Fee Input */}
+                <div className="md:col-span-5">
+                  <label className="block text-[1.25rem] font-extrabold text-gray-800 mb-1.5 flex items-center justify-between">
+                    <span>1. Registration / Verification Fee (One-Time)</span>
+                    <span className="text-emerald-700 font-mono font-black text-[1.4rem]">
+                      Active: ₹{Number(regFeeInput || 0).toLocaleString('en-IN')}
+                    </span>
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none font-bold text-gray-500 text-[1.4rem]">
+                      ₹
+                    </div>
+                    <input
+                      type="number"
+                      min={1}
+                      step={1}
+                      value={regFeeInput}
+                      onChange={(e) => setRegFeeInput(Number(e.target.value))}
+                      placeholder="e.g. 3000"
+                      className="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-300 text-[1.45rem] font-bold text-gray-950 bg-gray-50 focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 transition-all"
+                    />
+                  </div>
+                  <p className="text-[1.15rem] text-gray-400 mt-1">
+                    Charged at Step 4 before background check.
+                  </p>
+                </div>
+
+                {/* Subscription Fee Input */}
+                <div className="md:col-span-5">
+                  <label className="block text-[1.25rem] font-extrabold text-gray-800 mb-1.5 flex items-center justify-between">
+                    <span>2. Platform Subscription Fee (Monthly)</span>
+                    <span className="text-purple-700 font-mono font-black text-[1.4rem]">
+                      Active: ₹{Number(subFeeInput || 0).toLocaleString('en-IN')}/mo
+                    </span>
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none font-bold text-gray-500 text-[1.4rem]">
+                      ₹
+                    </div>
+                    <input
+                      type="number"
+                      min={1}
+                      step={1}
+                      value={subFeeInput}
+                      onChange={(e) => setSubFeeInput(Number(e.target.value))}
+                      placeholder="e.g. 2000"
+                      className="w-full pl-9 pr-4 py-3 rounded-xl border border-gray-300 text-[1.45rem] font-bold text-gray-950 bg-gray-50 focus:bg-white focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition-all"
+                    />
+                  </div>
+                  <p className="text-[1.15rem] text-gray-400 mt-1">
+                    Charged at Step 5 to activate VIP driver membership.
+                  </p>
+                </div>
+
+                {/* Submit Button */}
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    disabled={savingFees}
+                    className="w-full py-3.5 px-4 bg-[#0F172A] hover:bg-black active:scale-[0.99] text-white font-extrabold text-[1.35rem] rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  >
+                    <span>{savingFees ? 'Saving...' : 'Save Fee Changes'}</span>
+                  </button>
+                </div>
+              </form>
+            </div>
 
             {/* Filter & Search Bar */}
             <div className="p-4 bg-white border border-gray-200/90 rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-3">

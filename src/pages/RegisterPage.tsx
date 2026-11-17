@@ -10,6 +10,7 @@ import {
   getStoredDriverId,
   createCashfreePaymentOrder,
   verifyCashfreePaymentOrder,
+  getPublicFeeSettings,
   type DriverData,
 } from '../api/client';
 import { openCashfreeCheckout } from '../services/cashfree';
@@ -116,6 +117,12 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
   const [, setSubTxId] = useState<string>('');
   const [, setSubPaid] = useState<boolean>(false);
 
+  // Dynamic fee settings from Admin Panel
+  const [feeSettings, setFeeSettings] = useState<{ registration_fee: number; subscription_fee: number }>({
+    registration_fee: 3000,
+    subscription_fee: 2000,
+  });
+
   // Documents illusion
   const [documents, setDocuments] = useState<MockDoc[]>([
     {
@@ -156,6 +163,16 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
   }, [currentStep]);
 
   useEffect(() => {
+    // Load dynamic fee amounts configured in Admin Panel
+    getPublicFeeSettings().then((res) => {
+      if (res && res.success) {
+        setFeeSettings({
+          registration_fee: Number(res.registration_fee) || 3000,
+          subscription_fee: Number(res.subscription_fee) || 2000,
+        });
+      }
+    });
+
     const savedPhone = getStoredDriverPhone();
     const savedId = getStoredDriverId();
 
@@ -804,7 +821,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                 Pay Registration Fee
               </h1>
               <p className="text-[1.45rem] text-gray-500 mt-1">
-                Complete your ₹3,000 onboarding and background verification fee.
+                Complete your ₹{feeSettings.registration_fee.toLocaleString('en-IN')} onboarding and background verification fee.
               </p>
             </div>
 
@@ -845,7 +862,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
                   <div className="flex justify-between pt-5 border-t border-gray-200 text-[2rem] font-black text-gray-950">
                     <span>Total Due</span>
-                    <span className="text-emerald-700 font-mono text-[2.2rem]">₹3,000</span>
+                    <span className="text-emerald-700 font-mono text-[2.2rem]">
+                      ₹{feeSettings.registration_fee.toLocaleString('en-IN')}
+                    </span>
                   </div>
                 </div>
 
@@ -891,7 +910,11 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                     className="w-full py-4.5 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white text-[1.6rem] font-black rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
                   >
                     <CreditCardIcon size={22} />
-                    <span>{loading ? 'Opening Cashfree...' : 'Pay ₹3,000 via Cashfree'}</span>
+                    <span>
+                      {loading
+                        ? 'Opening Cashfree...'
+                        : `Pay ₹${feeSettings.registration_fee.toLocaleString('en-IN')} via Cashfree`}
+                    </span>
                     <ArrowRightIcon size={18} />
                   </button>
                 </div>
@@ -967,7 +990,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                   <div className="mt-5 pt-4 border-t border-purple-200 flex items-center justify-between text-[1.9rem] font-black text-purple-950">
                     <span>Monthly Subscription</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="font-mono text-purple-700 text-[2.2rem]">₹2,000</span>
+                      <span className="font-mono text-purple-700 text-[2.2rem]">
+                        ₹{feeSettings.subscription_fee.toLocaleString('en-IN')}
+                      </span>
                       <span className="text-[1.3rem] text-gray-500 font-semibold">/ mo</span>
                     </div>
                   </div>
@@ -1014,7 +1039,11 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                     className="w-full py-4.5 bg-purple-700 hover:bg-purple-800 active:scale-[0.99] text-white text-[1.6rem] font-extrabold rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
                   >
                     <ZapIcon size={22} />
-                    <span>{loading ? 'Opening Cashfree...' : 'Activate Subscription'}</span>
+                    <span>
+                      {loading
+                        ? 'Opening Cashfree...'
+                        : `Activate Subscription (₹${feeSettings.subscription_fee.toLocaleString('en-IN')})`}
+                    </span>
                     <ArrowRightIcon size={18} />
                   </button>
                 </div>

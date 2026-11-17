@@ -749,3 +749,49 @@ export async function verifyCashfreePaymentOrder(order_id: string): Promise<Cash
   return data;
 }
 
+// ============================================
+// Dynamic Platform Fee Configuration API
+// ============================================
+export interface FeeSettingsResponse {
+  success: boolean;
+  registration_fee: number;
+  subscription_fee: number;
+  message?: string;
+}
+
+export async function getPublicFeeSettings(): Promise<FeeSettingsResponse> {
+  try {
+    const res = await resilientFetch('/driver/fee-settings');
+    return await parseJsonResponse<FeeSettingsResponse>(res);
+  } catch {
+    return { success: true, registration_fee: 3000, subscription_fee: 2000 };
+  }
+}
+
+export async function getAdminFeeSettings(): Promise<FeeSettingsResponse> {
+  const token = getAdminToken();
+  const res = await resilientFetch('/admin/settings/fees', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return parseJsonResponse<FeeSettingsResponse>(res);
+}
+
+export async function updateAdminFeeSettings(fees: {
+  registration_fee: number;
+  subscription_fee: number;
+}): Promise<FeeSettingsResponse> {
+  const token = getAdminToken();
+  const res = await resilientFetch('/admin/settings/fees', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(fees),
+  });
+  return parseJsonResponse<FeeSettingsResponse>(res);
+}
+
+
