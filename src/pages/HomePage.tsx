@@ -44,6 +44,21 @@ export const HomePage: React.FC<HomePageProps> = ({
           />
         </div>
 
+        {/* Promotional Feature Banner Section (banner2.png with original dimensions) */}
+        <section className="site-container my-10 md:my-16">
+          <div
+            onClick={() => onNavigate('/register', 'tata-ace')}
+            className="w-full overflow-hidden rounded-2xl md:rounded-3xl shadow-sm hover:shadow-xl transition-all cursor-pointer bg-white border border-gray-200/80 group"
+          >
+            <img
+              src="/banner2.png"
+              alt="Smart Driver Partner Opportunities"
+              className="w-full h-auto max-w-[1536px] mx-auto block transition-transform duration-500 group-hover:scale-[1.005]"
+              loading="lazy"
+            />
+          </div>
+        </section>
+
         {/* Fleet Owners / Enterprise Vehicle Attachment */}
         <EnterpriseSection
           onOpenRegister={() => onNavigate('/register', 'tata-ace')}
