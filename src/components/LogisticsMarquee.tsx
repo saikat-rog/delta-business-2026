@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface Brand {
+export interface Brand {
   name: string;
   category: string;
   badgeBg?: string;
   renderLogo: () => React.ReactNode;
 }
 
-const BRANDS: Brand[] = [
+export const BRANDS: Brand[] = [
   {
     name: 'Uber',
     category: 'Cabs & Freight',
@@ -154,6 +154,20 @@ const BRANDS: Brand[] = [
         </span>
         <span className="font-sans font-black text-[1.9rem] tracking-tight text-gray-900 leading-none">
           dunzo
+        </span>
+      </div>
+    ),
+  },
+  {
+    name: 'Xpressbees',
+    category: 'Express Logistics',
+    renderLogo: () => (
+      <div className="flex items-center gap-1.5">
+        <span className="w-6 h-6 rounded-md bg-[#E11D48] text-white font-black text-xs flex items-center justify-center">
+          XB
+        </span>
+        <span className="font-sans font-black text-[1.8rem] tracking-tight text-gray-900 leading-none">
+          xpressbees
         </span>
       </div>
     ),

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StateModal } from './StateModal';
-import { LogisticsMarquee } from './LogisticsMarquee';
+import { OurPartnersGrid } from './OurPartnersGrid';
 
 interface ServiceTabsAndEstimateProps {
   currentState: string;
@@ -236,8 +236,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
         </div>
       </div>
 
-      {/* Logistics & Mobility Platforms Marquee */}
-      <LogisticsMarquee />
+      {/* Our Partners - Fixed Grid of Mobility & Logistics Brands */}
+      <OurPartnersGrid />
 
       {/* Driver Partner Benefits Carousel Section */}
       <section id="benefits" className="site-container my-12 md:my-16">
