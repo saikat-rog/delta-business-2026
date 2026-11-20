@@ -83,6 +83,10 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
     switch (cat) {
       case 'tata-ace':
         return 'Tata Ace (Chota Hathi)';
+      case 'e-rickshaw':
+        return 'E-Rickshaw / Toto';
+      case 'jcb':
+        return 'JCB / Earth Mover';
       case '3-wheeler':
         return '3 Wheeler Auto Cargo';
       case 'pickup-8ft':
@@ -105,6 +109,10 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
     switch (cat) {
       case 'tata-ace':
         return '/vehicles/tata-ace.png';
+      case 'e-rickshaw':
+        return '/vehicles/e-rickshaw.png';
+      case 'jcb':
+        return '/vehicles/jcb.png';
       case '3-wheeler':
       case 'ev-cargo':
         return '/vehicles/3-wheeler.png';

@@ -52,6 +52,20 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     image: '/vehicles/tata-ace.png',
   },
   {
+    id: '2-wheeler',
+    name: 'Two Wheeler',
+    capacity: 'Up to 20 kg',
+    earnings: 'Avg. ₹25,000 / mo',
+    image: '/vehicles/bike.png',
+  },
+  {
+    id: 'e-rickshaw',
+    name: 'E-Rickshaw / Toto',
+    capacity: 'Up to 4 Passengers / 400 kg',
+    earnings: 'Avg. ₹32,000 / mo',
+    image: '/vehicles/e-rickshaw.png',
+  },
+  {
     id: '3-wheeler',
     name: '3 Wheeler',
     capacity: 'Up to 500 kg',
@@ -66,18 +80,18 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     image: '/vehicles/pickup.png',
   },
   {
-    id: '2-wheeler',
-    name: 'Two Wheeler',
-    capacity: 'Up to 20 kg',
-    earnings: 'Avg. ₹25,000 / mo',
-    image: '/vehicles/bike.png',
-  },
-  {
     id: 'tata-407',
     name: 'Heavy Truck',
     capacity: 'Up to 2,500 kg',
     earnings: 'Avg. ₹65,000 / mo',
     image: '/vehicles/truck.png',
+  },
+  {
+    id: 'jcb',
+    name: 'JCB / Earth Mover',
+    capacity: 'Excavation & Heavy Projects',
+    earnings: 'Avg. ₹80,000 / mo',
+    image: '/vehicles/jcb.png',
   },
   {
     id: 'car-commercial',

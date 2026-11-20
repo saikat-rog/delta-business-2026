@@ -3,175 +3,27 @@ import React from 'react';
 export interface Brand {
   name: string;
   category: string;
-  badgeBg?: string;
-  renderLogo: () => React.ReactNode;
+  logoSrc: string;
 }
 
 export const BRANDS: Brand[] = [
-  {
-    name: 'Uber',
-    category: 'Cabs & Freight',
-    renderLogo: () => (
-      <span className="font-sans font-black text-[2.2rem] tracking-tighter text-black leading-none">
-        Uber
-      </span>
-    ),
-  },
-  {
-    name: 'Ola',
-    category: 'Cabs & Delivery',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-5 h-5 rounded-full bg-black flex items-center justify-center">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#A4D620]" />
-        </span>
-        <span className="font-sans font-extrabold text-[2rem] tracking-tight text-gray-950 leading-none">
-          OLA
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Porter',
-    category: 'Trucks & Two Wheeler',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <rect width="24" height="24" rx="6" fill="#0445DA" />
-          <path d="M6 13C8 9 11 9 13 13C15 17 18 17 20 13" stroke="#F2C94C" strokeWidth="3" strokeLinecap="round" />
-        </svg>
-        <span className="font-sans font-black text-[2.1rem] tracking-tight text-[#0445DA] lowercase leading-none">
-          porter
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Rapido',
-    category: 'Bike Taxi & Auto',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-lg bg-[#F9D616] text-black font-black text-xs flex items-center justify-center shadow-2xs">
-          R
-        </span>
-        <span className="font-sans font-black text-[1.95rem] tracking-tight text-gray-950 leading-none">
-          Rapido
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Delhivery',
-    category: 'Express Cargo',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-md bg-[#D9232D] text-white font-black text-xs flex items-center justify-center">
-          D
-        </span>
-        <span className="font-sans font-black text-[1.8rem] tracking-wider text-gray-900 uppercase leading-none">
-          DELHIVERY
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Shadowfax',
-    category: 'Last-Mile Delivery',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-full bg-[#FF5722] text-white flex items-center justify-center font-black text-[1rem]">
-          ⚡
-        </span>
-        <span className="font-sans font-extrabold text-[1.85rem] tracking-tight text-[#1A237E] leading-none">
-          shadowfax
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Borzo',
-    category: 'Intra-City Courier',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-full bg-[#FF6B00] text-white font-bold text-xs flex items-center justify-center">
-          b
-        </span>
-        <span className="font-sans font-black text-[1.9rem] tracking-tight text-gray-900 leading-none">
-          borzo
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Blowhorn',
-    category: 'Mini Trucks & Cargo',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-lg bg-[#0052CC] text-white font-bold text-xs flex items-center justify-center">
-          BH
-        </span>
-        <span className="font-sans font-black text-[1.85rem] tracking-tight text-[#0052CC] leading-none">
-          blowhorn
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Shiprocket',
-    category: 'E-commerce Freight',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-full bg-[#7C3AED] text-white font-bold text-xs flex items-center justify-center">
-          🚀
-        </span>
-        <span className="font-sans font-black text-[1.85rem] tracking-tight text-gray-900 leading-none">
-          Shiprocket
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'LoadShare',
-    category: 'Logistics Network',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-md bg-[#059669] text-white font-black text-xs flex items-center justify-center">
-          LS
-        </span>
-        <span className="font-sans font-black text-[1.85rem] tracking-tight text-gray-900 leading-none">
-          LoadShare
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Dunzo',
-    category: 'Hyperlocal Delivery',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-full bg-[#00D290] text-black font-black text-xs flex items-center justify-center">
-          ⚡
-        </span>
-        <span className="font-sans font-black text-[1.9rem] tracking-tight text-gray-900 leading-none">
-          dunzo
-        </span>
-      </div>
-    ),
-  },
-  {
-    name: 'Xpressbees',
-    category: 'Express Logistics',
-    renderLogo: () => (
-      <div className="flex items-center gap-1.5">
-        <span className="w-6 h-6 rounded-md bg-[#E11D48] text-white font-black text-xs flex items-center justify-center">
-          XB
-        </span>
-        <span className="font-sans font-black text-[1.8rem] tracking-tight text-gray-900 leading-none">
-          xpressbees
-        </span>
-      </div>
-    ),
-  },
+  { name: 'Uber', category: 'Cabs & Freight', logoSrc: '/partners/uber.png' },
+  { name: 'Ola', category: 'Cabs & Delivery', logoSrc: '/partners/ola.svg' },
+  { name: 'Porter', category: 'Trucks & Mini Cargo', logoSrc: '/partners/porter.svg' },
+  { name: 'Rapido', category: 'Bike Taxi & Auto', logoSrc: '/partners/rapido.png' },
+  { name: 'Zomato', category: 'Food & Quick Commerce', logoSrc: '/partners/zomato.png' },
+  { name: 'Swiggy', category: 'Food & Instamart', logoSrc: '/partners/swiggy.png' },
+  { name: 'Blinkit', category: '10-Min Instant Grocery', logoSrc: '/partners/blinkit.svg' },
+  { name: 'Zepto', category: '10-Min Quick Delivery', logoSrc: '/partners/zepto.svg' },
+  { name: 'BigBasket', category: 'Online Supermarket', logoSrc: '/partners/bigbasket.png' },
+  { name: 'Delhivery', category: 'Express Cargo', logoSrc: '/partners/delhivery.png' },
+  { name: 'Shadowfax', category: 'Last-Mile Delivery', logoSrc: '/partners/shadowfax.svg' },
+  { name: 'Dunzo', category: 'Hyperlocal Courier', logoSrc: '/partners/dunzo.svg' },
+  { name: 'Flipkart', category: 'E-commerce Supply', logoSrc: '/partners/flipkart.png' },
+  { name: 'Amazon', category: 'Amazon Relay & Flex', logoSrc: '/partners/amazon.svg' },
+  { name: 'Shiprocket', category: 'E-commerce Freight', logoSrc: '/partners/shiprocket.svg' },
+  { name: 'Blowhorn', category: 'Mini Trucks & Cargo', logoSrc: '/partners/blowhorn.png' },
+  { name: "Domino's", category: 'Delivery Fleet', logoSrc: '/partners/dominos.svg' },
 ];
 
 export const LogisticsMarquee: React.FC = () => {
@@ -186,17 +38,19 @@ export const LogisticsMarquee: React.FC = () => {
       {/* Infinite Marquee Track */}
       <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-16 md:before:w-32 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10 before:pointer-events-none after:absolute after:right-0 after:top-0 after:bottom-0 after:w-16 md:after:w-32 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10 after:pointer-events-none">
         <div className="animate-marquee gap-5 sm:gap-7 items-center">
-          {/* First loop of brands */}
+          {/* First loop of brands (Logos Only, Large Size) */}
           {BRANDS.map((brand, i) => (
             <div
               key={`b1-${i}`}
-              className="px-6 py-3.5 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all flex items-center gap-3 shrink-0 cursor-default select-none group"
+              className="px-7 py-4 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all flex items-center justify-center shrink-0 cursor-default select-none group min-h-[64px]"
+              title={brand.name}
             >
-              {brand.renderLogo()}
-              <div className="h-6 w-px bg-gray-200 ml-1" />
-              <span className="text-[1.15rem] font-semibold text-gray-400 group-hover:text-gray-600 transition-colors">
-                {brand.category}
-              </span>
+              <img
+                src={brand.logoSrc}
+                alt={brand.name}
+                className="h-9 sm:h-11 md:h-12 max-w-[140px] sm:max-w-[160px] w-auto object-contain block"
+                loading="lazy"
+              />
             </div>
           ))}
 
@@ -204,13 +58,15 @@ export const LogisticsMarquee: React.FC = () => {
           {BRANDS.map((brand, i) => (
             <div
               key={`b2-${i}`}
-              className="px-6 py-3.5 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all flex items-center gap-3 shrink-0 cursor-default select-none group"
+              className="px-7 py-4 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all flex items-center justify-center shrink-0 cursor-default select-none group min-h-[64px]"
+              title={brand.name}
             >
-              {brand.renderLogo()}
-              <div className="h-6 w-px bg-gray-200 ml-1" />
-              <span className="text-[1.15rem] font-semibold text-gray-400 group-hover:text-gray-600 transition-colors">
-                {brand.category}
-              </span>
+              <img
+                src={brand.logoSrc}
+                alt={brand.name}
+                className="h-9 sm:h-11 md:h-12 max-w-[140px] sm:max-w-[160px] w-auto object-contain block"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

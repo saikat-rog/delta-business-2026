@@ -269,6 +269,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
     switch (cat) {
       case 'tata-ace':
         return 'Tata Ace';
+      case 'e-rickshaw':
+        return 'E-Rickshaw / Toto';
+      case 'jcb':
+        return 'JCB / Earth Mover';
       case '3-wheeler':
         return '3-Wheeler Auto';
       case 'pickup-8ft':

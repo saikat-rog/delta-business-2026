@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StateModal } from './StateModal';
 import { OurPartnersGrid } from './OurPartnersGrid';
+import { LogisticsMarquee } from './LogisticsMarquee';
 
 interface ServiceTabsAndEstimateProps {
   currentState: string;
@@ -118,8 +119,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
             </div>
           </div>
 
-          {/* Vehicle Attachment Categories: Responsive 3 columns on mobile, 4 columns on desktop */}
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 items-stretch">
+          {/* Vehicle Attachment Categories: Responsive 2-3 cols mobile, 3 cols tablet, 6 cols desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 items-stretch">
             {[
               {
                 id: 'tata-ace',
@@ -134,10 +135,22 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 image: '/vehicles/bike.png',
               },
               {
+                id: 'e-rickshaw',
+                title: 'E-Rickshaw',
+                subtitle: 'Earn up to ₹32k/mo',
+                image: '/vehicles/e-rickshaw.png',
+              },
+              {
                 id: 'packers-movers',
                 title: 'Packers & Movers',
                 subtitle: 'Earn up to ₹60k/mo',
                 image: '/vehicles/truck.png',
+              },
+              {
+                id: 'jcb',
+                title: 'JCB',
+                subtitle: 'Earn up to ₹80k/mo',
+                image: '/vehicles/jcb.png',
               },
             ].map((item) => (
               <div
@@ -159,27 +172,27 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               </div>
             ))}
 
-            {/* Card 4: Register Now Card (Desktop layout inside the grid) */}
+            {/* Card 6: Register Now Card (Desktop & Tablet layout inside the grid) */}
             <div
               onClick={() => onOpenRegister('tata-ace')}
               style={{
                 background: 'linear-gradient(135deg, #0041f5 0%, #0b57ff 100%)',
                 boxShadow: '0 6px 18px rgba(0, 65, 245, 0.35)',
               }}
-              className="hidden md:flex flex-col justify-between rounded-xl p-[18px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200"
+              className="hidden sm:flex flex-col justify-between rounded-xl p-[14px] md:p-[18px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200"
             >
               <div>
-                <span className="inline-block bg-white/20 text-white text-[1.1rem] font-bold uppercase px-2 py-0.5 rounded-full mb-1">
+                <span className="inline-block bg-white/20 text-white text-[1.05rem] md:text-[1.1rem] font-bold uppercase px-2 py-0.5 rounded-full mb-1">
                   JOIN PLATFORM
                 </span>
-                <div className="text-white text-[1.9rem] font-extrabold leading-tight mt-1">
+                <div className="text-white text-[1.7rem] md:text-[1.9rem] font-extrabold leading-tight mt-1">
                   Register Now
                 </div>
-                <div className="text-white/85 text-[1.25rem] mt-[6px] leading-snug">
+                <div className="text-white/85 text-[1.15rem] md:text-[1.25rem] mt-[4px] md:mt-[6px] leading-snug">
                   Attach vehicle &amp; start earning within 24 hours
                 </div>
               </div>
-              <div className="bg-white/20 w-[36px] h-[36px] rounded-full flex items-center justify-center self-end">
+              <div className="bg-white/20 w-[34px] h-[34px] md:w-[36px] md:h-[36px] rounded-full flex items-center justify-center self-end mt-2">
                 <img
                   alt="arrow"
                   width="18"
@@ -203,7 +216,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               boxShadow: '0 4px 12px rgba(0, 65, 245, 0.3)',
               marginTop: '12px',
             }}
-            className="flex md:hidden"
+            className="flex sm:hidden"
           >
             <div>
               <div style={{ color: '#ffffff', fontSize: '1.65rem', fontWeight: 800 }}>
@@ -238,6 +251,9 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
 
       {/* Our Partners - Fixed Grid of Mobility & Logistics Brands */}
       <OurPartnersGrid />
+
+      {/* PARTNER VEHICLES ATTACHED & OPERATING ACROSS LEADING MOBILITY & LOGISTICS ECOSYSTEMS Section (Right after Our Partners) */}
+      <LogisticsMarquee />
 
       {/* Driver Partner Benefits Carousel Section */}
       <section id="benefits" className="site-container my-12 md:my-16">
