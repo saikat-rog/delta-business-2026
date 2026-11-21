@@ -21,7 +21,6 @@ import {
   ArrowLeftIcon,
   ShieldCheckIcon,
   UserIcon,
-  PhoneIcon,
   CreditCardIcon,
   FileTextIcon,
   ZapIcon,
@@ -38,7 +37,6 @@ interface VehicleOption {
   id: string;
   name: string;
   capacity: string;
-  earnings: string;
   badge?: string;
   image: string;
 }
@@ -55,63 +53,54 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     id: 'tata-ace',
     name: 'Tata Ace',
     capacity: 'Up to 750 kg',
-    earnings: 'Avg. ₹40,000 / mo',
     image: '/vehicles/tata-ace.png',
   },
   {
     id: '2-wheeler',
     name: 'Two Wheeler',
     capacity: 'Up to 20 kg',
-    earnings: 'Avg. ₹25,000 / mo',
     image: '/vehicles/bike.png',
   },
   {
     id: 'e-rickshaw',
     name: 'Mahindra Treo',
     capacity: 'Up to 4 Passengers / 400 kg',
-    earnings: 'Avg. ₹32,000 / mo',
     image: '/vehicles/e-rickshaw.png',
   },
   {
     id: '3-wheeler',
     name: '3 Wheeler',
     capacity: 'Up to 500 kg',
-    earnings: 'Avg. ₹32,000 / mo',
     image: '/vehicles/3-wheeler.png',
   },
   {
     id: 'pickup-8ft',
     name: 'Pickup Truck',
     capacity: 'Up to 1,200 kg',
-    earnings: 'Avg. ₹48,000 / mo',
     image: '/vehicles/pickup.png',
   },
   {
     id: 'tata-407',
     name: 'Heavy Truck',
     capacity: 'Up to 2,500 kg',
-    earnings: 'Avg. ₹65,000 / mo',
     image: '/vehicles/truck.png',
   },
   {
     id: 'jcb',
     name: 'JCB',
     capacity: 'Loading & Heavy Projects',
-    earnings: 'Avg. ₹80,000 / mo',
     image: '/vehicles/jcb.png',
   },
   {
     id: 'excavator-poclain',
     name: 'Excavator / Poclain',
     capacity: 'Excavation & Heavy Projects',
-    earnings: 'Avg. ₹90,000 / mo',
     image: '/vehicles/excavator-poclain.png',
   },
   {
     id: 'car-commercial',
     name: 'Commercial Car',
     capacity: 'Up to 4 Passengers / 300 kg',
-    earnings: 'Avg. ₹42,000 / mo',
     image: '/vehicles/car.png',
   },
 ];
@@ -570,7 +559,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               onClick={() => onNavigate('/status')}
               className="text-[1.35rem] font-bold text-gray-700 hover:text-[#0445DA] flex items-center gap-1.5 cursor-pointer bg-transparent border-none transition-colors"
             >
-              <PhoneIcon size={16} className="text-gray-500" />
               <span>Check Status</span>
             </button>
 
@@ -665,10 +653,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                       {opt.name}
                     </h3>
 
-                    {/* Average Monthly Earning */}
-                    <p className="text-[1.3rem] sm:text-[1.45rem] md:text-[1.25rem] font-extrabold text-emerald-700">
-                      {opt.earnings}
-                    </p>
                   </div>
                 );
               })}

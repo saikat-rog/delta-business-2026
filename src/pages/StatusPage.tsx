@@ -5,7 +5,6 @@ import {
 } from '../api/client';
 import {
   AlertTriangleIcon,
-  SearchIcon,
   ArrowRightIcon,
   CheckIcon,
 } from '../components/Icons';
@@ -126,7 +125,6 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
               disabled={phoneInput.length !== 10}
               className="w-full py-4.5 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.65rem] font-extrabold rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              <SearchIcon size={20} />
               <span>Check Status</span>
               <ArrowRightIcon size={20} />
             </button>
@@ -163,7 +161,7 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
             </div>
             <div>
               <h4 className="text-[1.45rem] font-bold text-gray-950">New vehicle partner?</h4>
-              <p className="text-[1.3rem] text-gray-500">Attach your vehicle and start earning up to ₹75,000/mo.</p>
+              <p className="text-[1.3rem] text-gray-500">Attach your vehicle and start earning.</p>
             </div>
           </div>
 

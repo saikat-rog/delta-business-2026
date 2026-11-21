@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { XIcon, PhoneIcon, MenuIcon, ChevronRightIcon, ArrowRightIcon } from './Icons';
+import { XIcon, MenuIcon, ChevronRightIcon, ArrowRightIcon } from './Icons';
 import { LoanApplicationModal } from './LoanApplicationModal';
 
 interface HeaderProps {
@@ -81,7 +81,6 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenStatus}
               className="px-4 py-2 rounded-xl text-gray-800 text-[1.35rem] font-bold hover:bg-gray-100 transition-all cursor-pointer flex items-center gap-1.5"
             >
-              <PhoneIcon size={16} className="text-gray-500" />
               <span>Check Status</span>
             </button>
 
@@ -91,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsLoanModalOpen(true)}
               className="px-4 py-2.5 rounded-xl border-2 border-[#0445DA] text-[#0445DA] text-[1.35rem] font-extrabold hover:bg-blue-50 transition-all cursor-pointer"
             >
-              Apply Vehicle Finance
+              Apply for Vehicle Loan
             </button>
 
             {/* Primary CTA */}
@@ -111,7 +110,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsLoanModalOpen(true)}
               className="px-3.5 py-2 rounded-xl bg-[#0445DA] text-white text-[1.2rem] font-extrabold hover:bg-[#0336aa] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
             >
-              Apply Vehicle Finance
+              Apply for Vehicle Loan
             </button>
             <button
               type="button"
@@ -175,7 +174,6 @@ export const Header: React.FC<HeaderProps> = ({
                       }}
                       className="w-full py-3 px-4 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.45rem] font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
                     >
-                      <PhoneIcon size={16} />
                       <span>Check Status</span>
                       <ChevronRightIcon size={16} />
                     </button>
