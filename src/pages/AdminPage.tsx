@@ -838,7 +838,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
               <div className="flex flex-col gap-2 border-b border-blue-100 bg-blue-50/60 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h3 className="text-[1.8rem] font-black text-gray-950">Vehicle Loan Applications</h3>
-                  <p className="text-[1.25rem] text-gray-500">Enquiries submitted from the Apply Loan option in the website header.</p>
+                  <p className="text-[1.25rem] text-gray-500">Enquiries submitted from the Apply Vehicle Finance option in the website header.</p>
                 </div>
                 <span className="w-fit rounded-full bg-[#0445DA] px-3 py-1 text-[1.2rem] font-extrabold text-white">
                   {loanApplications.length} {loanApplications.length === 1 ? 'application' : 'applications'}

@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsLoanModalOpen(true)}
               className="px-4 py-2.5 rounded-xl border-2 border-[#0445DA] text-[#0445DA] text-[1.35rem] font-extrabold hover:bg-blue-50 transition-all cursor-pointer"
             >
-              Apply Loan
+              Apply Vehicle Finance
             </button>
 
             {/* Primary CTA */}
@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsLoanModalOpen(true)}
               className="px-3.5 py-2 rounded-xl bg-[#0445DA] text-white text-[1.2rem] font-extrabold hover:bg-[#0336aa] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
             >
-              Apply Loan
+              Apply Vehicle Finance
             </button>
             <button
               type="button"
