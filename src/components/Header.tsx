@@ -105,7 +105,14 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Mobile Right Actions */}
-          <div className="flex md:hidden items-center">
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsLoanModalOpen(true)}
+              className="px-3.5 py-2 rounded-xl bg-[#0445DA] text-white text-[1.2rem] font-extrabold hover:bg-[#0336aa] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+            >
+              Apply Loan
+            </button>
             <button
               type="button"
               className="flex items-center justify-center p-2.5 rounded-xl text-gray-800 hover:bg-gray-100 active:bg-gray-200 transition-colors cursor-pointer border-none bg-transparent"
