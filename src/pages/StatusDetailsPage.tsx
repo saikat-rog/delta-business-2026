@@ -84,7 +84,7 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
       case 'tata-ace':
         return 'Tata Ace (Chota Hathi)';
       case 'e-rickshaw':
-        return 'E-Rickshaw / Toto';
+        return 'Mahindra Treo';
       case 'jcb':
         return 'JCB';
       case 'excavator-poclain':
@@ -554,7 +554,7 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
                 onClick={() => onNavigate('/register')}
                 className="px-8 py-4 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.55rem] font-extrabold rounded-2xl transition-all shadow-md inline-flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Apply to Drive Now</span>
+                <span>Register Your Vehicle</span>
                 <ArrowRightIcon size={20} />
               </button>
 

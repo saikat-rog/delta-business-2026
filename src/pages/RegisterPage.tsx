@@ -67,7 +67,7 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
   },
   {
     id: 'e-rickshaw',
-    name: 'E-Rickshaw / Toto',
+    name: 'Mahindra Treo',
     capacity: 'Up to 4 Passengers / 400 kg',
     earnings: 'Avg. ₹32,000 / mo',
     image: '/vehicles/e-rickshaw.png',
@@ -627,7 +627,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
           <div className="w-full p-6 sm:p-8 md:p-6">
             <div className="mb-7 md:mb-5 text-center md:text-left">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-[#0445DA] block mb-1">
-                Driver Partner Onboarding
+                Vehicle Partner Onboarding
               </span>
               <h1 className="text-[2.6rem] sm:text-[3.2rem] md:text-[3.2rem] font-black text-gray-950 tracking-tight leading-tight">
                 Choose your vehicle
@@ -1225,7 +1225,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               Application Successful!
             </h1>
             <p className="text-[1.5rem] text-gray-500 max-w-sm mx-auto mb-8 leading-relaxed">
-              Your driver partner application has been submitted successfully and is currently under review.
+              Your vehicle registration application has been submitted successfully and is currently under review.
             </p>
 
             {/* Action Buttons */}

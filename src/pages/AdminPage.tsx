@@ -310,7 +310,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       case 'tata-ace':
         return 'Tata Ace';
       case 'e-rickshaw':
-        return 'E-Rickshaw / Toto';
+        return 'Mahindra Treo';
       case 'jcb':
         return 'JCB';
       case 'excavator-poclain':

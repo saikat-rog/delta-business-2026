@@ -162,7 +162,7 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
               <img src="/vehicles/tata-ace.png" alt="Commercial Vehicle" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h4 className="text-[1.45rem] font-bold text-gray-950">New driver partner?</h4>
+              <h4 className="text-[1.45rem] font-bold text-gray-950">New vehicle partner?</h4>
               <p className="text-[1.3rem] text-gray-500">Attach your vehicle and start earning up to ₹75,000/mo.</p>
             </div>
           </div>

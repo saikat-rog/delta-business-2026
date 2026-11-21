@@ -125,37 +125,31 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               {
                 id: 'tata-ace',
                 title: 'Truck / Ace',
-                subtitle: 'Earn up to ₹45k/mo',
                 image: '/vehicles/tata-ace.png',
               },
               {
                 id: '2-wheeler',
                 title: 'Two Wheeler',
-                subtitle: 'Earn up to ₹25k/mo',
                 image: '/vehicles/bike.png',
               },
               {
                 id: 'e-rickshaw',
-                title: 'E-Rickshaw',
-                subtitle: 'Earn up to ₹32k/mo',
+                title: 'Mahindra Treo',
                 image: '/vehicles/e-rickshaw.png',
               },
               {
                 id: 'packers-movers',
                 title: 'Packers & Movers',
-                subtitle: 'Earn up to ₹60k/mo',
                 image: '/vehicles/truck.png',
               },
               {
                 id: 'jcb',
                 title: 'JCB',
-                subtitle: 'Earn up to ₹80k/mo',
                 image: '/vehicles/jcb.png',
               },
               {
                 id: 'excavator-poclain',
                 title: 'Excavator / Poclain',
-                subtitle: 'Earn up to ₹90k/mo',
                 image: '/vehicles/excavator-poclain.png',
               },
             ].map((item) => (
@@ -171,9 +165,6 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 />
                 <div className="text-[1.25rem] md:text-[1.55rem] font-bold text-[#1a1a1a] text-center leading-tight">
                   {item.title}
-                </div>
-                <div className="text-[1.15rem] md:text-[1.25rem] font-semibold text-[#0445DA] text-center mt-[3px]">
-                  {item.subtitle}
                 </div>
               </div>
             ))}
@@ -226,7 +217,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
           >
             <div>
               <div style={{ color: '#ffffff', fontSize: '1.65rem', fontWeight: 800 }}>
-                Register Now as Driver
+                Register Your Vehicle
               </div>
               <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.25rem' }}>
                 Attach vehicle &amp; earn up to ₹45,000/month

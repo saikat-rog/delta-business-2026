@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenRegister}
               className="px-5 py-2.5 rounded-xl bg-[#0445DA] text-white text-[1.4rem] font-extrabold hover:bg-[#0336aa] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
             >
-              Apply to Drive
+              Register Your Vehicle
             </button>
           </nav>
 
@@ -202,7 +202,7 @@ export const Header: React.FC<HeaderProps> = ({
                     }}
                     className="w-full py-3.5 px-4 rounded-xl bg-gray-950 hover:bg-black text-white text-[1.45rem] font-extrabold text-center shadow-xs cursor-pointer flex items-center justify-center gap-2 mb-5"
                   >
-                    <span>Apply to Drive Partner</span>
+                    <span>Register Your Vehicle</span>
                     <ArrowRightIcon size={18} />
                   </button>
 

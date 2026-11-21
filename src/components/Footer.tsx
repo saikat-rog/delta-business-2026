@@ -177,7 +177,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             {/* Quick Partner CTAs on Right */}
             <div className="flex flex-col gap-3">
-              <div className="text-[1.35rem] font-bold text-white">Join as Driver Partner</div>
+              <div className="text-[1.35rem] font-bold text-white">Join as Vehicle Partner</div>
               <p className="text-[1.25rem] text-gray-400 max-w-[280px]">
                 Ready to start earning up to ₹45,000 / month with your vehicle?
               </p>
@@ -188,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({
                     onClick={onOpenRegister}
                     className="px-5 py-2.5 rounded-xl bg-[#0445DA] text-white text-[1.35rem] font-bold hover:bg-[#0336aa] transition-colors cursor-pointer"
                   >
-                    Register as Driver
+                    Register Your Vehicle
                   </button>
                 )}
                 {onOpenStatus && (
