@@ -43,6 +43,14 @@ interface VehicleOption {
   image: string;
 }
 
+type WorkPreference = 'monthly' | 'daily' | 'both';
+
+const WORK_PREFERENCE_OPTIONS: { id: WorkPreference; label: string }[] = [
+  { id: 'monthly', label: 'Monthly' },
+  { id: 'daily', label: 'Daily' },
+  { id: 'both', label: 'Both' },
+];
+
 const VEHICLE_OPTIONS: VehicleOption[] = [
   {
     id: 'tata-ace',
@@ -120,6 +128,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
   // Form fields
   const [vehicle, setVehicle] = useState<string>(initialVehicle);
+  const [workPreference, setWorkPreference] = useState<WorkPreference | ''>('');
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
 
@@ -257,6 +266,10 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
   // Step 1: Vehicle Select
   const handleStep1Vehicle = async () => {
     setErrorMsg('');
+    if (!workPreference) {
+      setErrorMsg('Please choose Monthly, Daily, or Both.');
+      return;
+    }
     setLoading(true);
     try {
       const res = await saveOnboardingStep({
@@ -517,6 +530,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
       setName('');
       setPhone('');
       setVehicle('tata-ace');
+      setWorkPreference('');
       setFeePaid(false);
       setFeeTxId('');
       setSubPaid(false);
@@ -533,6 +547,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     setName('');
     setPhone('');
     setVehicle('tata-ace');
+    setWorkPreference('');
     setFeePaid(false);
     setFeeTxId('');
     setSubPaid(false);
@@ -615,7 +630,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
       </header>
 
       {/* Main Container - Desktop Friendly Spacing */}
-      <main className="flex-1 w-full max-w-[1140px] mx-auto px-5 sm:px-8 py-8 md:py-14 flex flex-col justify-center">
+      <main className="flex-1 w-full max-w-[1140px] mx-auto px-5 sm:px-8 py-8 md:py-10 flex flex-col justify-center">
         {errorMsg && (
           <div className="max-w-[700px] mx-auto w-full mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-[1.35rem] flex items-center gap-3 animate-fade-in">
             <AlertTriangleIcon size={18} className="shrink-0 text-red-600" />
@@ -627,12 +642,12 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         {/* STEP 1: VEHICLE TYPE (Desktop 3-Column Grid) */}
         {/* ========================================================= */}
         {currentStep === 1 && (
-          <div className="w-full  p-6 sm:p-10 md:p-12">
-            <div className="mb-8 md:mb-10 text-center md:text-left">
+          <div className="w-full p-6 sm:p-8 md:p-6">
+            <div className="mb-7 md:mb-5 text-center md:text-left">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-[#0445DA] block mb-1">
                 Driver Partner Onboarding
               </span>
-              <h1 className="text-[2.6rem] sm:text-[3.4rem] md:text-[3.8rem] font-black text-gray-950 tracking-tight leading-tight">
+              <h1 className="text-[2.6rem] sm:text-[3.2rem] md:text-[3.2rem] font-black text-gray-950 tracking-tight leading-tight">
                 Choose your vehicle
               </h1>
               <p className="text-[1.5rem] text-gray-500 mt-1 max-w-xl">
@@ -640,22 +655,22 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               </p>
             </div>
 
-            {/* 2 in a row vehicle grid */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-7 mb-8 md:mb-10">
+            {/* Compact 4-column grid on desktop, 2 columns on smaller screens */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 mb-7 md:mb-6">
               {VEHICLE_OPTIONS.map((opt) => {
                 const isSelected = vehicle === opt.id;
                 return (
                   <div
                     key={opt.id}
                     onClick={() => setVehicle(opt.id)}
-                    className={`p-4 sm:p-6 md:p-8 rounded-3xl border-2 cursor-pointer transition-all flex flex-col items-center justify-center text-center group ${
+                    className={`p-4 sm:p-5 md:p-4 rounded-3xl border-2 cursor-pointer transition-all flex flex-col items-center justify-center text-center group ${
                       isSelected
                         ? 'border-[#0445DA] bg-blue-50/40 shadow-md ring-2 ring-[#0445DA]/20'
                         : 'border-gray-200 hover:border-gray-300 bg-white hover:shadow-xs'
                     }`}
                   >
                     {/* Large Vehicle Image */}
-                    <div className="w-full h-28 sm:h-36 md:h-44 flex items-center justify-center mb-3 sm:mb-4">
+                    <div className="w-full h-28 sm:h-32 md:h-24 flex items-center justify-center mb-3">
                       <img
                         src={opt.image}
                         alt={opt.name}
@@ -664,12 +679,12 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                     </div>
 
                     {/* Short Vehicle Name (1 or 2 words) */}
-                    <h3 className="text-[1.7rem] sm:text-[2.1rem] md:text-[2.3rem] font-black text-gray-950 mb-1 leading-tight">
+                    <h3 className="text-[1.7rem] sm:text-[2rem] md:text-[1.7rem] font-black text-gray-950 mb-1 leading-tight">
                       {opt.name}
                     </h3>
 
                     {/* Average Monthly Earning */}
-                    <p className="text-[1.35rem] sm:text-[1.55rem] font-extrabold text-emerald-700">
+                    <p className="text-[1.3rem] sm:text-[1.45rem] md:text-[1.25rem] font-extrabold text-emerald-700">
                       {opt.earnings}
                     </p>
                   </div>
@@ -677,7 +692,36 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               })}
             </div>
 
-            <div className="flex justify-end pt-4 border-t border-gray-100">
+            <fieldset className="mb-7 md:mb-5">
+              <legend className="text-[1.6rem] sm:text-[1.8rem] md:text-[1.6rem] font-extrabold text-gray-950 mb-3 md:mb-2">
+                How would you like to work? <span className="text-red-500">*</span>
+              </legend>
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                {WORK_PREFERENCE_OPTIONS.map((option) => {
+                  const isSelected = workPreference === option.id;
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      aria-pressed={isSelected}
+                      onClick={() => {
+                        setWorkPreference(option.id);
+                        setErrorMsg('');
+                      }}
+                      className={`px-3 py-4 md:py-3 rounded-2xl border-2 text-[1.4rem] sm:text-[1.6rem] md:text-[1.45rem] font-extrabold transition-all cursor-pointer ${
+                        isSelected
+                          ? 'border-[#0445DA] bg-blue-50 text-[#0445DA] shadow-sm ring-2 ring-[#0445DA]/20'
+                          : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <div className="flex justify-end pt-4 md:pt-3 border-t border-gray-100">
               <button
                 type="button"
                 onClick={handleStep1Vehicle}
