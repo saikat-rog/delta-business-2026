@@ -21,6 +21,7 @@ export interface DriverData {
   gender?: string;
   address?: string;
   vehicle_category: string;
+  work_preference?: 'monthly' | 'daily';
   vehicle_model?: string;
   vehicle_number?: string;
   dl_number?: string;
@@ -44,6 +45,7 @@ export interface DriverData {
   documents_submitted?: number;
   documents_submitted_at?: string;
   admin_notes?: string;
+  internal_note?: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -56,6 +58,74 @@ export interface DriverDocument {
   original_name: string;
   mime_type?: string;
   uploaded_at: string;
+}
+
+export interface LoanApplication {
+  id: number;
+  name: string;
+  phone: string;
+  vehicle_name: string;
+  created_at: string;
+}
+
+const LOCAL_LOAN_APPS_KEY = 'smart_driver_loan_applications_v1';
+
+function getLocalLoanApplications(): LoanApplication[] {
+  try {
+    const raw = localStorage.getItem(LOCAL_LOAN_APPS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function submitLoanApplication(payload: Omit<LoanApplication, 'id' | 'created_at'>) {
+  const application: LoanApplication = {
+    ...payload,
+    phone: payload.phone.replace(/\D/g, '').slice(-10),
+    id: Date.now(),
+    created_at: new Date().toISOString(),
+  };
+
+  try {
+    const response = await resilientFetch('/loan-applications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await parseJsonResponse<any>(response);
+    if (response.ok && data.success) return data;
+  } catch {
+    // Preserve the enquiry locally when the loan endpoint is not deployed yet.
+  }
+
+  const applications = getLocalLoanApplications();
+  applications.unshift(application);
+  localStorage.setItem(LOCAL_LOAN_APPS_KEY, JSON.stringify(applications));
+  return { success: true, application };
+}
+
+export async function getAdminLoanApplications() {
+  const token = getAdminToken();
+  let serverApplications: LoanApplication[] = [];
+
+  if (token && !token.startsWith('mock_')) {
+    try {
+      const response = await resilientFetch('/admin/loan-applications', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await parseJsonResponse<any>(response);
+      if (response.ok && data.success) serverApplications = data.applications || [];
+    } catch {
+      // The local mirror below remains available.
+    }
+  }
+
+  const merged = new Map<string, LoanApplication>();
+  [...serverApplications, ...getLocalLoanApplications()].forEach((application) => {
+    merged.set(String(application.id), application);
+  });
+  return { success: true, applications: Array.from(merged.values()) };
 }
 
 // Token storage helpers
@@ -106,6 +176,23 @@ export function setStoredDriverId(id: number) {
 // Local Storage Application Mirror (Always Available)
 // ============================================
 const LOCAL_APPS_KEY = 'smart_driver_local_apps_v2';
+const LOCAL_ADMIN_NOTES_KEY = 'smart_driver_admin_notes_v1';
+
+function getLocalAdminNotes(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(LOCAL_ADMIN_NOTES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveLocalAdminNote(id: number, note: string): void {
+  const notes = getLocalAdminNotes();
+  if (note) notes[String(id)] = note;
+  else delete notes[String(id)];
+  localStorage.setItem(LOCAL_ADMIN_NOTES_KEY, JSON.stringify(notes));
+}
 
 function getLocalApps(): DriverData[] {
   try {
@@ -209,6 +296,7 @@ export interface SaveStepPayload {
   phone?: string;
   name?: string;
   vehicle_category?: string;
+  work_preference?: 'monthly' | 'daily';
   step?: number;
   fee_paid?: number;
   fee_amount?: number;
@@ -236,6 +324,7 @@ export async function saveOnboardingStep(payload: SaveStepPayload): Promise<{
     phone: cleanPhone || existingLocal?.phone,
     name: payload.name !== undefined ? payload.name : (existingLocal?.name && existingLocal.name !== 'Applicant' ? existingLocal.name : ''),
     vehicle_category: payload.vehicle_category || existingLocal?.vehicle_category || 'tata-ace',
+    work_preference: payload.work_preference || existingLocal?.work_preference,
     current_step: payload.step || existingLocal?.current_step || 1,
     fee_paid: payload.fee_paid !== undefined ? payload.fee_paid : (existingLocal?.fee_paid || 0),
     fee_amount: payload.fee_amount || 3000,
@@ -488,7 +577,9 @@ export async function loginAdmin(username: string, password: string) {
 }
 
 export async function getAdminStats() {
-  const localApps = getLocalApps();
+  const localApps = getLocalApps().filter(
+    (application) => application.phone?.replace(/\D/g, '').length === 10
+  );
   let serverStats: any = null;
 
   const token = getAdminToken();
@@ -573,7 +664,15 @@ export async function getAdminApplications(
     }
   }
 
-  let merged = Array.from(map.values());
+  // Only completed phone-step records are real customer applications.
+  let merged = Array.from(map.values()).filter(
+    (application) => application.phone?.replace(/\D/g, '').length === 10
+  );
+  const localAdminNotes = getLocalAdminNotes();
+  merged = merged.map((application) => ({
+    ...application,
+    internal_note: localAdminNotes[String(application.id)] ?? application.internal_note,
+  }));
 
   if (status && status !== 'all') {
     merged = merged.filter((a) => a.status === status);
@@ -658,6 +757,35 @@ export async function updateAdminApplicationStatus(id: number, status: string, a
   }
 
   return { success: true, message: `Status updated to ${status}`, status };
+}
+
+export async function updateAdminInternalNote(id: number, internal_note: string) {
+  saveLocalAdminNote(id, internal_note);
+  const local = findLocalAppById(id);
+  if (local) {
+    local.internal_note = internal_note;
+    saveLocalApp(local);
+  }
+
+  const token = getAdminToken();
+  if (token && !token.startsWith('mock_')) {
+    try {
+      const res = await resilientFetch(`/admin/applications/${id}/internal-note`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ internal_note }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) return data;
+    } catch {
+      // Fall back to the local mirror.
+    }
+  }
+
+  return { success: true, message: 'Internal note saved locally.' };
 }
 
 export async function updateAdminApplicationFee(

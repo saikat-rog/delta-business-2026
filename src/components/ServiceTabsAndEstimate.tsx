@@ -152,6 +152,12 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 subtitle: 'Earn up to ₹80k/mo',
                 image: '/vehicles/jcb.png',
               },
+              {
+                id: 'excavator-poclain',
+                title: 'Excavator / Poclain',
+                subtitle: 'Earn up to ₹90k/mo',
+                image: '/vehicles/excavator-poclain.png',
+              },
             ].map((item) => (
               <div
                 key={item.id}
@@ -172,7 +178,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               </div>
             ))}
 
-            {/* Card 6: Register Now Card (Desktop & Tablet layout inside the grid) */}
+            {/* Register Now Card (Desktop & Tablet layout inside the grid) */}
             <div
               onClick={() => onOpenRegister('tata-ace')}
               style={{

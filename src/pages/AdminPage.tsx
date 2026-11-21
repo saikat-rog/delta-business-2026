@@ -5,13 +5,16 @@ import {
   getAdminApplications,
   getAdminApplicationDetail,
   updateAdminApplicationStatus,
+  updateAdminInternalNote,
   updateAdminApplicationFee,
   getAdminToken,
   setAdminToken,
   removeAdminToken,
   getAdminFeeSettings,
+  getAdminLoanApplications,
   updateAdminFeeSettings,
   type DriverData,
+  type LoanApplication,
 } from '../api/client';
 import {
   ShieldIcon,
@@ -27,6 +30,7 @@ import {
   ClockIcon,
   TruckIcon,
   CheckIcon,
+  MessageSquareIcon,
   XIcon,
 } from '../components/Icons';
 
@@ -47,7 +51,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
   // Stats & Applications
   const [stats, setStats] = useState<any>(null);
   const [applications, setApplications] = useState<DriverData[]>([]);
+  const [loanApplications, setLoanApplications] = useState<LoanApplication[]>([]);
   const [selectedApp, setSelectedApp] = useState<DriverData | null>(null);
+  const [noteApplication, setNoteApplication] = useState<DriverData | null>(null);
+  const [noteDraft, setNoteDraft] = useState<string>('');
+  const [savingNote, setSavingNote] = useState<boolean>(false);
 
   // Filters
   const [filterStatus, setFilterStatus] = useState<string>('');
@@ -81,14 +89,16 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
     try {
       setLoading(true);
       setErrorMsg('');
-      const [statsRes, appsRes, feesRes] = await Promise.all([
+      const [statsRes, appsRes, feesRes, loansRes] = await Promise.all([
         getAdminStats(),
         getAdminApplications(filterStatus, filterSearch, filterFee, filterSub, filterDocs),
         getAdminFeeSettings(),
+        getAdminLoanApplications(),
       ]);
 
       if (statsRes.success) setStats(statsRes.stats);
       if (appsRes.success) setApplications(appsRes.applications || []);
+      if (loansRes.success) setLoanApplications(loansRes.applications || []);
       if (feesRes && feesRes.success) {
         setRegFeeInput(feesRes.registration_fee || 3000);
         setSubFeeInput(feesRes.subscription_fee || 2000);
@@ -265,6 +275,36 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
     setSelectedApp(null);
   };
 
+  const handleInternalNote = (application: DriverData) => {
+    setNoteApplication(application);
+    setNoteDraft(application.internal_note || '');
+  };
+
+  const handleSaveInternalNote = async () => {
+    if (!noteApplication) return;
+    try {
+      setSavingNote(true);
+      setErrorMsg('');
+      const normalizedNote = noteDraft.trim();
+      const res = await updateAdminInternalNote(noteApplication.id, normalizedNote);
+      if (res.success) {
+        setApplications((current) => current.map((item) => (
+          item.id === noteApplication.id ? { ...item, internal_note: normalizedNote } : item
+        )));
+        setSuccessMsg(normalizedNote ? 'Private admin note saved.' : 'Private admin note removed.');
+        setNoteApplication(null);
+        setNoteDraft('');
+        setTimeout(() => setSuccessMsg(''), 3000);
+      } else {
+        setErrorMsg(res.message || 'Failed to save private admin note.');
+      }
+    } catch {
+      setErrorMsg('Failed to save private admin note.');
+    } finally {
+      setSavingNote(false);
+    }
+  };
+
   const getVehicleLabel = (cat?: string) => {
     switch (cat) {
       case 'tata-ace':
@@ -272,7 +312,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       case 'e-rickshaw':
         return 'E-Rickshaw / Toto';
       case 'jcb':
-        return 'JCB / Earth Mover';
+        return 'JCB';
+      case 'excavator-poclain':
+        return 'Excavator / Poclain';
       case '3-wheeler':
         return '3-Wheeler Auto';
       case 'pickup-8ft':
@@ -296,15 +338,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       case 1:
         return 'Step 1: Vehicle';
       case 2:
-        return 'Step 2: Name';
+        return 'Step 2: Work Type';
       case 3:
-        return 'Step 3: Mobile';
+        return 'Step 3: Name';
       case 4:
-        return 'Step 4: Fee Paid';
+        return 'Step 4: Mobile';
       case 5:
-        return 'Step 5: Subscribed';
+        return 'Step 5: Fee Paid';
       case 6:
-        return 'Step 6: Docs';
+        return 'Step 6: Subscribed';
+      case 7:
+        return 'Step 7: Docs';
       default:
         return 'In Progress';
     }
@@ -789,6 +833,43 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
               </form>
             </div>
 
+            {/* Vehicle Loan Enquiries */}
+            <section className="overflow-hidden rounded-2xl border border-blue-200/80 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+              <div className="flex flex-col gap-2 border-b border-blue-100 bg-blue-50/60 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 className="text-[1.8rem] font-black text-gray-950">Vehicle Loan Applications</h3>
+                  <p className="text-[1.25rem] text-gray-500">Enquiries submitted from the Apply Loan option in the website header.</p>
+                </div>
+                <span className="w-fit rounded-full bg-[#0445DA] px-3 py-1 text-[1.2rem] font-extrabold text-white">
+                  {loanApplications.length} {loanApplications.length === 1 ? 'application' : 'applications'}
+                </span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[720px] border-collapse text-left">
+                  <thead>
+                    <tr className="border-b border-gray-200 bg-gray-50 text-[1.15rem] font-extrabold uppercase tracking-wider text-gray-500">
+                      <th className="px-5 py-3.5">Applicant</th>
+                      <th className="px-5 py-3.5">Phone Number</th>
+                      <th className="px-5 py-3.5">Vehicle Requested</th>
+                      <th className="px-5 py-3.5">Submitted</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-[1.35rem]">
+                    {loanApplications.length === 0 ? (
+                      <tr><td colSpan={4} className="px-5 py-10 text-center text-gray-400">No vehicle loan applications have been submitted yet.</td></tr>
+                    ) : loanApplications.map((application) => (
+                      <tr key={application.id} className="hover:bg-blue-50/40">
+                        <td className="px-5 py-4 font-bold text-gray-950">{application.name}</td>
+                        <td className="px-5 py-4 font-mono font-bold text-gray-800">+91 {application.phone}</td>
+                        <td className="px-5 py-4 font-semibold text-gray-800">{application.vehicle_name}</td>
+                        <td className="px-5 py-4 text-gray-500">{new Date(application.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* Filter & Search Bar */}
             <div className="p-4 bg-white border border-gray-200/90 rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-3">
               <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3">
@@ -911,7 +992,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                 <table className="w-full text-left border-collapse min-w-[1080px]">
                   <thead>
                     <tr className="bg-gray-50/90 border-b border-gray-200 text-gray-500 text-[1.2rem] font-extrabold uppercase tracking-wider">
-                      <th className="py-4 px-4 text-center w-14">ID</th>
+                      <th className="py-4 px-4 text-center w-14">S.No.</th>
                       <th className="py-4 px-4 min-w-[160px]">Driver</th>
                       <th className="py-4 px-4 min-w-[150px]">Mobile Identifier</th>
                       <th className="py-4 px-4 min-w-[140px]">Vehicle</th>
@@ -933,10 +1014,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                         </td>
                       </tr>
                     ) : (
-                      applications.map((app) => (
+                      applications.map((app, index) => (
                         <tr key={app.id} className="hover:bg-blue-50/30 transition-colors group">
                           <td className="py-4 px-4 text-center font-mono font-bold text-gray-400">
-                            #{app.id}
+                            {index + 1}
                           </td>
                           <td className="py-4 px-4">
                             <div className="flex items-center gap-2.5">
@@ -1029,13 +1110,28 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                             </span>
                           </td>
                           <td className="py-4 px-4 text-right sticky right-0 bg-white group-hover:bg-[#F3F7FD] shadow-[-6px_0_10px_-2px_rgba(0,0,0,0.03)] transition-colors">
-                            <button
-                              type="button"
-                              onClick={() => handleOpenReview(app.id)}
-                              className="px-4 py-2 bg-[#0F172A] hover:bg-[#0445DA] text-white text-[1.25rem] font-bold rounded-xl cursor-pointer transition-colors shadow-xs"
-                            >
-                              Review
-                            </button>
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                type="button"
+                                onClick={() => handleInternalNote(app)}
+                                title={app.internal_note || 'Add a private admin note'}
+                                aria-label={app.internal_note ? `Edit private note for ${app.name}` : `Add private note for ${app.name}`}
+                                className={`w-9 h-9 inline-flex items-center justify-center rounded-xl cursor-pointer transition-colors border ${
+                                  app.internal_note
+                                    ? 'border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100'
+                                    : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-100'
+                                }`}
+                              >
+                                <MessageSquareIcon size={16} />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleOpenReview(app.id)}
+                                className="px-4 py-2 bg-[#0F172A] hover:bg-[#0445DA] text-white text-[1.25rem] font-bold rounded-xl cursor-pointer transition-colors shadow-xs"
+                              >
+                                Review
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))
@@ -1047,6 +1143,81 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
           </div>
         )}
       </main>
+
+      {noteApplication && (
+        <div
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-slate-950/65 p-4 backdrop-blur-sm"
+          onClick={() => !savingNote && setNoteApplication(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="admin-note-title"
+            className="w-full max-w-[560px] rounded-3xl bg-white p-6 shadow-2xl md:p-8 animate-slide-up"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
+                  <MessageSquareIcon size={21} />
+                </div>
+                <div>
+                  <h2 id="admin-note-title" className="text-[2rem] font-black text-gray-950">Private admin note</h2>
+                  <p className="mt-0.5 text-[1.3rem] text-gray-500">
+                    {noteApplication.name || 'Applicant'}{noteApplication.phone ? ` · +91 ${noteApplication.phone}` : ''}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setNoteApplication(null)}
+                disabled={savingNote}
+                aria-label="Close note dialog"
+                className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-50"
+              >
+                <XIcon size={18} />
+              </button>
+            </div>
+
+            <label htmlFor="admin-private-note" className="mb-2 block text-[1.3rem] font-bold text-gray-800">
+              Note
+            </label>
+            <textarea
+              id="admin-private-note"
+              autoFocus
+              rows={7}
+              maxLength={2000}
+              value={noteDraft}
+              onChange={(event) => setNoteDraft(event.target.value)}
+              placeholder="Write an internal note about this customer..."
+              className="w-full resize-y rounded-2xl border-2 border-gray-200 bg-gray-50 px-4 py-3.5 text-[1.4rem] leading-relaxed text-gray-950 outline-none transition-all focus:border-[#0445DA] focus:bg-white focus:ring-2 focus:ring-blue-100"
+            />
+            <div className="mt-1 flex justify-between text-[1.1rem] text-gray-400">
+              <span>Only administrators can access this note.</span>
+              <span>{noteDraft.length}/2000</span>
+            </div>
+
+            <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setNoteApplication(null)}
+                disabled={savingNote}
+                className="cursor-pointer rounded-xl border border-gray-300 px-5 py-3 text-[1.35rem] font-bold text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleSaveInternalNote}
+                disabled={savingNote}
+                className="cursor-pointer rounded-xl bg-[#0445DA] px-6 py-3 text-[1.35rem] font-extrabold text-white hover:bg-[#0336aa] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {savingNote ? 'Saving...' : noteDraft.trim() ? 'Save Note' : 'Remove Note'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <footer className="text-center py-6 text-gray-400 text-[1.25rem] border-t border-gray-200">
         Smart Driver Operations Portal © 2026. Confidential &amp; Internal.

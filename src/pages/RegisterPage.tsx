@@ -43,12 +43,11 @@ interface VehicleOption {
   image: string;
 }
 
-type WorkPreference = 'monthly' | 'daily' | 'both';
+type WorkPreference = 'monthly' | 'daily';
 
 const WORK_PREFERENCE_OPTIONS: { id: WorkPreference; label: string }[] = [
   { id: 'monthly', label: 'Monthly' },
   { id: 'daily', label: 'Daily' },
-  { id: 'both', label: 'Both' },
 ];
 
 const VEHICLE_OPTIONS: VehicleOption[] = [
@@ -96,10 +95,17 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
   },
   {
     id: 'jcb',
-    name: 'JCB / Earth Mover',
-    capacity: 'Excavation & Heavy Projects',
+    name: 'JCB',
+    capacity: 'Loading & Heavy Projects',
     earnings: 'Avg. ₹80,000 / mo',
     image: '/vehicles/jcb.png',
+  },
+  {
+    id: 'excavator-poclain',
+    name: 'Excavator / Poclain',
+    capacity: 'Excavation & Heavy Projects',
+    earnings: 'Avg. ₹90,000 / mo',
+    image: '/vehicles/excavator-poclain.png',
   },
   {
     id: 'car-commercial',
@@ -220,6 +226,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     if (d.name && d.name !== 'Applicant') setName(d.name);
     if (d.phone) setPhone(d.phone);
     if (d.vehicle_category) setVehicle(d.vehicle_category);
+    if (d.work_preference) setWorkPreference(d.work_preference);
     if (d.fee_paid === 1) {
       setFeePaid(true);
       if (d.fee_tx_id) setFeeTxId(d.fee_tx_id);
@@ -239,14 +246,16 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
 
     if (d.status === 'under_review' || d.status === 'approved' || d.documents_submitted === 1) {
-      setCurrentStep(7);
+      setCurrentStep(8);
     } else if (d.subscription_paid === 1) {
-      setCurrentStep(6);
+      setCurrentStep(7);
     } else if (d.fee_paid === 1) {
-      setCurrentStep(5);
+      setCurrentStep(6);
     } else if (d.phone && d.phone.length === 10) {
-      setCurrentStep(4);
+      setCurrentStep(5);
     } else if (d.name) {
+      setCurrentStep(4);
+    } else if (d.work_preference) {
       setCurrentStep(3);
     } else if (d.vehicle_category) {
       setCurrentStep(2);
@@ -266,32 +275,21 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
   // Step 1: Vehicle Select
   const handleStep1Vehicle = async () => {
     setErrorMsg('');
-    if (!workPreference) {
-      setErrorMsg('Please choose Monthly, Daily, or Both.');
-      return;
-    }
-    setLoading(true);
-    try {
-      const res = await saveOnboardingStep({
-        driverId: driverId || undefined,
-        vehicle_category: vehicle,
-        step: 1,
-      });
-
-      if (res.success && res.driverId) {
-        setDriverId(res.driverId);
-        setStoredDriverId(res.driverId);
-      }
-      setCurrentStep(2);
-    } catch {
-      setCurrentStep(2);
-    } finally {
-      setLoading(false);
-    }
+    setCurrentStep(2);
   };
 
-  // Step 2: Name
-  const handleStep2Name = async (e: React.FormEvent) => {
+  // Step 2: Work Preference
+  const handleStep2WorkPreference = async () => {
+    setErrorMsg('');
+    if (!workPreference) {
+      setErrorMsg('Please choose Monthly or Daily.');
+      return;
+    }
+    setCurrentStep(3);
+  };
+
+  // Step 3: Name
+  const handleStep3Name = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     const trimmed = name.trim();
@@ -300,29 +298,11 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
       return;
     }
 
-    setLoading(true);
-    try {
-      const res = await saveOnboardingStep({
-        driverId: driverId || undefined,
-        vehicle_category: vehicle,
-        name: trimmed,
-        step: 2,
-      });
-
-      if (res.success && res.driverId) {
-        setDriverId(res.driverId);
-        setStoredDriverId(res.driverId);
-      }
-      setCurrentStep(3);
-    } catch {
-      setCurrentStep(3);
-    } finally {
-      setLoading(false);
-    }
+    setCurrentStep(4);
   };
 
-  // Step 3: Phone
-  const handleStep3Phone = async (e: React.FormEvent) => {
+  // Step 4: Phone
+  const handleStep4Phone = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     let cleanPhone = phone.trim().replace(/\D/g, '');
@@ -345,7 +325,8 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         phone: cleanPhone,
         name: name.trim(),
         vehicle_category: vehicle,
-        step: 3,
+        work_preference: workPreference || undefined,
+        step: 4,
       });
 
       if (res.success && res.driver) {
@@ -354,32 +335,32 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         setStoredDriverPhone(cleanPhone);
 
         if (res.driver.status === 'under_review' || res.driver.status === 'approved' || res.driver.documents_submitted === 1) {
-          setCurrentStep(7);
+          setCurrentStep(8);
           return;
         }
         if (res.driver.subscription_paid === 1) {
           setSubPaid(true);
-          setCurrentStep(6);
+          setCurrentStep(7);
           return;
         }
         if (res.driver.fee_paid === 1) {
           setFeePaid(true);
-          setCurrentStep(5);
+          setCurrentStep(6);
           return;
         }
       }
 
       setStoredDriverPhone(cleanPhone);
-      setCurrentStep(4);
+      setCurrentStep(5);
     } catch {
       setStoredDriverPhone(cleanPhone);
-      setCurrentStep(4);
+      setCurrentStep(5);
     } finally {
       setLoading(false);
     }
   };
 
-  // Cashfree Automated Step 4: Pay Fee (₹3000)
+  // Cashfree Automated Step 5: Pay Fee
   const handleCashfreeFeePayment = async () => {
     setErrorMsg('');
     setLoading(true);
@@ -413,7 +394,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
           if (verifyRes.driver?.fee_tx_id) {
             setFeeTxId(verifyRes.driver.fee_tx_id);
           }
-          setCurrentStep(5);
+          setCurrentStep(6);
         } else {
           setErrorMsg('Payment verification is processing. Please give it a few moments.');
         }
@@ -429,7 +410,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
   };
 
-  // Cashfree Automated Step 5: Subscription (₹2000)
+  // Cashfree Automated Step 6: Subscription
   const handleCashfreeSubPayment = async () => {
     setErrorMsg('');
     setLoading(true);
@@ -463,7 +444,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
           if (verifyRes.driver?.subscription_tx_id) {
             setSubTxId(verifyRes.driver.subscription_tx_id);
           }
-          setCurrentStep(6);
+          setCurrentStep(7);
         } else {
           setErrorMsg('Subscription payment is processing. Please wait a moment.');
         }
@@ -479,7 +460,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
   };
 
-  // Step 6: Simulate Document Upload (Illusion)
+  // Step 7: Simulate Document Upload
   const handleSimulateUpload = (docId: string, file?: File) => {
     setDocuments((prev) =>
       prev.map((d) =>
@@ -507,16 +488,16 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }, 1100);
   };
 
-  // Step 6: Submit Documents
-  const handleStep6Submit = async () => {
+  // Step 7: Submit Documents
+  const handleStep7Submit = async () => {
     setErrorMsg('');
     setLoading(true);
     try {
       const cleanPhone = phone.trim().replace(/\D/g, '').slice(-10);
       await submitDriverDocuments(driverId || undefined, cleanPhone);
-      setCurrentStep(7);
+      setCurrentStep(8);
     } catch {
-      setCurrentStep(7);
+      setCurrentStep(8);
     } finally {
       setLoading(false);
     }
@@ -562,6 +543,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
   const stepTitles = [
     'Vehicle Type',
+    'Work Preference',
     'Personal Name',
     'Phone Verification',
     'Registration Fee',
@@ -592,7 +574,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               <span>Check Status</span>
             </button>
 
-            {driverId && currentStep < 7 && (
+            {driverId && currentStep < 8 && (
               <button
                 type="button"
                 onClick={handleStartFresh}
@@ -605,17 +587,17 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         </div>
 
         {/* Uber Segmented Progress Bar */}
-        {currentStep <= 6 && (
+        {currentStep <= 7 && (
           <div className="w-full bg-gray-50 border-t border-gray-100">
             <div className="max-w-[1140px] mx-auto px-6 py-2.5 flex items-center justify-between text-[1.25rem] text-gray-500 font-semibold">
               <span className="uppercase tracking-wider text-gray-950 font-bold">
-                Step {currentStep} of 6
+                Step {currentStep} of 7
               </span>
               <span className="text-gray-700 font-bold">{stepTitles[currentStep - 1]}</span>
             </div>
             <div className="max-w-[1140px] mx-auto px-6 pb-2.5">
               <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden flex gap-1.5">
-                {[1, 2, 3, 4, 5, 6].map((s) => (
+                {[1, 2, 3, 4, 5, 6, 7].map((s) => (
                   <div
                     key={s}
                     className={`h-full flex-1 rounded-full transition-all duration-300 ${
@@ -692,35 +674,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
               })}
             </div>
 
-            <fieldset className="mb-7 md:mb-5">
-              <legend className="text-[1.6rem] sm:text-[1.8rem] md:text-[1.6rem] font-extrabold text-gray-950 mb-3 md:mb-2">
-                How would you like to work? <span className="text-red-500">*</span>
-              </legend>
-              <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                {WORK_PREFERENCE_OPTIONS.map((option) => {
-                  const isSelected = workPreference === option.id;
-                  return (
-                    <button
-                      key={option.id}
-                      type="button"
-                      aria-pressed={isSelected}
-                      onClick={() => {
-                        setWorkPreference(option.id);
-                        setErrorMsg('');
-                      }}
-                      className={`px-3 py-4 md:py-3 rounded-2xl border-2 text-[1.4rem] sm:text-[1.6rem] md:text-[1.45rem] font-extrabold transition-all cursor-pointer ${
-                        isSelected
-                          ? 'border-[#0445DA] bg-blue-50 text-[#0445DA] shadow-sm ring-2 ring-[#0445DA]/20'
-                          : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
-
             <div className="flex justify-end pt-4 md:pt-3 border-t border-gray-100">
               <button
                 type="button"
@@ -736,11 +689,38 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 2: FULL NAME (Desktop Centered Card) */}
+        {/* STEP 2: WORK PREFERENCE */}
         {/* ========================================================= */}
         {currentStep === 2 && (
+          <div className="max-w-[620px] mx-auto w-full p-6 sm:p-10 md:p-12">
+            <div className="mb-8 text-center">
+              <span className="text-[1.25rem] font-bold uppercase tracking-wider text-[#0445DA] block mb-1">Work Preference</span>
+              <h1 className="text-[2.6rem] sm:text-[3.4rem] font-black text-gray-950 tracking-tight leading-tight">How would you like to work?</h1>
+              <p className="text-[1.45rem] text-gray-500 mt-2">Choose the earning schedule that works best for you.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {WORK_PREFERENCE_OPTIONS.map((option) => {
+                const isSelected = workPreference === option.id;
+                return (
+                  <button key={option.id} type="button" aria-pressed={isSelected} onClick={() => { setWorkPreference(option.id); setErrorMsg(''); }} className={`px-4 py-8 rounded-2xl border-2 text-[1.7rem] font-extrabold transition-all cursor-pointer ${isSelected ? 'border-[#0445DA] bg-blue-50 text-[#0445DA] shadow-sm ring-2 ring-[#0445DA]/20' : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'}`}>
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex flex-col gap-3">
+              <button type="button" onClick={handleStep2WorkPreference} disabled={loading} className="w-full px-8 py-4.5 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.6rem] font-extrabold rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50">Continue <ArrowRightIcon size={20} /></button>
+              <button type="button" onClick={() => setCurrentStep(1)} className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-bold text-[1.5rem] transition-colors cursor-pointer flex items-center justify-center gap-2"><ArrowLeftIcon size={18} /> Back</button>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================= */}
+        {/* STEP 3: FULL NAME */}
+        {/* ========================================================= */}
+        {currentStep === 3 && (
           <form
-            onSubmit={handleStep2Name}
+            onSubmit={handleStep3Name}
             className="max-w-[620px] mx-auto w-full  p-6 sm:p-10 md:p-12"
           >
             <div className="mb-8">
@@ -778,7 +758,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => setCurrentStep(1)}
+                onClick={() => setCurrentStep(2)}
                 className="px-6 py-4.5 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-bold text-[1.5rem] transition-colors cursor-pointer"
               >
                 <ArrowLeftIcon size={20} />
@@ -797,11 +777,11 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 3: MOBILE NUMBER (Desktop Centered Card) */}
+        {/* STEP 4: MOBILE NUMBER (Desktop Centered Card) */}
         {/* ========================================================= */}
-        {currentStep === 3 && (
+        {currentStep === 4 && (
           <form
-            onSubmit={handleStep3Phone}
+            onSubmit={handleStep4Phone}
             className="max-w-[620px] mx-auto w-full  p-6 sm:p-10 md:p-12"
           >
             <div className="mb-8">
@@ -848,7 +828,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => setCurrentStep(2)}
+                onClick={() => setCurrentStep(3)}
                 className="px-6 py-4.5 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-bold text-[1.5rem] transition-colors cursor-pointer"
               >
                 <ArrowLeftIcon size={20} />
@@ -867,9 +847,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 4: REGISTRATION FEE (Desktop 2-Column Side-by-Side) */}
+        {/* STEP 5: REGISTRATION FEE (Desktop 2-Column Side-by-Side) */}
         {/* ========================================================= */}
-        {currentStep === 4 && (
+        {currentStep === 5 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-emerald-700 block mb-1">
@@ -980,7 +960,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                 <div className="flex items-center gap-3 mt-6">
                   <button
                     type="button"
-                    onClick={() => setCurrentStep(3)}
+                    onClick={() => setCurrentStep(4)}
                     className="px-5 py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 hover:bg-white font-bold text-[1.4rem] transition-colors cursor-pointer"
                   >
                     <ArrowLeftIcon size={18} />
@@ -992,9 +972,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 5: DRIVER SUBSCRIPTION (Desktop 2-Column - No Amount in Button) */}
+        {/* STEP 6: DRIVER SUBSCRIPTION (Desktop 2-Column - No Amount in Button) */}
         {/* ========================================================= */}
-        {currentStep === 5 && (
+        {currentStep === 6 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-purple-700 block mb-1">
@@ -1109,7 +1089,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                 <div className="flex items-center gap-3 mt-6">
                   <button
                     type="button"
-                    onClick={() => setCurrentStep(4)}
+                    onClick={() => setCurrentStep(5)}
                     className="px-5 py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 hover:bg-white font-bold text-[1.4rem] transition-colors cursor-pointer"
                   >
                     <ArrowLeftIcon size={18} />
@@ -1121,9 +1101,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 6: DOCUMENTS (Desktop 2x2 Grid) */}
+        {/* STEP 7: DOCUMENTS (Desktop 2x2 Grid) */}
         {/* ========================================================= */}
-        {currentStep === 6 && (
+        {currentStep === 7 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-[#0445DA] block mb-1">
@@ -1208,7 +1188,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
             <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
               <button
                 type="button"
-                onClick={() => setCurrentStep(5)}
+                onClick={() => setCurrentStep(6)}
                 className="px-6 py-4.5 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-bold text-[1.5rem] transition-colors cursor-pointer"
               >
                 <ArrowLeftIcon size={20} />
@@ -1216,7 +1196,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
               <button
                 type="button"
-                onClick={handleStep6Submit}
+                onClick={handleStep7Submit}
                 disabled={loading}
                 className="px-10 py-4.5 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.6rem] font-extrabold rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
@@ -1229,9 +1209,9 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         )}
 
         {/* ========================================================= */}
-        {/* STEP 7: APPLICATION SUBMITTED (Minimalist Success Card) */}
+        {/* STEP 8: APPLICATION SUBMITTED (Minimalist Success Card) */}
         {/* ========================================================= */}
-        {currentStep === 7 && (
+        {currentStep === 8 && (
           <div className="max-w-[540px] mx-auto w-full p-8 sm:p-12 text-center animate-fade-in my-6">
             {/* Animated Green Tick */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-emerald-50 border-4 border-emerald-100 flex items-center justify-center mx-auto mb-6 shadow-sm animate-scale-pop">

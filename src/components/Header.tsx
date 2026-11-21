@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { XIcon, PhoneIcon, MenuIcon, ChevronRightIcon, ArrowRightIcon } from './Icons';
+import { LoanApplicationModal } from './LoanApplicationModal';
 
 interface HeaderProps {
   onOpenRegister: () => void;
@@ -12,6 +13,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenStatus,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoanModalOpen, setIsLoanModalOpen] = useState(false);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -81,6 +83,15 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <PhoneIcon size={16} className="text-gray-500" />
               <span>Check Status</span>
+            </button>
+
+            {/* Primary CTA */}
+            <button
+              type="button"
+              onClick={() => setIsLoanModalOpen(true)}
+              className="px-4 py-2.5 rounded-xl border-2 border-[#0445DA] text-[#0445DA] text-[1.35rem] font-extrabold hover:bg-blue-50 transition-all cursor-pointer"
+            >
+              Apply Loan
             </button>
 
             {/* Primary CTA */}
@@ -168,6 +179,18 @@ export const Header: React.FC<HeaderProps> = ({
                     type="button"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
+                      setIsLoanModalOpen(true);
+                    }}
+                    className="w-full py-3.5 px-4 rounded-xl border-2 border-[#0445DA] text-[#0445DA] text-[1.45rem] font-extrabold text-center cursor-pointer flex items-center justify-center gap-2 mb-3"
+                  >
+                    <span>Apply for Vehicle Loan</span>
+                    <ArrowRightIcon size={18} />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
                       onOpenRegister();
                     }}
                     className="w-full py-3.5 px-4 rounded-xl bg-gray-950 hover:bg-black text-white text-[1.45rem] font-extrabold text-center shadow-xs cursor-pointer flex items-center justify-center gap-2 mb-5"
@@ -238,6 +261,7 @@ export const Header: React.FC<HeaderProps> = ({
             document.body
           )}
       </header>
+      <LoanApplicationModal isOpen={isLoanModalOpen} onClose={() => setIsLoanModalOpen(false)} />
     </div>
   );
 };
