@@ -119,9 +119,10 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
             </div>
           </div>
 
-          {/* Vehicle Attachment Categories: Responsive 2-3 cols mobile, 3 cols tablet, 6 cols desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 items-stretch">
-            {[
+          {/* Vehicle cards and registration CTA */}
+          <div className="lg:grid lg:grid-cols-7 lg:gap-4 lg:items-start">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 items-start lg:col-span-6 min-w-0">
+              {[
               {
                 id: 'tata-ace',
                 title: 'Truck / Ace',
@@ -135,7 +136,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               {
                 id: 'e-rickshaw',
                 title: 'Mahindra Treo',
-                image: '/vehicles/e-rickshaw.png',
+                image: '/vehicles/e-rickshaw-i.png',
               },
               {
                 id: 'packers-movers',
@@ -145,51 +146,52 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               {
                 id: 'jcb',
                 title: 'JCB',
-                image: '/vehicles/jcb.png',
+                image: '/vehicles/jcb-i.png',
               },
               {
                 id: 'excavator-poclain',
                 title: 'Excavator / Poclain',
-                image: '/vehicles/excavator-poclain.png',
+                image: '/vehicles/excavator-poclain-i.png',
               },
-            ].map((item) => (
-              <div
-                key={item.id}
-                onClick={() => onOpenRegister(item.id)}
-                className="group flex flex-col items-center justify-center py-[12px] px-[8px] md:py-[16px] md:px-[12px] rounded-xl cursor-pointer bg-[#f6f8ff] hover:bg-[#edf2ff] border border-[#e6edff] hover:border-[#0445DA]/40 hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(4,69,218,0.1)] transition-all duration-200"
-              >
-                <img
-                  alt={item.title}
-                  src={item.image}
-                  className="w-[68px] h-[56px] md:w-[110px] md:h-[82px] object-contain mb-[8px] md:mb-[10px] group-hover:scale-105 transition-transform duration-200"
-                />
-                <div className="text-[1.25rem] md:text-[1.55rem] font-bold text-[#1a1a1a] text-center leading-tight">
-                  {item.title}
+              ].map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => onOpenRegister(item.id)}
+                  className="group w-full min-w-0 min-h-[125px] sm:min-h-[140px] lg:min-h-0 lg:aspect-square overflow-hidden flex flex-col items-center justify-center py-[10px] px-[8px] sm:py-[12px] md:px-[8px] rounded-xl cursor-pointer bg-[#f6f8ff] hover:bg-[#edf2ff] border border-[#e6edff] hover:border-[#0445DA]/40 hover:-translate-y-[3px] hover:shadow-[0_8px_20px_rgba(4,69,218,0.1)] transition-all duration-200"
+                >
+                  <img
+                    alt={item.title}
+                    src={item.image}
+                    className="w-[88px] h-[68px] sm:w-[96px] sm:h-[72px] md:w-[100px] md:h-[76px] object-contain mb-[6px] md:mb-[10px] group-hover:scale-105 transition-transform duration-200"
+                  />
+                  <div className="w-full min-w-0 text-[1.25rem] md:text-[1.35rem] font-bold text-[#1a1a1a] text-center leading-tight break-words">
+                    {item.title}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
 
-            {/* Register Now Card (Desktop & Tablet layout inside the grid) */}
+            {/* Register Now Card: side card on desktop, banner on tablet */}
             <div
               onClick={() => onOpenRegister('tata-ace')}
               style={{
                 background: 'linear-gradient(135deg, #0041f5 0%, #0b57ff 100%)',
                 boxShadow: '0 6px 18px rgba(0, 65, 245, 0.35)',
               }}
-              className="hidden sm:flex flex-col justify-between rounded-xl p-[14px] md:p-[18px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200"
+              className="hidden sm:flex sm:flex-row lg:flex-col items-center lg:items-stretch justify-between rounded-xl p-[14px] md:p-[18px] lg:p-[12px] cursor-pointer hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(0,65,245,0.45)] transition-all duration-200 mt-3 lg:mt-0 lg:col-span-1 lg:aspect-square lg:w-full lg:min-h-0 lg:overflow-hidden"
             >
               <div>
                 <span className="inline-block bg-white/20 text-white text-[1.05rem] md:text-[1.1rem] font-bold uppercase px-2 py-0.5 rounded-full mb-1">
                   JOIN PLATFORM
                 </span>
-                <div className="text-white text-[1.7rem] md:text-[1.9rem] font-extrabold leading-tight mt-1">
+                <div className="text-white text-[1.7rem] md:text-[1.9rem] lg:text-[1.5rem] font-extrabold leading-tight mt-1">
                   Register Now
                 </div>
-                <div className="text-white/85 text-[1.15rem] md:text-[1.25rem] mt-[4px] md:mt-[6px] leading-snug">
+                <div className="text-white/85 text-[1.15rem] md:text-[1.25rem] mt-[4px] md:mt-[6px] leading-snug lg:hidden">
                   Attach vehicle &amp; start earning within 24 hours
                 </div>
               </div>
-              <div className="bg-white/20 w-[34px] h-[34px] md:w-[36px] md:h-[36px] rounded-full flex items-center justify-center self-end mt-2">
+              <div className="bg-white/20 w-[34px] h-[34px] md:w-[36px] md:h-[36px] rounded-full flex items-center justify-center self-end mt-0 lg:mt-2 shrink-0">
                 <img
                   alt="arrow"
                   width="18"

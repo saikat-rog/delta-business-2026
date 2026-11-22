@@ -112,11 +112,11 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
       case 'tata-ace':
         return '/vehicles/tata-ace.png';
       case 'e-rickshaw':
-        return '/vehicles/e-rickshaw.png';
+        return '/vehicles/e-rickshaw-i.png';
       case 'jcb':
-        return '/vehicles/jcb.png';
+        return '/vehicles/jcb-i.png';
       case 'excavator-poclain':
-        return '/vehicles/excavator-poclain.png';
+        return '/vehicles/excavator-poclain-i.png';
       case '3-wheeler':
       case 'ev-cargo':
         return '/vehicles/3-wheeler.png';

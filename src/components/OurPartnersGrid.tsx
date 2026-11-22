@@ -19,13 +19,13 @@ export const OurPartnersGrid: React.FC = () => {
         {BRANDS.map((brand) => (
           <div
             key={brand.name}
-            className="p-6 sm:p-7 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all flex items-center justify-center min-h-[110px] sm:min-h-[125px] group cursor-default select-none hover:-translate-y-1"
+            className="p-3 sm:p-4 rounded-2xl bg-white border border-gray-200/90 shadow-2xs hover:shadow-md hover:border-gray-300 transition-all overflow-hidden h-[110px] sm:h-[125px] group cursor-default select-none hover:-translate-y-1 flex items-center justify-center"
             title={brand.name}
           >
             <img
               src={brand.logoSrc}
               alt={brand.name}
-              className="h-10 sm:h-12 md:h-14 max-w-[140px] sm:max-w-[160px] w-auto object-contain block transition-transform group-hover:scale-108"
+              className="w-full h-full object-contain block transition-transform duration-300 group-hover:scale-[1.03]"
               loading="lazy"
             />
           </div>

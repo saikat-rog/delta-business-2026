@@ -65,7 +65,7 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     id: 'e-rickshaw',
     name: 'Mahindra Treo',
     capacity: 'Up to 4 Passengers / 400 kg',
-    image: '/vehicles/e-rickshaw.png',
+    image: '/vehicles/e-rickshaw-i.png',
   },
   {
     id: '3-wheeler',
@@ -89,13 +89,13 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     id: 'jcb',
     name: 'JCB',
     capacity: 'Loading & Heavy Projects',
-    image: '/vehicles/jcb.png',
+    image: '/vehicles/jcb-i.png',
   },
   {
     id: 'excavator-poclain',
     name: 'Excavator / Poclain',
     capacity: 'Excavation & Heavy Projects',
-    image: '/vehicles/excavator-poclain.png',
+    image: '/vehicles/excavator-poclain-i.png',
   },
   {
     id: 'car-commercial',
