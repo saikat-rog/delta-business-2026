@@ -57,13 +57,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
-          "alt_text": "Packers & Movers"
+          "alt_text": "Heavy Truck"
         },
         "link": "/packers-and-movers/ahmedabad",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -109,7 +109,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/ahmedabad",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -195,13 +195,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/kanpur",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -247,7 +247,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/kanpur",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -289,13 +289,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
-          "alt_text": "Packers & Movers"
+          "alt_text": "Heavy Truck"
         },
         "link": "/packers-and-movers/bangalore",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -341,7 +341,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/bangalore",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -425,7 +425,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/bangalore",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -467,13 +467,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
-          "alt_text": "Packers & Movers"
+          "alt_text": "Heavy Truck"
         },
         "link": "/packers-and-movers/chennai",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -519,7 +519,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/chennai",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -561,13 +561,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
-          "alt_text": "Packers & Movers"
+          "alt_text": "Heavy Truck"
         },
         "link": "/packers-and-movers/coimbatore",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -613,7 +613,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/coimbatore",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -655,13 +655,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
-          "alt_text": "Packers & Movers"
+          "alt_text": "Heavy Truck"
         },
         "link": "/packers-and-movers/delhi",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -707,7 +707,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/delhi",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -749,13 +749,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/hyderabad",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -801,7 +801,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/hyderabad",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -843,13 +843,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/jaipur",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -895,7 +895,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/jaipur",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -979,7 +979,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/kochi",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1021,13 +1021,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/kolkata",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1073,7 +1073,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/kolkata",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1115,13 +1115,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/lucknow",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1167,7 +1167,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/lucknow",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1251,7 +1251,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/ludhiana",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1293,13 +1293,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/mumbai",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1345,7 +1345,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/mumbai",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1387,13 +1387,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/pnm_8e2fbff88b/pnm_8e2fbff88b.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/mumbai",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1439,7 +1439,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/nagpur",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1555,13 +1555,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/pnm_8e2fbff88b/pnm_8e2fbff88b.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/pune",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1607,7 +1607,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/pune",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1649,13 +1649,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/pnm_8e2fbff88b/pnm_8e2fbff88b.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/pune",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1701,7 +1701,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/surat",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1829,7 +1829,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/vadodara",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1871,13 +1871,13 @@ export const CITIES = [
       },
       {
         "service_type": "packers-movers",
-        "text": "Packers & Movers",
+        "text": "Heavy Truck",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp",
           "alt_text": "Pn"
         },
         "link": "/packers-and-movers/indore",
-        "sub_text": "Packers & Movers"
+        "sub_text": "Heavy Truck"
       }
     ],
     "city_services_promo": [
@@ -1923,7 +1923,7 @@ export const CITIES = [
       },
       {
         "text": "House shifting hai? Ho Jayega",
-        "sub_text": "Packers & Movers",
+        "sub_text": "Heavy Truck",
         "link": "https://porter.in/packers-and-movers/indore",
         "image": {
           "path": "https://dom-content-vault-prod-cdn-assets.porter.in/Common_Arrows_East_82100c25a3.svg",
@@ -1939,7 +1939,7 @@ export const CITIES = [
 export const FAQS = [
   {
     "question": "What is Smart Driver App?",
-    "answer": "Smart Driver is a leading logistics service provider offering a wide range of transportation solutions. With Smart Driver, you can transport goods reliably. With its vast operations in 22 Indian cities, including cities like Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Jaipur and Kolkata, Smart Driver makes transport easy.\n\nLooking for on-demand transport services for business or personal needs? Transport your goods and consignments via a mini-truck, tempo or two-wheeler.\nReliable moving of your goods is now just a click away. Download Smart Driver now!\n\nIn its 10 years of operation, Smart Driver has transformed logistics, handling everything from goods (e.g., a pin) to large moves (e.g., relocating a penthouse). Key offerings include:\n- On-demand goods transport services via Trucks and Two-Wheelers: From commercial goods to personal goods, our on-demand vehicles offer efficient, cost-effective, and reliable transport solutions. Choose from mini trucks, tempos, EVs, and two-wheelers to transport goods effortlessly across the city\u2014anytime, anywhere.\n- Smart Driver Enterprise: A complete logistics partner for businesses, offering smart solutions for bulk transportation, distribution, and supply chain management.\n- Smart Driver Packers & Movers: Professional packing and moving services designed for hassle-free relocation of homes"
+    "answer": "Smart Driver is a leading logistics service provider offering a wide range of transportation solutions. With Smart Driver, you can transport goods reliably. With its vast operations in 22 Indian cities, including cities like Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Ahmedabad, Pune, Surat, Jaipur and Kolkata, Smart Driver makes transport easy.\n\nLooking for on-demand transport services for business or personal needs? Transport your goods and consignments via a mini-truck, tempo or two-wheeler.\nReliable moving of your goods is now just a click away. Download Smart Driver now!\n\nIn its 10 years of operation, Smart Driver has transformed logistics, handling everything from goods (e.g., a pin) to large moves (e.g., relocating a penthouse). Key offerings include:\n- On-demand goods transport services via Trucks and Two-Wheelers: From commercial goods to personal goods, our on-demand vehicles offer efficient, cost-effective, and reliable transport solutions. Choose from mini trucks, tempos, EVs, and two-wheelers to transport goods effortlessly across the city\u2014anytime, anywhere.\n- Smart Driver Enterprise: A complete logistics partner for businesses, offering smart solutions for bulk transportation, distribution, and supply chain management.\n- Smart Driver Heavy Truck: Professional packing and moving services designed for hassle-free relocation of homes"
   },
   {
     "question": "How do I use Smart Driver App?",
@@ -1955,7 +1955,7 @@ export const FAQS = [
   },
   {
     "question": "Does Smart Driver provide Packers and Movers services?",
-    "answer": "Yes, Smart Driver caters to all kinds of house shifting needs through Smart Driver Packers & Movers. If you have an immediate moving requirement, we also have the option to hire a mini truck with labour. \nIntracity shifting services through Smart Driver Packers and Movers is available in Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad, Surat, Coimbatore, Indore, Jaipur, Lucknow and Nagpur. Intercity Packers and Movers services can be availed between any of the following cities - Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad. \nIf you don\u2019t see your city in the above list, don\u2019t worry; the service will be launching soon in other cities. To enquire about Smart Driver Packers and Movers or avail the service, call 4410 4410 (add your city code).\n"
+    "answer": "Yes, Smart Driver caters to all kinds of house shifting needs through Smart Driver Heavy Truck. If you have an immediate moving requirement, we also have the option to hire a mini truck with labour. \nIntracity shifting services through Smart Driver Packers and Movers is available in Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad, Surat, Coimbatore, Indore, Jaipur, Lucknow and Nagpur. Intercity Packers and Movers services can be availed between any of the following cities - Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad. \nIf you don\u2019t see your city in the above list, don\u2019t worry; the service will be launching soon in other cities. To enquire about Smart Driver Packers and Movers or avail the service, call 4410 4410 (add your city code).\n"
   },
   {
     "question": "What types of goods does Smart Driver transport?",
@@ -2067,7 +2067,7 @@ export const FOOTER_DATA = {
         },
         {
           "link": "/packers-and-movers",
-          "label": "Packers & Movers"
+          "label": "Heavy Truck"
         },
         {
           "link": "/two-wheelers",

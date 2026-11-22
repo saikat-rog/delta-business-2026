@@ -140,7 +140,7 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
               },
               {
                 id: 'packers-movers',
-                title: 'Packers & Movers',
+                title: 'Heavy Truck',
                 image: '/vehicles/truck.png',
               },
               {

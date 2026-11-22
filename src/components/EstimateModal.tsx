@@ -79,7 +79,7 @@ export const EstimateModal: React.FC<EstimateModalProps> = ({
         };
       case 'packers-movers':
         return {
-          vehicleName: `Smart Driver Packers & Movers (${houseSize})`,
+          vehicleName: `Smart Driver Heavy Truck (${houseSize})`,
           vehicleImage: 'https://dom-content-vault-prod-cdn-assets.porter.in/Pn_M_56aa8e7af2_4b05aeef37_285939a114/Pn_M_56aa8e7af2_4b05aeef37_285939a114.webp',
           capacity: 'Dedicated Truck + 2 Helpers + Complete Packing',
           price: houseSize === '1 RK' ? '₹3,499' : houseSize === '1 BHK' ? '₹4,999' : houseSize === '2 BHK' ? '₹7,499' : '₹10,999',
