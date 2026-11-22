@@ -32,7 +32,8 @@ export const BRANDS: Brand[] = [
   { name: 'Goibibo', category: 'Travel Mobility', logoSrc: '/partners/Goibibo_Logo.svg.webp' },
   { name: 'redBus', category: 'Bus Mobility', logoSrc: '/partners/RedBus_Logo_(2015-present).svg.webp' },
   { name: 'Booking.com', category: 'Travel Platform', logoSrc: '/partners/Booking-Logo.png' },
-  { name: 'Airbnb', category: 'Travel Platform', logoSrc: '/partners/Airbnb_Logo_Bélo.svg.webp' },
+  { name: 'WheelsEye', category: 'Fleet Logistics', logoSrc: '/partners/wheelseye-logo.png' },
+  { name: 'IndiaMART', category: 'B2B Marketplace', logoSrc: '/partners/indiamart-logo.png' },
 ];
 
 export const LogisticsMarquee: React.FC = () => {
