@@ -120,8 +120,8 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
           </div>
 
           {/* Vehicle cards and registration CTA */}
-          <div className="lg:grid lg:grid-cols-7 lg:gap-4 lg:items-start">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 items-start lg:col-span-6 min-w-0">
+          <div className="lg:grid lg:grid-cols-8 lg:gap-4 lg:items-start">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5 sm:gap-3 md:gap-4 items-start lg:col-span-7 min-w-0">
               {[
               {
                 id: 'tata-ace',
@@ -142,6 +142,11 @@ export const ServiceTabsAndEstimate: React.FC<ServiceTabsAndEstimateProps> = ({
                 id: 'packers-movers',
                 title: 'Heavy Truck',
                 image: '/vehicles/truck.png',
+              },
+              {
+                id: 'car-commercial',
+                title: 'Commercial Car',
+                image: '/vehicles/car.png',
               },
               {
                 id: 'jcb',

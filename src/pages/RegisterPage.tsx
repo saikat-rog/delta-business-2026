@@ -86,6 +86,12 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     image: '/vehicles/truck.png',
   },
   {
+    id: 'car-commercial',
+    name: 'Commercial Car',
+    capacity: 'Up to 4 Passengers / 300 kg',
+    image: '/vehicles/car.png',
+  },
+  {
     id: 'jcb',
     name: 'JCB',
     capacity: 'Loading & Heavy Projects',
@@ -96,12 +102,6 @@ const VEHICLE_OPTIONS: VehicleOption[] = [
     name: 'Excavator / Poclain',
     capacity: 'Excavation & Heavy Projects',
     image: '/vehicles/excavator-poclain-i.png',
-  },
-  {
-    id: 'car-commercial',
-    name: 'Commercial Car',
-    capacity: 'Up to 4 Passengers / 300 kg',
-    image: '/vehicles/car.png',
   },
 ];
 
