@@ -6,6 +6,7 @@ import { EnterpriseSection } from '../components/EnterpriseSection';
 import { FootprintsAndNews } from '../components/FootprintsAndNews';
 import { FaqSection } from '../components/FaqSection';
 import { Footer } from '../components/Footer';
+import { DownloadAppSection } from '../components/DownloadAppSection';
 
 interface HomePageProps {
   currentState: string;
@@ -69,6 +70,9 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         {/* Driver Partner FAQs */}
         <FaqSection />
+
+        {/* Mobile app availability badges */}
+        <DownloadAppSection />
       </main>
 
       {/* Footer with Driver Quick Links, Hubs, and Helpline */}

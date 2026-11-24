@@ -34,6 +34,7 @@ export const BRANDS: Brand[] = [
   { name: 'Booking.com', category: 'Travel Platform', logoSrc: '/partners/Booking-Logo.png' },
   { name: 'WheelsEye', category: 'Fleet Logistics', logoSrc: '/partners/wheelseye-logo.png' },
   { name: 'IndiaMART', category: 'B2B Marketplace', logoSrc: '/partners/indiamart-logo.png' },
+  { name: 'Dabur', category: 'Consumer Goods', logoSrc: '/partners/dabur-logo.webp' },
 ];
 
 export const LogisticsMarquee: React.FC = () => {
