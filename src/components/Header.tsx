@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenStatus}
               className="px-4 py-2 rounded-xl text-gray-800 text-[1.35rem] font-bold hover:bg-gray-100 transition-all cursor-pointer flex items-center gap-1.5"
             >
-              <span>Check Status</span>
+              <span>Login</span>
             </button>
 
             {/* Primary CTA */}
@@ -161,10 +161,10 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                     </div>
                     <h3 className="text-[1.65rem] font-black text-gray-950 mb-1 leading-snug">
-                      Check Application Status
+                      Driver Login
                     </h3>
                     <p className="text-[1.3rem] text-gray-600 mb-3.5 leading-snug">
-                      Track approval, document verification &amp; onboarding live.
+                      Open your Smart Driver profile with your mobile number.
                     </p>
                     <button
                       type="button"
@@ -174,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({
                       }}
                       className="w-full py-3 px-4 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.45rem] font-extrabold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
                     >
-                      <span>Check Status</span>
+                      <span>Login</span>
                       <ChevronRightIcon size={16} />
                     </button>
                   </div>

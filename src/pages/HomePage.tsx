@@ -24,7 +24,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* Top Header with Navigation */}
       <Header
         onOpenRegister={() => onNavigate('/register', 'tata-ace')}
-        onOpenStatus={() => onNavigate('/status')}
+        onOpenStatus={() => onNavigate('/login')}
       />
 
       {/* Main Content Area */}
@@ -32,7 +32,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Hero Banner Section */}
         <HeroBanner
           onOpenRegister={() => onNavigate('/register', 'tata-ace')}
-          onOpenStatus={() => onNavigate('/status')}
+          onOpenStatus={() => onNavigate('/login')}
         />
 
         {/* Operating State Selector, Vehicle Categories & Sticky Register Now Button */}
@@ -41,7 +41,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             currentState={currentState}
             onStateChange={onStateChange}
             onOpenRegister={(vehicle) => onNavigate('/register', vehicle || 'tata-ace')}
-            onOpenStatus={() => onNavigate('/status')}
+            onOpenStatus={() => onNavigate('/login')}
           />
         </div>
 
@@ -79,7 +79,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <Footer
         onSelectState={onStateChange}
         onOpenRegister={() => onNavigate('/register', 'tata-ace')}
-        onOpenStatus={() => onNavigate('/status')}
+        onOpenStatus={() => onNavigate('/login')}
       />
     </div>
   );

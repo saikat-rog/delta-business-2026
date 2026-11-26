@@ -175,10 +175,36 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>('');
+  const [processingText, setProcessingText] = useState('Fetching your details…');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentStep]);
+
+  useEffect(() => {
+    if (currentStep !== 6) return;
+    const messages = ['Fetching your details…', 'Verifying your documents…', 'Securing your information…', 'Finalising your application…'];
+    let index = 0;
+    setProcessingText(messages[0]);
+    const messageTimer = window.setInterval(() => {
+      index = Math.min(index + 1, messages.length - 1);
+      setProcessingText(messages[index]);
+    }, 900);
+    const nextTimer = window.setTimeout(() => setCurrentStep(7), 3600);
+    return () => { window.clearInterval(messageTimer); window.clearTimeout(nextTimer); };
+  }, [currentStep]);
+
+  useEffect(() => {
+    if (currentStep !== 7) return;
+    const nextTimer = window.setTimeout(() => setCurrentStep(8), 2300);
+    return () => window.clearTimeout(nextTimer);
+  }, [currentStep]);
+
+  useEffect(() => {
+    if (currentStep !== 8) return;
+    const nextTimer = window.setTimeout(() => onNavigate('/profile'), 1800);
+    return () => window.clearTimeout(nextTimer);
+  }, [currentStep, onNavigate]);
 
   useEffect(() => {
     // Load dynamic fee amounts configured in Admin Panel
@@ -235,11 +261,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
 
     if (d.status === 'under_review' || d.status === 'approved' || d.documents_submitted === 1) {
-      setCurrentStep(8);
-    } else if (d.subscription_paid === 1) {
-      setCurrentStep(7);
-    } else if (d.fee_paid === 1) {
-      setCurrentStep(6);
+      onNavigate('/profile');
     } else if (d.phone && d.phone.length === 10) {
       setCurrentStep(5);
     } else if (d.name) {
@@ -324,22 +346,14 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         setStoredDriverPhone(cleanPhone);
 
         if (res.driver.status === 'under_review' || res.driver.status === 'approved' || res.driver.documents_submitted === 1) {
-          setCurrentStep(8);
-          return;
-        }
-        if (res.driver.subscription_paid === 1) {
-          setSubPaid(true);
-          setCurrentStep(7);
-          return;
-        }
-        if (res.driver.fee_paid === 1) {
-          setFeePaid(true);
-          setCurrentStep(6);
+          onNavigate('/profile');
           return;
         }
       }
 
       setStoredDriverPhone(cleanPhone);
+      localStorage.setItem('smart_driver_profile_name', name.trim());
+      localStorage.setItem('smart_driver_profile_vehicle', vehicle);
       setCurrentStep(5);
     } catch {
       setStoredDriverPhone(cleanPhone);
@@ -477,16 +491,16 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }, 1100);
   };
 
-  // Step 7: Submit Documents
+  // Final form step: submit documents, then show the account creation sequence.
   const handleStep7Submit = async () => {
     setErrorMsg('');
     setLoading(true);
     try {
       const cleanPhone = phone.trim().replace(/\D/g, '').slice(-10);
       await submitDriverDocuments(driverId || undefined, cleanPhone);
-      setCurrentStep(8);
+      setCurrentStep(6);
     } catch {
-      setCurrentStep(8);
+      setCurrentStep(6);
     } finally {
       setLoading(false);
     }
@@ -510,23 +524,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     }
   };
 
-  const handleApplyAnother = () => {
-    localStorage.removeItem('smart_driver_phone');
-    localStorage.removeItem('smart_driver_id');
-    setDriverId(null);
-    setName('');
-    setPhone('');
-    setVehicle('tata-ace');
-    setWorkPreference('');
-    setFeePaid(false);
-    setFeeTxId('');
-    setSubPaid(false);
-    setSubTxId('');
-    setDocuments((prev) => prev.map((d) => ({ ...d, status: 'pending', fileName: undefined })));
-    setCurrentStep(1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const selectedVehicleObj =
     VEHICLE_OPTIONS.find((v) => v.id === vehicle) || VEHICLE_OPTIONS[0];
 
@@ -535,8 +532,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
     'Work Preference',
     'Personal Name',
     'Phone Verification',
-    'Registration Fee',
-    'Driver Subscription',
     'Required Documents',
   ];
 
@@ -556,13 +551,13 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
           <div className="flex items-center gap-5">
             <button
               type="button"
-              onClick={() => onNavigate('/status')}
+              onClick={() => onNavigate('/login')}
               className="text-[1.35rem] font-bold text-gray-700 hover:text-[#0445DA] flex items-center gap-1.5 cursor-pointer bg-transparent border-none transition-colors"
             >
-              <span>Check Status</span>
+              <span>Login</span>
             </button>
 
-            {driverId && currentStep < 8 && (
+            {driverId && currentStep <= 5 && (
               <button
                 type="button"
                 onClick={handleStartFresh}
@@ -575,17 +570,17 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         </div>
 
         {/* Uber Segmented Progress Bar */}
-        {currentStep <= 7 && (
+        {currentStep <= 5 && (
           <div className="w-full bg-gray-50 border-t border-gray-100">
             <div className="max-w-[1140px] mx-auto px-6 py-2.5 flex items-center justify-between text-[1.25rem] text-gray-500 font-semibold">
               <span className="uppercase tracking-wider text-gray-950 font-bold">
-                Step {currentStep} of 7
+                Step {currentStep} of 5
               </span>
               <span className="text-gray-700 font-bold">{stepTitles[currentStep - 1]}</span>
             </div>
             <div className="max-w-[1140px] mx-auto px-6 pb-2.5">
               <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden flex gap-1.5">
-                {[1, 2, 3, 4, 5, 6, 7].map((s) => (
+                {[1, 2, 3, 4, 5].map((s) => (
                   <div
                     key={s}
                     className={`h-full flex-1 rounded-full transition-all duration-300 ${
@@ -787,7 +782,6 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
               <div className="relative flex items-center bg-gray-50 border-2 border-gray-200 rounded-2xl focus-within:bg-white focus-within:border-[#0445DA] transition-all overflow-hidden">
                 <div className="px-5 py-4.5 bg-gray-100/80 border-r border-gray-200 text-[1.6rem] font-extrabold text-gray-700 flex items-center gap-1.5 select-none shrink-0">
-                  <span>🇮🇳</span>
                   <span>+91</span>
                 </div>
                 <input
@@ -833,7 +827,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         {/* ========================================================= */}
         {/* STEP 5: REGISTRATION FEE (Desktop 2-Column Side-by-Side) */}
         {/* ========================================================= */}
-        {currentStep === 5 && (
+        {false && currentStep === 5 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-emerald-700 block mb-1">
@@ -958,7 +952,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         {/* ========================================================= */}
         {/* STEP 6: DRIVER SUBSCRIPTION (Desktop 2-Column - No Amount in Button) */}
         {/* ========================================================= */}
-        {currentStep === 6 && (
+        {false && currentStep === 6 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-purple-700 block mb-1">
@@ -1087,7 +1081,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
         {/* ========================================================= */}
         {/* STEP 7: DOCUMENTS (Desktop 2x2 Grid) */}
         {/* ========================================================= */}
-        {currentStep === 7 && (
+        {currentStep === 5 && (
           <div className="max-w-[1040px] mx-auto w-full  p-6 sm:p-10 md:p-12">
             <div className="mb-8 md:mb-10">
               <span className="text-[1.25rem] font-bold uppercase tracking-wider text-[#0445DA] block mb-1">
@@ -1172,7 +1166,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
             <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
               <button
                 type="button"
-                onClick={() => setCurrentStep(6)}
+                onClick={() => setCurrentStep(4)}
                 className="px-6 py-4.5 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 font-bold text-[1.5rem] transition-colors cursor-pointer"
               >
                 <ArrowLeftIcon size={20} />
@@ -1192,9 +1186,26 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
           </div>
         )}
 
-        {/* ========================================================= */}
-        {/* STEP 8: APPLICATION SUBMITTED (Minimalist Success Card) */}
-        {/* ========================================================= */}
+        {currentStep === 6 && (
+          <div className="max-w-[560px] mx-auto w-full p-8 sm:p-12 text-center animate-fade-in">
+            <div className="w-20 h-20 mx-auto mb-7 rounded-full border-8 border-blue-100 border-t-[#0445DA] animate-spin" />
+            <p className="text-[1.25rem] font-bold uppercase tracking-[0.18em] text-[#0445DA] mb-2">Please wait</p>
+            <h1 className="text-[2.7rem] sm:text-[3.3rem] font-black text-gray-950 mb-3">{processingText}</h1>
+            <p className="text-[1.45rem] text-gray-500">We are checking everything you submitted. Please don&apos;t close this page.</p>
+            <div className="mt-8 h-2 rounded-full bg-blue-100 overflow-hidden"><div className="h-full bg-[#0445DA] rounded-full animate-[pulse_1s_ease-in-out_infinite] w-4/5" /></div>
+          </div>
+        )}
+
+        {currentStep === 7 && (
+          <div className="max-w-[560px] mx-auto w-full p-8 sm:p-12 text-center animate-fade-in">
+            <div className="w-24 h-24 mx-auto mb-7 rounded-2xl bg-neutral-100 flex items-center justify-center animate-pulse">
+              <UserIcon size={32} aria-hidden="true" />
+            </div>
+            <h1 className="text-[2.7rem] sm:text-[3.3rem] font-black text-gray-950 mb-3">Creating your account on Smart Driver</h1>
+            <p className="text-[1.45rem] text-gray-500">Setting up your driver profile and wallet…</p>
+          </div>
+        )}
+
         {currentStep === 8 && (
           <div className="max-w-[540px] mx-auto w-full p-8 sm:p-12 text-center animate-fade-in my-6">
             {/* Animated Green Tick */}
@@ -1206,30 +1217,22 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
 
             {/* Success Heading & Subtitle */}
             <h1 className="text-[2.8rem] sm:text-[3.4rem] font-black text-gray-950 tracking-tight leading-tight mb-2">
-              Application Successful!
+              Congratulations, {name.split(' ')[0]}!
             </h1>
             <p className="text-[1.5rem] text-gray-500 max-w-sm mx-auto mb-8 leading-relaxed">
-              Your vehicle registration application has been submitted successfully and is currently under review.
+              Your Smart Driver account is ready. Taking you to your profile now…
             </p>
 
-            {/* Action Buttons */}
             <div className="flex flex-col items-center gap-4">
               <button
                 type="button"
-                onClick={() => onNavigate(`/status-details?phone=${phone}`)}
+                onClick={() => onNavigate('/profile')}
                 className="w-full py-4.5 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.65rem] font-extrabold rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Track Status</span>
+                <span>Open My Profile</span>
                 <ArrowRightIcon size={20} />
               </button>
 
-              <button
-                type="button"
-                onClick={handleApplyAnother}
-                className="text-[1.45rem] font-bold text-gray-600 hover:text-gray-950 underline underline-offset-4 transition-colors cursor-pointer bg-transparent border-none py-1"
-              >
-                Apply Another
-              </button>
             </div>
           </div>
         )}

@@ -55,8 +55,7 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
     }
 
     setStoredDriverPhone(cleanPhone);
-    // Navigate to dedicated Status Details Page as requested
-    onNavigate(`/status-details?phone=${cleanPhone}`);
+    onNavigate('/profile');
   };
 
   return (
@@ -83,10 +82,10 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
               Driver Partner Portal
             </span>
             <h1 className="text-[2.8rem] sm:text-[3.4rem] font-black text-gray-950 tracking-tight leading-tight">
-              Track your application
+              Login to your account
             </h1>
             <p className="text-[1.45rem] text-gray-500 mt-2 max-w-md mx-auto">
-              Enter your registered mobile number to view live status, continue your registration, or check approval.
+              Enter your mobile number to open your Smart Driver profile. No password or OTP is required.
             </p>
           </div>
 
@@ -98,7 +97,6 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
 
               <div className="relative flex items-center bg-gray-50 border-2 border-gray-200 rounded-2xl focus-within:bg-white focus-within:border-[#0445DA] transition-all overflow-hidden">
                 <div className="px-5 py-4 bg-gray-100/80 border-r border-gray-200 text-[1.6rem] font-extrabold text-gray-700 flex items-center gap-1.5 select-none shrink-0">
-                  <span>🇮🇳</span>
                   <span>+91</span>
                 </div>
                 <input
@@ -125,7 +123,7 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
               disabled={phoneInput.length !== 10}
               className="w-full py-4.5 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.65rem] font-extrabold rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              <span>Check Status</span>
+              <span>Login</span>
               <ArrowRightIcon size={20} />
             </button>
           </form>
@@ -142,13 +140,13 @@ export const StatusPage: React.FC<StatusPageProps> = ({ onNavigate }) => {
               <div className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
                 <CheckIcon size={12} />
               </div>
-              <span><strong>Auto-resume:</strong> Continue exactly where you left off</span>
+              <span><strong>Instant access:</strong> Open your driver profile immediately</span>
             </div>
             <div className="flex items-center gap-2.5">
               <div className="w-5 h-5 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
                 <CheckIcon size={12} />
               </div>
-              <span><strong>Real-time verification:</strong> Instant sync with operations team</span>
+              <span><strong>Wallet ready:</strong> Recharge with a fixed wallet pack</span>
             </div>
           </div>
         </div>

@@ -234,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({
                     style={{ color: '#9ca3af', fontSize: '1.35rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
                     className="hover:text-white transition-colors"
                   >
-                    Check Application Status
+                    Driver Login
                   </button>
                 </li>
                 <li>

@@ -853,7 +853,8 @@ export async function createCashfreePaymentOrder(payload: {
   phone: string;
   name?: string;
   email?: string;
-  order_type: 'registration_fee' | 'subscription';
+  order_type: 'registration_fee' | 'subscription' | 'wallet_recharge';
+  amount?: number;
   return_url?: string;
 }): Promise<CashfreeOrderResponse> {
   const res = await resilientFetch('/driver/create-order', {
@@ -875,6 +876,15 @@ export async function verifyCashfreePaymentOrder(order_id: string): Promise<Cash
     saveLocalApp(data.driver);
   }
   return data;
+}
+
+export async function fetchWalletBalance(phone: string): Promise<number> {
+  const response = await resilientFetch(`/driver/wallet-balance?phone=${encodeURIComponent(phone)}`);
+  const data = await parseJsonResponse<{ success: boolean; balance: number }>(response);
+  if (!response.ok || !data.success || !Number.isFinite(data.balance)) {
+    throw new Error('Wallet balance is unavailable.');
+  }
+  return data.balance;
 }
 
 // ============================================

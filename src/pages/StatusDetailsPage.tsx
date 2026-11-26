@@ -184,7 +184,7 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
             <p className="text-[1.45rem] text-red-600 mb-6">{errorMsg}</p>
             <button
               type="button"
-              onClick={() => onNavigate('/status')}
+              onClick={() => onNavigate('/login')}
               className="px-8 py-4 bg-[#0445DA] hover:bg-[#0336aa] text-white text-[1.55rem] font-bold rounded-2xl transition-all shadow-md inline-flex items-center gap-2 cursor-pointer"
             >
               <ArrowLeftIcon size={18} />
@@ -560,7 +560,7 @@ export const StatusDetailsPage: React.FC<StatusDetailsPageProps> = ({ onNavigate
 
               <button
                 type="button"
-                onClick={() => onNavigate('/status')}
+                onClick={() => onNavigate('/login')}
                 className="px-6 py-4 rounded-2xl border-2 border-gray-200 text-gray-700 hover:bg-gray-50 text-[1.55rem] font-bold transition-colors cursor-pointer text-center"
               >
                 <span>Try Another Number</span>
